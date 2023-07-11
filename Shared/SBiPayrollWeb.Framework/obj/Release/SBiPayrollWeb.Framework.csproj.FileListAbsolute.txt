@@ -1,0 +1,10 @@
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.pdb
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Release\SBiPayrollWeb.Framework.csprojResolveAssemblyReference.cache
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Release\SBiPayrollWeb.Framework.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Release\SBiPayrollWeb.Framework.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Release\SBiPayrollWeb.Framework.csprojResolveAssemblyReference.cache
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Release\SBiPayrollWeb.Framework.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Release\SBiPayrollWeb.Framework.pdb

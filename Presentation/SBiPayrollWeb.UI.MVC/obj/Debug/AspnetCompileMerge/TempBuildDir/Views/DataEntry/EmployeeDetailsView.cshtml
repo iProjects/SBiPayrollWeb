@@ -1,0 +1,470 @@
+﻿@model SBiPayrollWeb.Entities.Employee
+
+@{
+    ViewBag.Title = "Employee Details";
+    var Employee = Model.EmployeeName.ToUpper(); 
+}
+
+<h2 class="page-title">Details for -  @Employee </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Employee</legend>
+
+        <div class="tabs">
+            <ul>
+                <li><a href="#PersonalInfo" id="iPersonalInfo" class="tablinks">Personal Info</a></li>
+                <li><a href="#ContactInfo" id="iContactInfo" class="tablinks">Contact Info</a></li>
+                <li><a href="#PayslipInfo" id="iPayslipInfo" class="tablinks">Payslip Info</a></li>
+                <li><a href="#EmploymentInfo" id="iEmploymentInfo" class="tablinks">Employment Info</a></li>
+                <li><a href="#PaymentInfo" id="iPaymentInfo" class="tablinks">Payment Info</a></li>
+            </ul>
+
+            <div class="clearboth">
+                @*<hr />*@
+            </div>
+
+            <div class="tabContent">
+
+                <div id="PersonalInfo" class="tab">
+
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Email)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Email, new { @autofocus = "autofocus" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Surname)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Surname)
+                        @Html.ValidationMessageFor(model => model.Surname)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.OtherNames)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.OtherNames)
+                        @Html.ValidationMessageFor(model => model.OtherNames)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EmpNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.EmpNo, new { @readonly = "readonly" })
+                        @Html.ValidationMessageFor(model => model.EmpNo)
+                    </div>
+
+                </div>
+
+                <div id="ContactInfo" class="tab">
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MaritalStatus)
+                    </div>
+                    <div class="editor-field">
+                        @{
+    List<SelectListItem> _lstMaritalStatus = new List<SelectListItem>();
+    _lstMaritalStatus.Add(new SelectListItem
+         {
+             Text = "Married",
+             Value = "M"
+         });
+    _lstMaritalStatus.Add(new SelectListItem
+    {
+        Text = "Single",
+        Value = "S"
+    });
+    _lstMaritalStatus.Add(new SelectListItem
+         {
+             Text = "Divorced",
+             Value = "D",
+         });
+                        }
+
+                        @Html.DropDownListFor(model => model.MaritalStatus, _lstMaritalStatus, "-- Select Marital Status --", new { @id = "cboMaritalStatus", @style = "width: 310px;height: 30px;" })
+
+                        @Html.ValidationMessageFor(model => model.MaritalStatus)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Gender)
+                    </div>
+                    <div class="editor-field">
+                        @{
+    List<SelectListItem> lstGender = new List<SelectListItem>();
+    lstGender.Add(new SelectListItem
+         {
+             Text = "Male",
+             Value = "M"
+         });
+    lstGender.Add(new SelectListItem
+         {
+             Text = "Female",
+             Value = "F",
+         });
+                        }
+
+                        @Html.DropDownListFor(model => model.Gender, lstGender, "-- Select Gender --", new { @id = "cboGender", @style = "width: 310px;height: 30px;" })
+
+                        @Html.ValidationMessageFor(model => model.Gender)
+                    </div>
+
+                    <div>
+                        @if (Model.DoB.ToString() == "1/1/0001 12:00:00 AM" || Model.DoB.ToString() == "1/1/01 12:00:00 AM" || Model.DoB.ToString() == "01/01/01 12:00:00 AM" || Model.DoB.ToString() == "01/01/0001 12:00:00 AM" || Model.DoB.ToString() == "01/01/01 12:00:00 AM" || Model.DoB.ToString() == "0001-01-01 12:00:00 AM" || Model.DoB.ToString() == "01-Jan-01 12:00:00 AM")
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DoB)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DoB, new { Value = @DateTime.Now.Date.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                @Html.ValidationMessageFor(model => model.DoB)
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DoB)
+                            </div>
+                            <div class="editor-field">
+                                @{
+                            var dateAsString = Model.DoB; 
+            
+                                    @Html.TextBoxFor(model => model.DoB, new { Value = dateAsString.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                }
+
+                                @Html.ValidationMessageFor(model => model.DoB)
+                            </div>
+                        }
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.TelephoneNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.TelephoneNo)
+                        @Html.ValidationMessageFor(model => model.TelephoneNo)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IDNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.IDNo)
+                        @Html.ValidationMessageFor(model => model.IDNo)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Photo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Photo)
+                        @Html.ValidationMessageFor(model => model.Photo)
+                    </div>
+
+                </div>
+
+                <div id="PayslipInfo" class="tab">
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PersonalRelief)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PersonalRelief)
+                        @Html.ValidationMessageFor(model => model.PersonalRelief)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MortgageRelief)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.MortgageRelief)
+                        @Html.ValidationMessageFor(model => model.MortgageRelief)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.InsuranceRelief)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.InsuranceRelief)
+                        @Html.ValidationMessageFor(model => model.InsuranceRelief)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.NSSFNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.NSSFNo)
+                        @Html.ValidationMessageFor(model => model.NSSFNo)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.NHIFNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.NHIFNo)
+                        @Html.ValidationMessageFor(model => model.NHIFNo)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PINNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PINNo)
+                        @Html.ValidationMessageFor(model => model.PINNo)
+                    </div>
+
+                </div>
+
+                <div id="EmploymentInfo" class="tab">
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EmployerId)
+                    </div>
+                    <div class="editor-field">
+                        @{
+                        List<SelectListItem> _Employers = new List<SelectListItem>();
+                        foreach (var employer in Model._Employers)
+                        {
+                            _Employers.Add(new SelectListItem
+                            {
+                                Text = employer.Name,
+                                Value = employer.Id.ToString()
+                            });
+                        }
+                        }
+
+                        @Html.DropDownListFor(model => model.EmployerId, _Employers, "-- Select Employer --", new { @id = "cboEmployers", @style = "width: 310px;height: 30px;" })
+                        @Html.ValidationMessageFor(model => model.EmployerId)
+                    </div>
+
+                    <div>
+                        @if (Model.DoE.ToString() == "1/1/0001 12:00:00 AM" || Model.DoE.ToString() == "1/1/01 12:00:00 AM" || Model.DoE.ToString() == "01/01/01 12:00:00 AM" || Model.DoE.ToString() == "01/01/0001 12:00:00 AM" || Model.DoE.ToString() == "01/01/01 12:00:00 AM" || Model.DoE.ToString() == "0001-01-01 12:00:00 AM" || Model.DoE.ToString() == "01-Jan-01 12:00:00 AM")
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DoE)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DoE, new { Value = @DateTime.Now.Date.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                @Html.ValidationMessageFor(model => model.DoE)
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DoE)
+                            </div>
+                            <div class="editor-field">
+                                @{
+                            var dateAsString = Model.DoE ?? DateTime.Now; 
+            
+                                    @Html.TextBoxFor(model => model.DoE, new { Value = dateAsString.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                }
+
+                                @Html.ValidationMessageFor(model => model.DoE)
+                            </div>
+                        }
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CreatedBy)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CreatedBy)
+                        @Html.ValidationMessageFor(model => model.CreatedBy)
+                    </div>
+
+                    <div>
+                        @if (Model.CreatedOn.ToString() == "1/1/0001 12:00:00 AM" || Model.CreatedOn.ToString() == "1/1/01 12:00:00 AM" || Model.CreatedOn.ToString() == "01/01/01 12:00:00 AM" || Model.CreatedOn.ToString() == "01/01/0001 12:00:00 AM" || Model.CreatedOn.ToString() == "01/01/01 12:00:00 AM" || Model.CreatedOn.ToString() == "0001-01-01 12:00:00 AM" || Model.CreatedOn.ToString() == "01-Jan-01 12:00:00 AM")
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.CreatedOn)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.CreatedOn, new { Value = @DateTime.Now.Date.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                @Html.ValidationMessageFor(model => model.CreatedOn)
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.CreatedOn)
+                            </div>
+                            <div class="editor-field">
+                                @{
+                            var dateAsString = Model.CreatedOn ?? DateTime.Now; 
+            
+                                    @Html.TextBoxFor(model => model.CreatedOn, new { Value = dateAsString.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                }
+
+                                @Html.ValidationMessageFor(model => model.CreatedOn)
+                            </div>
+                        }
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IsActive)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.IsActive)
+                        @Html.ValidationMessageFor(model => model.IsActive)
+                    </div>
+
+                    <div>
+                       @if (Model.DateLeft.ToString() == "1/1/0001 12:00:00 AM" || Model.DateLeft.ToString() == "1/1/01 12:00:00 AM" || Model.DateLeft.ToString() == "01/01/01 12:00:00 AM" || Model.DateLeft.ToString() == "01/01/0001 12:00:00 AM" || Model.DateLeft.ToString() == "01/01/01 12:00:00 AM" || Model.DateLeft.ToString() == "0001-01-01 12:00:00 AM" || Model.DateLeft.ToString() == "01-Jan-01 12:00:00 AM")
+                        { 
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DateLeft)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DateLeft, new { Value = @DateTime.Now.Date.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                @Html.ValidationMessageFor(model => model.DateLeft)
+                            </div>
+                        }
+
+                        else
+                        { <div class="editor-label">
+                            @Html.LabelFor(model => model.DateLeft)
+                        </div>
+                            <div class="editor-field">
+                                @{
+                            var dateAsString = Model.DateLeft ?? DateTime.Now; 
+                                    @Html.HiddenFor(model => model.DateLeft, new { Value = dateAsString.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })  
+                                    @Html.ValidationMessageFor(model => model.DateLeft)
+                                
+                                }
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+                <div id="PaymentInfo" class="tab">
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BasicPay)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.BasicPay)
+                        @Html.ValidationMessageFor(model => model.BasicPay)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BasicComputation)
+                    </div>
+                    <div class="editor-field">
+                        @{
+                        List<SelectListItem> lstBasicComputation = new List<SelectListItem>();
+                        lstBasicComputation.Add(new SelectListItem
+                            {
+                                Text = "Monthly",
+                                Value = "M",
+                                Selected = true
+                            });
+                        lstBasicComputation.Add(new SelectListItem
+                            {
+                                Text = "Hourly",
+                                Value = "H"
+                            });
+                        lstBasicComputation.Add(new SelectListItem
+                        {
+                            Text = "Mixed",
+                            Value = "X"
+                        });
+                        }
+
+                        @Html.DropDownListFor(model => model.BasicComputation, lstBasicComputation, new { @id = "cboBasicComputation", @style = "width: 310px;height: 30px;" })
+
+                        @Html.ValidationMessageFor(model => model.BasicComputation)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PaymentMode)
+                    </div>
+                    <div class="editor-field">
+                        @{
+                        List<SelectListItem> lstPaymentMode = new List<SelectListItem>();
+                        lstPaymentMode.Add(new SelectListItem
+                            {
+                                Text = "Cash",
+                                Value = "C",
+                                Selected = true
+                            });
+                        lstPaymentMode.Add(new SelectListItem
+                            {
+                                Text = "Cheque",
+                                Value = "Q",
+                            });
+                        lstPaymentMode.Add(new SelectListItem
+                        {
+                            Text = "Bank Slip",
+                            Value = "B"
+                        });
+                        lstPaymentMode.Add(new SelectListItem
+                        {
+                            Text = "Mpesa",
+                            Value = "M"
+                        });
+                        }
+
+                        @Html.DropDownListFor(model => model.PaymentMode, lstPaymentMode, "-- Select Payment Mode --", new { @id = "cboPaymentMode", @style = "width: 310px;height: 30px;" })
+
+                        @Html.ValidationMessageFor(model => model.PaymentMode)
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </fieldset>
+    
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+    </script>
+
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Entities.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Entities.pdb
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Release\SBiPayrollWeb.Entities.csprojResolveAssemblyReference.cache
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Release\SBiPayrollWeb.Entities.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Release\SBiPayrollWeb.Entities.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Entities.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Entities.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Release\SBiPayrollWeb.Entities.csprojResolveAssemblyReference.cache
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Release\SBiPayrollWeb.Entities.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Release\SBiPayrollWeb.Entities.pdb

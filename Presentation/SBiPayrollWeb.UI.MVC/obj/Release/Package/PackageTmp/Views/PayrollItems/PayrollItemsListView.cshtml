@@ -1,0 +1,118 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.PayrollItem>
+
+@{
+    ViewBag.Title = "Payroll Items";
+    int PayrollItems = Model.Count();
+}
+
+<h2 class="page-title">Payroll Items [ @PayrollItems ]  </h2>
+
+
+<div>
+    @using (Html.BeginForm("CreatePayrollItem", "PayrollItems", FormMethod.Get, new { enctype = "multipart/form-data", id = "create-payroll-item-form" }))
+    { 
+        <p>
+            <a id="btnSubmitCreatePayrollItemForm" style="cursor: pointer;" title="Create Payroll Item">Create Payroll Item</a>
+            @*@Html.ActionLink("Create Payroll Item", "CreatePayrollItem") *@
+        </p> 
+         
+    }
+</div>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefaultItem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddToPension)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enable)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DefaultItem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddToPension)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enable)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditPayrollItem", new { key = item.Id }) |
+            @Html.ActionLink("Details", "PayrollItemDetails", new { key = item.Id }) |
+            @Html.ActionLink("Delete", "DeletePayrollItem", new { key = item.Id, description = item.Description })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitCreatePayrollItemForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#create-payroll-item-form").submit();
+
+        });
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+

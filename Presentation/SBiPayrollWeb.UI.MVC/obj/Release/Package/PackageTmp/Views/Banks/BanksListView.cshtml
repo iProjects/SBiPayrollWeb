@@ -1,0 +1,96 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.Bank>
+
+@{
+    ViewBag.Title = "Banks";
+    int Banks = Model.Count();
+}
+
+<h2 class="page-title">Banks [ @Banks ]  </h2>
+
+
+<div>
+    @using (Html.BeginForm("CreateBank", "Banks", FormMethod.Get, new { enctype = "multipart/form-data", id = "create-bank-form" }))
+    { 
+        <p>
+            <a id="btnSubmitCreateBankForm" style="cursor: pointer;" title="Create Bank">Create Bank</a>
+            @*@Html.ActionLink("Create Bank", "CreateBank")*@
+        </p> 
+         
+    }
+</div>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BankCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BankName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditBank", new { key = item.BankCode }) |
+            @Html.ActionLink("Details", "BankDetails", new { key = item.BankCode }) |
+            @Html.ActionLink("Delete", "DeleteBank", new { key = item.BankCode, description = item.BankName })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitCreateBankForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#create-bank-form").submit();
+
+        });
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+

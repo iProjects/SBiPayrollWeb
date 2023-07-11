@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.PayrollItem>
+
+@{
+    ViewBag.Title = "Payroll Items";
+}
+
+<h2 class="page-title">Payroll Items</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th> 
+        <th>
+            @Html.DisplayNameFor(model => model.DefaultItem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddToPension)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Enable)
+        </th> 
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>  
+        <td>
+            @Html.DisplayFor(modelItem => item.DefaultItem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddToPension)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Enable)
+        </td> 
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+
+

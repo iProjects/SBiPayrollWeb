@@ -1,0 +1,117 @@
+﻿@using System;
+@using System.Collections.Generic;
+@using System.Linq;
+@using System.Web;
+@using System.Web.Mvc;
+@using System.Web.Security;
+@using DotNetOpenAuth.AspNet;
+@using Microsoft.Web.WebPages.OAuth;
+@using SBiPayrollWeb.Business;
+@using SBiPayrollWeb.Entities;
+@using SBiPayrollWeb.UI.MVC.Filters;
+@using SBiPayrollWeb.UI.MVC.Models;
+@using WebMatrix.WebData;
+
+@model SBiPayrollWeb.Entities.UsersInRoleModel
+
+@{
+    ViewBag.Title = "Create User Role";
+}
+
+<h2 class="page-title">Create User Role </h2>
+
+@using (Html.BeginForm("CreateUserRole", "Administrator", FormMethod.Post, new { enctype = "multipart/form-data", id = "create-user-role-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Create User Role</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserId)
+        </div>
+        <div class="editor-field">
+            @{
+    List<SelectListItem> _users = new List<SelectListItem>();
+    foreach (var user in Model._Users)
+    {
+        _users.Add(new SelectListItem
+        {
+            Text = user.EmployeeName,
+            Value = user.Id.ToString()
+        });
+    }
+            }
+
+            @Html.DropDownListFor(model => model.UserId, _users,"-- Select Employee --", new { @id = "_cboUsers",   @autofocus = "autofocus" })
+            @Html.ValidationMessageFor(model => model.UserId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoleId)
+        </div>
+        <div class="editor-field">
+            @{
+    List<SelectListItem> _roles = new List<SelectListItem>();
+    foreach (var role in Model._Roles)
+    {
+        _roles.Add(new SelectListItem
+             {
+                 Text = role.RoleName,
+                 Value = role.RoleId.ToString(),
+                 Selected = Model.RoleId.Equals(role.RoleId)
+             });
+    }
+            }
+
+            @Html.DropDownListFor(model => model.RoleId, _roles,"-- Select Role --", new { @id = "_cboRoles", @style = "width: 310px;height: 30px;" })
+            @Html.ValidationMessageFor(model => model.RoleId)
+        </div>
+
+
+        <p>
+            <input type="submit" value="Create"  id="btnSubmit" />
+        </p>
+    </fieldset>
+}
+
+ 
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmit").on("click", function (e) {
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#create-user-role-form").submit();
+        });
+
+
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

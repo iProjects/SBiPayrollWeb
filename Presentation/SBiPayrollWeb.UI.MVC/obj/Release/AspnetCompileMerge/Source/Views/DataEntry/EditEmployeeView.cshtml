@@ -1,0 +1,661 @@
+﻿@model SBiPayrollWeb.Entities.Employee
+
+@{
+    ViewBag.Title = "Edit Employee";
+    var Employee = Model.Email.ToUpper(); 
+}
+
+<h2 class="page-title">Edit Employee - @Employee </h2>
+
+@using (Html.BeginForm("EditEmployee", "DataEntry", FormMethod.Post, new { enctype = "multipart/form-data", id = "edit-employee-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    
+    <fieldset>
+        <legend>Create Employee</legend>
+
+
+
+        <div id="column-div" class="clearboth">
+
+
+            <article class="col1">
+                <div class="pad">
+
+                    <h5>Employee Data</h5>
+
+                    <ol>
+
+                        <li>
+                            @Html.ValidationMessageFor(model => model.Email)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.Surname)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.OtherNames)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.MaritalStatus)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.Gender)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.DoB)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.IDNo)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.TelephoneNo)
+                        </li>
+
+
+                    </ol>
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Email)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Email, new { @autofocus = "autofocus" })
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Surname)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Surname)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.OtherNames)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.OtherNames)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EmpNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.EmpNo, new { @readonly = "readonly" })
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MaritalStatus)
+                    </div>
+                    <div class="editor-field">
+                        @{
+    List<SelectListItem> _lstMaritalStatus = new List<SelectListItem>();
+    _lstMaritalStatus.Add(new SelectListItem
+    {
+        Text = "Married",
+        Value = "M"
+    });
+    _lstMaritalStatus.Add(new SelectListItem
+    {
+        Text = "Single",
+        Value = "S"
+    });
+    _lstMaritalStatus.Add(new SelectListItem
+    {
+        Text = "Divorced",
+        Value = "D",
+    });
+                        }
+
+                        @Html.DropDownListFor(model => model.MaritalStatus, _lstMaritalStatus, "-- Select Marital Status --", new { @id = "cboMaritalStatus", @style = "width: 230px;height: 30px;" })
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.Gender)
+                    </div>
+                    <div class="editor-field">
+                        @{
+    List<SelectListItem> lstGender = new List<SelectListItem>();
+    lstGender.Add(new SelectListItem
+    {
+        Text = "Male",
+        Value = "M"
+    });
+    lstGender.Add(new SelectListItem
+    {
+        Text = "Female",
+        Value = "F",
+    });
+                        }
+
+                        @Html.DropDownListFor(model => model.Gender, lstGender, "-- Select Gender --", new { @id = "cboGender", @style = "width: 230px;height: 30px;" })
+                    </div>
+
+                    <div>
+                        @if (Model.DoB.ToString() == "1/1/0001 12:00:00 AM" || Model.DoB.ToString() == "1/1/01 12:00:00 AM" || Model.DoB.ToString() == "01/01/01 12:00:00 AM" || Model.DoB.ToString() == "01/01/0001 12:00:00 AM" || Model.DoB.ToString() == "01/01/01 12:00:00 AM" || Model.DoB.ToString() == "0001-01-01 12:00:00 AM" || Model.DoB.ToString() == "01-Jan-01 12:00:00 AM")
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DoB)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DoB, new { Value = @DateTime.Now.Date.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DoB)
+                            </div>
+                            <div class="editor-field">
+                                @{
+                            var dateAsString = Model.DoB; 
+            
+                                    @Html.TextBoxFor(model => model.DoB, new { Value = dateAsString.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.TelephoneNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.TelephoneNo)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IDNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.IDNo)
+                    </div>
+                    
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IsActive)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.IsActive)
+                    </div>
+
+
+
+                </div>
+            </article>
+
+            <article class="col2">
+                <div class="pad">
+                    
+                    <h5>Employement Info</h5>
+
+                    <ol>
+
+                        <li>
+                            @Html.ValidationMessageFor(model => model.PersonalRelief)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.MortgageRelief)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.InsuranceRelief)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.NSSFNo)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.NHIFNo)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.PINNo)
+                        </li>
+
+                    </ol>
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PersonalRelief)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PersonalRelief)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MortgageRelief)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.MortgageRelief)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.InsuranceRelief)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.InsuranceRelief)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.NSSFNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.NSSFNo)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.NHIFNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.NHIFNo)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PINNo)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.PINNo)
+                    </div>
+
+
+                </div>
+            </article>
+
+            <article class="col3">
+                <div class="pad">
+                    
+                    <h5>Employement Info</h5>
+
+                    <ol>
+
+                        <li>
+                            @Html.ValidationMessageFor(model => model.EmployerId)
+                        </li>
+                         <li>
+                            @Html.ValidationMessageFor(model => model.DepartmentId)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.DoE)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.CreatedBy)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.CreatedOn)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.IsActive)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.DateLeft)
+                        </li>
+
+
+                    </ol>
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.EmployerId)
+                    </div>
+                    <div class="editor-field">
+                        @{
+                        List<SelectListItem> _Employers = new List<SelectListItem>();
+                        foreach (var employer in Model._Employers)
+                        {
+                            _Employers.Add(new SelectListItem
+                            {
+                                Text = employer.Name,
+                                Value = employer.Id.ToString()
+                            });
+                        }
+                        }
+
+                        @Html.DropDownListFor(model => model.EmployerId, _Employers, "-- Select Employer --", new { @id = "cboEmployers", @style = "width: 230px;height: 30px;" })
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.DepartmentId)
+                    </div>
+                    <div class="editor-field">
+                        @{
+    List<SelectListItem> _Departments = new List<SelectListItem>();
+                        foreach (var department in Model._Departments)
+                        {
+                            _Departments.Add(new SelectListItem
+                            {
+                                Text = department.Description,
+                                Value = department.Id.ToString()
+                            });
+                        }
+                        }
+
+                        @Html.DropDownListFor(model => model.DepartmentId, _Departments, "-- Select Department --", new { @id = "cboDepartments", @style = "width: 230px;height: 30px;" })
+                    </div>
+
+                    <div>
+                        @if (Model.DoE.ToString() == "1/1/0001 12:00:00 AM" || Model.DoE.ToString() == "1/1/01 12:00:00 AM" || Model.DoE.ToString() == "01/01/01 12:00:00 AM" || Model.DoE.ToString() == "01/01/0001 12:00:00 AM" || Model.DoE.ToString() == "01/01/01 12:00:00 AM" || Model.DoE.ToString() == "0001-01-01 12:00:00 AM" || Model.DoE.ToString() == "01-Jan-01 12:00:00 AM")
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DoE)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.DoE, new { Value = @DateTime.Now.Date.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.DoE)
+                            </div>
+                            <div class="editor-field">
+                                @{
+                            var dateAsString = Model.DoE; 
+            
+                                    @Html.TextBoxFor(model => model.DoE, new { Value = dateAsString.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.CreatedBy)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.CreatedBy)
+                    </div>
+
+                    <div>
+                        @if (Model.CreatedOn.ToString() == "1/1/0001 12:00:00 AM" || Model.CreatedOn.ToString() == "1/1/01 12:00:00 AM" || Model.CreatedOn.ToString() == "01/01/01 12:00:00 AM" || Model.CreatedOn.ToString() == "01/01/0001 12:00:00 AM" || Model.CreatedOn.ToString() == "01/01/01 12:00:00 AM" || Model.CreatedOn.ToString() == "0001-01-01 12:00:00 AM" || Model.CreatedOn.ToString() == "01-Jan-01 12:00:00 AM")
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.CreatedOn)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.CreatedOn, new { Value = @DateTime.Now.Date.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                            </div>
+                        }
+
+                        else
+                        {
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.CreatedOn)
+                            </div>
+                            <div class="editor-field">
+                                @{
+                            var dateAsString = Model.CreatedOn; 
+            
+                                    @Html.TextBoxFor(model => model.CreatedOn, new { Value = dateAsString.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="displaynone">
+                        @if (Model.DateLeft.ToString() == "1/1/0001 12:00:00 AM" || Model.DateLeft.ToString() == "1/1/01 12:00:00 AM" || Model.DateLeft.ToString() == "01/01/01 12:00:00 AM" || Model.DateLeft.ToString() == "01/01/0001 12:00:00 AM" || Model.DateLeft.ToString() == "01/01/01 12:00:00 AM" || Model.DateLeft.ToString() == "0001-01-01 12:00:00 AM" || Model.DateLeft.ToString() == "01-Jan-01 12:00:00 AM")
+                        { 
+                            <div class="editor-label displaynone">
+                                @Html.LabelFor(model => model.DateLeft)
+                            </div>
+                            <div class="editor-field displaynone">
+                                @Html.HiddenFor(model => model.DateLeft, new { Value = @DateTime.Now.Date.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })
+                            </div>
+                        }
+
+                        else
+                        { 
+                            <div class="editor-label displaynone">
+                                @Html.LabelFor(model => model.DateLeft)
+                            </div>
+                            <div class="editor-field displaynone">
+                                @{
+                            var dateAsString = Model.DateLeft; 
+                                    @Html.HiddenFor(model => model.DateLeft, new { Value = dateAsString.ToString("yyyy-MM-dd"), @class = "datepicker", type = "date" })   
+                                }
+
+                            </div>
+                        }
+                    </div>
+                     
+
+                </div>
+            </article>
+
+            <article class="col4">
+                <div class="pad">
+                    
+                    <h5>Payment Info</h5>
+
+                    <ol>
+
+                        <li>
+                            @Html.ValidationMessageFor(model => model.BasicComputation)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.BasicPay)
+                        </li>
+                        <li>
+                            @Html.ValidationMessageFor(model => model.PaymentMode)
+                        </li>
+
+                    </ol>
+
+
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BasicComputation)
+                    </div>
+                    <div class="editor-field">
+                        @{
+                        List<SelectListItem> lstBasicComputation = new List<SelectListItem>();
+                        lstBasicComputation.Add(new SelectListItem
+                        {
+                            Text = "Monthly",
+                            Value = "M",
+                            Selected = true
+                        });
+                        lstBasicComputation.Add(new SelectListItem
+                        {
+                            Text = "Hourly",
+                            Value = "H"
+                        });
+                        lstBasicComputation.Add(new SelectListItem
+                        {
+                            Text = "Mixed",
+                            Value = "X"
+                        });
+                        }
+
+                        @Html.DropDownListFor(model => model.BasicComputation, lstBasicComputation, "-- Select Basic Computation --", new { @id = "cboBasicComputation", @style = "width: 230px;height: 30px;" })
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.BasicPay)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.BasicPay)
+                    </div>
+
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.PaymentMode)
+                    </div>
+                    <div class="editor-field">
+                        @{
+                        List<SelectListItem> lstPaymentMode = new List<SelectListItem>();
+                        lstPaymentMode.Add(new SelectListItem
+                        {
+                            Text = "Cash",
+                            Value = "C" 
+                        });
+                        lstPaymentMode.Add(new SelectListItem
+                        {
+                            Text = "Cheque",
+                            Value = "Q",
+                        });
+                        lstPaymentMode.Add(new SelectListItem
+                        {
+                            Text = "Bank Slip",
+                            Value = "B"
+                        });
+                        lstPaymentMode.Add(new SelectListItem
+                        {
+                            Text = "Mpesa",
+                            Value = "M"
+                        });
+                        }
+
+                        @Html.DropDownListFor(model => model.PaymentMode, lstPaymentMode, "-- Select Payment Mode --", new { @id = "cboPaymentMode", @style = "width: 230px;height: 30px;" })
+                    </div>
+                     
+                </div>
+            </article>
+
+        </div>
+
+
+
+
+        <p>
+            <input type="submit" value="Update" id="btnSubmitEditEmployeeForm" style="float: left; clear: both" />
+        </p>
+
+
+    </fieldset>
+    
+    
+     
+    
+}
+
+
+
+            <article class="col4">
+                <div class="pad">
+                     
+                     <div class="editor-label">
+                        @Html.LabelFor(model => model.Photo)
+                    </div>
+                    <div class="editor-field">
+
+                        @if (Model.Photo != null)
+                        {               
+                            <div class="editor-label">
+                                <div>
+                                    @using (Html.BeginForm("UploadEmployeeLogo_Edit", "DataEntry", new { id = Model.Id }, FormMethod.Get, new { enctype = "multipart/form-data", id = "change-photo-form" }))
+                                    { 
+                                        <div>
+                                            <a id="btnSubmitChangeEmployeePhotoForm" style="cursor: pointer;">Change Photo</a> 
+                                        </div>    
+                                    }
+                                </div>
+
+                            </div>
+                
+                            <br />
+                
+                            <div class="editor-label">
+                                <img src="~/Images/@Model.Photo" alt="Photo" width="310" height="100" />
+                            </div>
+                        }
+
+                        @if (Model.Photo == null)
+                        {
+                            <div class="editor-label">
+                                <div>
+                                    @using (Html.BeginForm("UploadEmployeeLogo_Edit", "DataEntry", new { id = Model.Id }, FormMethod.Get, new { enctype = "multipart/form-data", id = "upload-photo-form" }))
+                                    { 
+                                        <div>
+                                            <a id="btnSubmitUploadEmployeePhotoForm" style="cursor: pointer;">Upload Photo</a> 
+                                        </div>    
+                                    }
+                                </div>
+
+                            </div> 
+                 
+                            <br />
+                
+                            <div class="editor-label">
+                                <img src="~/Images/defaultphoto.jpg" alt="Photo" width="310" height="100" />
+                            </div>
+                
+                        }
+
+                    </div>
+
+                </div>
+            </article>
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitEditEmployeeForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#edit-employee-form").validate()
+
+            if (!$("#edit-employee-form").valid()) {
+                return false;
+            }
+
+            if ($("#edit-employee-form").valid()) {
+
+                $("#progress").removeClass('displaynone');
+                $("#progress").addClass('displayblock');
+                $("#progress").show();
+
+                $("#edit-employee-form").submit();
+            };
+        });
+  
+
+        $("#btnSubmitChangeEmployeePhotoForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#change-photo-form").submit();
+
+        });
+
+        $("#btnSubmitUploadEmployeePhotoForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#upload-photo-form").submit();
+
+        });
+
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+

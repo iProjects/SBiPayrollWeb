@@ -1,0 +1,82 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.UsersInRoleModel>
+
+@{
+    ViewBag.Title = "Rights";
+    int Rights = Model.Count();
+}
+
+<h2 class="page-title">Rights [ @Rights ] </h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateRight")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MenuDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Allowed)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Allowed)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditRight", new { id = item.RightId }) |
+            @Html.ActionLink("Details", "RightDetails", new { id = item.RightId }) |
+            @Html.ActionLink("Delete", "DeleteRight", new { roleid = item.RoleId, menuid = item.MenuItemId, description = item.RoleName + " - " + item.MenuDescription })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#loading").hide();
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

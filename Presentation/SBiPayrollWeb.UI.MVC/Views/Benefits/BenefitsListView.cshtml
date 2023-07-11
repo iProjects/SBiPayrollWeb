@@ -1,0 +1,95 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.Benefit>
+
+@{
+    ViewBag.Title = "Benefits";
+    int Benefits = Model.Count();
+}
+
+<h2 class="page-title">Benefits [ @Benefits ]  </h2>
+
+
+<div>
+    @using (Html.BeginForm("CreateBenefit", "Benefits", FormMethod.Get, new { enctype = "multipart/form-data", id = "create-benefit-form" }))
+    { 
+        <p>
+            <a id="btnSubmitCreateBenefitForm" style="cursor: pointer;" title="Create Benefit">Create Benefit</a>
+            @*@Html.ActionLink("Create Benefit", "CreateBenefit")*@
+        </p> 
+         
+    }
+</div>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditBenefit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "BenefitDetails", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "DeleteBenefit", new { id = item.Id, description = item.Description })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitCreateBenefitForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#create-benefit-form").submit();
+
+        });
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+

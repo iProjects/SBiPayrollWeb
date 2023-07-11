@@ -1,0 +1,10 @@
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.Activities.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.Activities.pdb
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Activities\obj\Debug\SBiPayrollWeb.Workflows.Activities.csprojResolveAssemblyReference.cache
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Activities\obj\Debug\SBiPayrollWeb.Workflows.Activities.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Activities\obj\Debug\SBiPayrollWeb.Workflows.Activities.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.Activities.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.Activities.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Activities\obj\Debug\SBiPayrollWeb.Workflows.Activities.csprojResolveAssemblyReference.cache
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Activities\obj\Debug\SBiPayrollWeb.Workflows.Activities.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Activities\obj\Debug\SBiPayrollWeb.Workflows.Activities.pdb

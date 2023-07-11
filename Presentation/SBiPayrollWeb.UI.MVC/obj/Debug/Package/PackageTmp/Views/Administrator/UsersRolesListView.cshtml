@@ -1,0 +1,136 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.UsersInRoleModel>
+
+@{
+    ViewBag.Title = "Users Roles";
+    int Userscount = Model.Count();
+}
+
+<h2 class="page-title">Users Roles [ @Userscount ]  </h2>
+
+
+<div>
+    @using (Html.BeginForm("CreateUSerRole", "Administrator", FormMethod.Get, new { enctype = "multipart/form-data", id = "admin-create-user-role-form" }))
+    { 
+        <p>
+            <a id="btnSubmitCreateUSerRoleForm" style="cursor: pointer;" title="Create User Role">Create Role</a>
+        </p> 
+         
+    }
+</div>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                <div>
+                    @using (Html.BeginForm("UserRoleDetails", "Administrator", new { UserId = item.UserId, RoleId = item.RoleId }, FormMethod.Get, new { enctype = "multipart/form-data", id = "user-role-details-form" }))
+                    {  
+                        @Html.HiddenFor(modelItem => item.UserId)
+                        @Html.HiddenFor(modelItem => item.RoleId)
+                        <a id="btnSubmitUserRoleDetailsForm" style="cursor: pointer;" title="Details">Details  |</a>
+                        @Html.ActionLink("Details", "UserRoleDetails", new { userid = item.UserId, roleid = item.RoleId }) 
+                    }
+                </div>
+
+                <div>
+                    @using (Html.BeginForm("DeleteUserRole", "Administrator", FormMethod.Get, new { enctype = "multipart/form-data", id = "delete-user-role-form" }))
+                    {  
+                        @Html.HiddenFor(modelItem => item.UserId)
+                        @Html.HiddenFor(modelItem => item.RoleId)
+                        <a id="btnSubmitDeleteUserRoleForm" style="cursor: pointer;">Delete</a>
+@*@Html.ActionLink("Delete", "DeleteUserRole", new { userid = item.UserId, roleid = item.RoleId })*@ 
+                    }
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitCreateUSerRoleForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#admin-create-user-role-form").submit();
+
+        });
+
+        $("#btnSubmitUserRoleDetailsForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#user-role-details-form").submit();
+
+        });
+
+        $("#btnSubmitDeleteUserRoleForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#delete-user-role-form").submit();
+
+        });
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+

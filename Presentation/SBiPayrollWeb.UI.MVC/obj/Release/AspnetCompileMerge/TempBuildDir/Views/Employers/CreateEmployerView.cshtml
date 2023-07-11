@@ -1,0 +1,184 @@
+﻿@model SBiPayrollWeb.Entities.Employer
+
+@{
+    ViewBag.Title = "CreateEmployerView";
+}
+
+<h2>CreateEmployerView</h2>
+
+@using (Html.BeginForm("UploadEmployerLogo", "DataEntry", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-upload-logo" })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Employer</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telphone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telphone)
+            @Html.ValidationMessageFor(model => model.Telphone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PIN)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PIN)
+            @Html.ValidationMessageFor(model => model.PIN)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Logo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Logo)
+            @Html.ValidationMessageFor(model => model.Logo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Slogan)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Slogan)
+            @Html.ValidationMessageFor(model => model.Slogan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NHIF)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NHIF)
+            @Html.ValidationMessageFor(model => model.NHIF)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NSSF)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NSSF)
+            @Html.ValidationMessageFor(model => model.NSSF)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankBranchSortCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankBranchSortCode)
+            @Html.ValidationMessageFor(model => model.BankBranchSortCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AccountName)
+            @Html.ValidationMessageFor(model => model.AccountName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AccountNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AccountNo)
+            @Html.ValidationMessageFor(model => model.AccountNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AuthorizedSignatory)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AuthorizedSignatory)
+            @Html.ValidationMessageFor(model => model.AuthorizedSignatory)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsDeleted)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsDeleted)
+            @Html.ValidationMessageFor(model => model.IsDeleted)
+        </div>
+
+        <p>
+            <input type="submit" value="Create"  id="btnSubmit" />
+        </p>
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+
+

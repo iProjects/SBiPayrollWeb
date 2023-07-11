@@ -1,0 +1,15 @@
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.pdb
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Debug\SBiPayrollWeb.Framework.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Debug\SBiPayrollWeb.Framework.pdb
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Debug\SBiPayrollWeb.Framework.csprojResolveAssemblyReference.cache
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Debug\SBiPayrollWeb.Framework.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Debug\SBiPayrollWeb.Framework.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Debug\SBiPayrollWeb.Framework.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Framework.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Debug\SBiPayrollWeb.Framework.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Debug\SBiPayrollWeb.Framework.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Shared\SBiPayrollWeb.Framework\obj\Debug\SBiPayrollWeb.Framework.pdb

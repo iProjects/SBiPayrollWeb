@@ -1,0 +1,104 @@
+﻿@model SBiPayrollWeb.Entities.spUser
+
+@{
+    ViewBag.Title = "Create User";
+}
+
+<h2 class="page-title">Create User </h2>
+
+@using (Html.BeginForm("CreateUser", "Administrator", FormMethod.Post, new { enctype = "multipart/form-data", id = "create-user-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Create User</legend>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @{
+    List<SelectListItem> lstStatus = new List<SelectListItem>();
+    lstStatus.Add(new SelectListItem
+         {
+             Text = "Active",
+             Value = "A",
+             Selected = true
+         });
+    lstStatus.Add(new SelectListItem
+         {
+             Text = "Non-Active",
+             Value = "N"
+
+         });
+            }
+
+            @Html.DropDownListFor(model => model.Status, lstStatus, new { @id = "cboStatus", @style = "width: 310px;height: 30px;" })
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        <p>
+            <input type="submit" value="Create"  id="btnSubmit" />
+        </p>
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmit").on("click", function (e) {
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#form-upload-logo").submit();
+        });
+
+
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

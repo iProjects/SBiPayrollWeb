@@ -1,0 +1,93 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.Department>
+
+@{
+    ViewBag.Title = "Departments";
+    int Departments = Model.Count();
+}
+
+<h2 class="page-title">Departments [ @Departments ]  </h2>
+
+
+<div>
+    @using (Html.BeginForm("CreateDepartment", "Departments", FormMethod.Get, new { enctype = "multipart/form-data", id = "create-department-form" }))
+    { 
+        <p>
+            <a id="btnSubmitCreateDepartmentForm" style="cursor: pointer;" title="Create Department">Create Department</a>
+            @*@Html.ActionLink("Create Department", "CreateDepartment") *@
+        </p> 
+         
+    }
+</div>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th> 
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td> 
+        <td>
+            @Html.ActionLink("Edit", "EditDepartment", new { id=item.Id }) |
+            @Html.ActionLink("Details", "DepartmentDetails", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "DeleteDepartment", new { id=item.Id, description = item.Description  })
+        </td>
+    </tr>
+}
+
+</table>
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitCreateDepartmentForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#create-department-form").submit();
+
+        });
+
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+
+

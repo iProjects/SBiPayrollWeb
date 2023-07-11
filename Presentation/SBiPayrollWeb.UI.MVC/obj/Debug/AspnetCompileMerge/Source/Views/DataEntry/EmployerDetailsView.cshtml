@@ -1,0 +1,153 @@
+﻿@model SBiPayrollWeb.Entities.Employer
+
+@{
+    ViewBag.Title = "Employer Details";
+    var Employer = Model.Name.ToUpper(); 
+}
+
+<h2 class="page-title">Details for -  @Employer </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Employer</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name, new { @autofocus = "autofocus" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telephone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telephone)
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Logo)
+        </div>
+        <div class="editor-field">
+
+            @if (Model.Logo != null)
+            {               
+                <div class="editor-label">
+                    @Html.ActionLink("Change Employer Logo", "UploadEmployerLogo_Edit", new { id = Model.Id, @style = "font-weight: bolder;font-size: 20px;" }) 
+                </div>
+                
+                <br />
+                
+                <div class="editor-label">
+                    <img src="~/Images/@Model.Logo" alt="Logo" width="310" height="100" />
+                </div>
+            }
+
+            @if (Model.Logo == null)
+            {
+                <div class="editor-label">
+                    @Html.ActionLink("Upload Employer Logo", "UploadEmployerLogo_Edit", new { id = Model.Id, @style = "font-weight: bolder;font-size: 20px;" })
+                </div> 
+                 
+                <br />
+                
+                <div class="editor-label">
+                    <img src="~/Images/defaultphoto.jpg" alt="Logo" width="310" height="100" />
+                </div>
+            }
+
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Slogan)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Slogan)
+            @Html.ValidationMessageFor(model => model.Slogan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AuthorizedSignatory)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AuthorizedSignatory)
+            @Html.ValidationMessageFor(model => model.AuthorizedSignatory)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+
+
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

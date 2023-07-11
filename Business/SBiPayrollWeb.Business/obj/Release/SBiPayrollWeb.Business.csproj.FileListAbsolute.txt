@@ -1,0 +1,10 @@
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Business.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Business.pdb
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Release\SBiPayrollWeb.Business.csprojResolveAssemblyReference.cache
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Release\SBiPayrollWeb.Business.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Release\SBiPayrollWeb.Business.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Business.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Business.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Release\SBiPayrollWeb.Business.csprojResolveAssemblyReference.cache
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Release\SBiPayrollWeb.Business.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Release\SBiPayrollWeb.Business.pdb

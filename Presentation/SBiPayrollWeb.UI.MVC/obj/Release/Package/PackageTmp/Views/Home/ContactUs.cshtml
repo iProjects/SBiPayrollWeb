@@ -1,0 +1,174 @@
+﻿@model SBiPayrollWeb.UI.MVC.Models.ContactUsModel
+
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+@*<h2>ContactUs</h2>
+
+@using (Html.BeginForm("UploadEmployerLogo", "DataEntry", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-upload-logo" })) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ContactUsModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Subject)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Subject)
+            @Html.ValidationMessageFor(model => model.Subject)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Comment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Comment)
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>
+
+        <p>
+            <input type="submit" value="Send" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+<h2 class="page-title">Contact Us</h2>
+
+<div id="ContactUsFormContainer">
+
+    @using (Html.BeginForm("UploadEmployerLogo", "DataEntry", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-upload-logo" }))
+    {
+        @Html.ValidationSummary(true)
+
+
+        <div class="inputSmBox">
+            <h3>*Your First Name:</h3>
+            @Html.TextBoxFor(x => x.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="inputSmBox">
+            <h3>*Your Last Name:</h3>
+            @Html.TextBoxFor(x => x.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>   
+
+        <div class="inputSmBox">
+            <h3>*Your Phone Number:</h3>
+            @Html.EditorFor(model => model.Phone)
+            @Html.ValidationMessageFor(model => model.Phone)
+        </div>
+
+        <div class="inputSmBox">
+            <h3>*Your Email Address:</h3>
+            @Html.TextBoxFor(x => x.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="inputSmBox">
+            <h3>*Subject:</h3>
+            @Html.TextBoxFor(x => x.Subject)
+            @Html.ValidationMessageFor(model => model.Subject)
+        </div>   
+
+        <div class="inputSmBox" style="margin-top: 5px;">
+            <h3>*Type your comments below:</h3>
+            @Html.EditorFor(x => x.Comment)
+            @Html.ValidationMessageFor(model => model.Comment)
+        </div>   
+
+        <div class="Clear"></div>
+        <p>
+            <input type="submit" value="Submit" class="submitButton"   id="btnSubmit"  />
+        </p>
+
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+
+        $("#btnSubmit").on("click", function (e) {
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show(); 
+
+            $("#create-offer-form").submit();
+        });
+
+
+
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.Payroll>
+
+@{
+    ViewBag.Title = "Payrolls";
+}
+
+<h2 class="page-title">Payrolls</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreatePayroll")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Period)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRun)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsOpen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Processed)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Period)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateRun)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsOpen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Processed)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditPayroll", new { Year = item.Year, Period = item.Period }) |
+         @Html.ActionLink("Details", "PayrollDetails", new { Year = item.Year, Period = item.Period }) |
+         @Html.ActionLink("Delete", "DeletePayroll", new { Year = item.Year, Period = item.Period })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+

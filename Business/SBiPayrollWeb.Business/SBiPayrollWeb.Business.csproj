@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0BC1506A-01E5-455B-B4A9-CF446C1B1022}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SBiPayrollWeb.Business</RootNamespace>
+    <AssemblyName>SBiPayrollWeb.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdministratorComponent.cs" />
+    <Compile Include="BanksComponent.cs" />
+    <Compile Include="BenefitsComponent.cs" />
+    <Compile Include="DataEntryComponent.cs" />
+    <Compile Include="DepartmentsComponent.cs" />
+    <Compile Include="EmployeesComponent.cs" />
+    <Compile Include="EmployersComponent.cs" />
+    <Compile Include="PayrollItemsComponent.cs" />
+    <Compile Include="PayrollsComponent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\SBiPayrollWeb.Data.Agents\SBiPayrollWeb.Data.Agents.csproj">
+      <Project>{E62BC835-F665-4AB7-A894-4EECBEAE3D18}</Project>
+      <Name>SBiPayrollWeb.Data.Agents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\SBiPayrollWeb.Data\SBiPayrollWeb.Data.csproj">
+      <Project>{354E6099-F5EB-49EE-9B70-FF84229CFB6E}</Project>
+      <Name>SBiPayrollWeb.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\SBiPayrollWeb.Entities\SBiPayrollWeb.Entities.csproj">
+      <Project>{0807DFF2-F829-4265-8F73-26C9B936BA45}</Project>
+      <Name>SBiPayrollWeb.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\SBiPayrollWeb.Framework\SBiPayrollWeb.Framework.csproj">
+      <Project>{B0FAFC30-CDE7-41BB-8F35-4EC6B0C656ED}</Project>
+      <Name>SBiPayrollWeb.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

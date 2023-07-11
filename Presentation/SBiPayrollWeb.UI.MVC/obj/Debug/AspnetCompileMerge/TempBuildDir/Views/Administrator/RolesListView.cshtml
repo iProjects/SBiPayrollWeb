@@ -1,0 +1,71 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.RoleModel>
+
+@{
+    ViewBag.Title = "Roles";
+    int rolescount = Model.Count();
+}
+
+<h2 class="page-title">Roles [ @rolescount ] </h2>
+
+<p>
+    @Html.ActionLink("Create New Role", "CreateRole")
+</p>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditRole", new { id = item.RoleId }) |
+            @Html.ActionLink("Details", "RoleDetails", new { id = item.RoleId }) | 
+            @Html.ActionLink("Delete", "DeleteRole", new { id = item.RoleId, description = item.RoleName })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#loading").hide();
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

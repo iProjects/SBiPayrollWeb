@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+
+            <hgroup class="title">
+                <h1>Soft Books Payroll.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+
+            <hgroup class="title">
+                <h2 class="page-title">How Soft Books Payroll works.</h2>
+            </hgroup>
+
+            <div>
+                <p>
+                    SoftBooks Payroll is a low-cost payroll solution that supports an unlimited number of employees and users, with support for tracking benefit accruals and multiple deduction types, as well as providing compliance reporting tools. The system comprises of integrated modules in all aspects of Payroll functions including management of pension disbursements.<br>
+                    The software is preferably configured on server to be accessed by various authorized users from their respective workstations.<br>
+                    Tax is a dynamic area in Kenya. The changes that Government implement on tax policies have far reaching implications on business every year and as a result there is need for a dynamic system to keep abreast of them.<br>
+                    Soft Books Payroll System is a multi-user Client/Server.<br>
+                    The objective of the system is to assist businesses manage their growth process, finance, investment and management issues generally adding professional value to the business. The Soft Books Payroll system provides the ultimate solution for organizations and Higher Education Institutions with a diverse range from small to large employee base. It offers support for accountants representing multiple clients or can be used directly by small and mid-sized businesses.<br>
+                    The Soft Books Payroll system has been developed using the latest software development tools to ensure that it meets all the requirements a user could want from a payroll (either in-house, hosted or outsourced).
+                </p>
+            </div>
+
+
+            <div>
+
+                <img src="~/Images/images.jpg" alt="" />
+
+                <ol class="round">
+                    <li class="one">
+                        <h5>Join SBiPayroll!</h5>
+                        Enter your details on the register screen by clicking @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                    </li>
+
+                    <li class="two">
+                        <h5>Complete Your Profile</h5>
+                        After clicking register you will automatically be redirected to the home page, click on @Html.ActionLink("My Profile", "EditProfile", "Account") and complete your profile by clicking edit
+                    </li>
+                </ol>
+
+            </div>
+
+
+
+        </div>
+    </section>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+    </script>
+
+}
+
+
+
+
+
+
+
+
+
+

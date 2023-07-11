@@ -1,0 +1,10 @@
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Services.Contracts.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Services.Contracts.pdb
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.csprojResolveAssemblyReference.cache
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Services.Contracts.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Services.Contracts.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.csprojResolveAssemblyReference.cache

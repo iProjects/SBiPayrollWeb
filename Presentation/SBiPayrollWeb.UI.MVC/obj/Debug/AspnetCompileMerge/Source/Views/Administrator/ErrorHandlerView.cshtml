@@ -1,0 +1,47 @@
+﻿@model SBiPayrollWeb.UI.MVC.Models.ErrorHandlerModel
+
+@{
+    var errormessage = Model.ExceptionMessage;
+    ViewBag.Title = "Error";
+}
+
+<h1><b style="color: cornflowerblue; font-size: 50px; font: bold;"><span style="font: bold; font-weight: bolder; font-family: Verdana, Helvetica, Sans-Serif; text-decoration: underline;">Error </span></b></h1>
+
+<div>
+    <h3><b><span style="font: bold; font-size: 15px; color: red; font-weight: bolder; font-family: Verdana, Helvetica, Sans-Serif;">@errormessage  </span></b></h3>
+</div>
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#loading").hide();
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

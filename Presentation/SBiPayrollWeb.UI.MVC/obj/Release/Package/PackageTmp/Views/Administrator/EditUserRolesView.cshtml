@@ -1,0 +1,105 @@
+﻿@model SBiPayrollWeb.Entities.UsersInRoleModel
+
+@{
+    ViewBag.Title = "Edit User Role"; 
+}
+
+<h2 class="page-title">Edit User Role </h2>
+
+@using (Html.BeginForm("EditUserRole", "Administrator", FormMethod.Post, new { enctype = "multipart/form-data", id = "edit-user-role-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Edit User Role</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserId)
+        </div>
+        <div class="editor-field">
+            @{
+    List<SelectListItem> _users = new List<SelectListItem>();
+    foreach (var user in Model._Users)
+    {
+        _users.Add(new SelectListItem
+        {
+            Text = user.EmployeeName,
+            Value = user.UserId.ToString()
+        });
+    }
+            }
+
+            @Html.DropDownListFor(model => model.UserId, _users, new { @id = "_cboUsers",   @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.UserId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoleId)
+        </div>
+        <div class="editor-field">
+            @{
+    List<SelectListItem> _roles = new List<SelectListItem>();
+    foreach (var role in Model._Roles)
+    {
+        _roles.Add(new SelectListItem
+             {
+                 Text = role.RoleName,
+                 Value = role.RoleId.ToString(),
+                 Selected = Model.RoleId.Equals(role.RoleId)
+             });
+    }
+            }
+
+            @Html.DropDownListFor(model => model.RoleId, _roles, new { @id = "_cboRoles",  @autofocus = "autofocus" })
+            @Html.ValidationMessageFor(model => model.RoleId)
+        </div>
+
+        <p>
+            <input type="submit" value="Save"  id="btnSubmit" />
+        </p>
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmit").on("click", function (e) {
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#edit-user-role-form").submit();
+        });
+
+
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

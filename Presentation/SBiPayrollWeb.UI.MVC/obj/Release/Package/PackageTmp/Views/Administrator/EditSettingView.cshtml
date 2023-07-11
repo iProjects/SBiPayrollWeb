@@ -1,0 +1,108 @@
+﻿@model SBiPayrollWeb.Entities.Setting
+
+@{
+    ViewBag.Title = "Edit Role";
+    var Setting = Model.Description.ToUpper(); 
+}
+
+<h2 class="page-title">Edit Setting - @Setting </h2>
+
+@using (Html.BeginForm("EditSetting", "Administrator", FormMethod.Post, new { enctype = "multipart/form-data", id = "edit-setting-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Edit Setting</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SSKey)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SSKey)
+            @Html.ValidationMessageFor(model => model.SSKey)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SSValue)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SSValue)
+            @Html.ValidationMessageFor(model => model.SSValue)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SSValueType)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SSValueType)
+            @Html.ValidationMessageFor(model => model.SSValueType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SGroup)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SGroup)
+            @Html.ValidationMessageFor(model => model.SGroup)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SSSystem)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SSSystem)
+            @Html.ValidationMessageFor(model => model.SSSystem)
+        </div>
+        
+        <p>
+            <input type="submit" value="Save" id="btnSubmit"  />
+        </p>
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmit").on("click", function (e) {
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#edit-setting-form").submit();
+        });
+
+
+        </script>
+ 
+}
+
+
+
+

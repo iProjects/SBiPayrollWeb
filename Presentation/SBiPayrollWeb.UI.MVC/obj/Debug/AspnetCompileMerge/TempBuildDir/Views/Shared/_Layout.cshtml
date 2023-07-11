@@ -1,0 +1,594 @@
+﻿@using SBiPayrollWeb.UI.MVC.Controllers;
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Soft Books Payroll</title>
+    <link href="~/Dollar.ico" rel="shortcut icon" type="image/x-icon" />
+
+    @*@Styles.Render("~/Content/themes/base/css") 
+    @Styles.Render("~/Content/css")*@
+    @Styles.Render("~/bundles/_AllStyles")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr") 
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/MicrosoftAjax")
+    @Scripts.Render("~/bundles/dataTables")
+    @Scripts.Render("~/bundles/tablesorter")
+    @Scripts.Render("~/bundles/CustomScripts")
+
+    @*@Scripts.Render("~/bundles/_AllScripts")*@
+
+</head>
+
+
+<body>
+
+    <header>
+
+        <div class="content-wrapper">
+
+            <div class="float-left">
+                <p class="site-title">
+                    Soft Books Payroll
+                </p>
+
+                <a href="@Url.Action("Index", "Home")" id="sp_logo_with_info_header">
+                    <img src="~/Images/sp_logo_with_info.jpg" alt="Software Providers" width="460" height="100" />
+                </a>
+            </div>
+
+
+
+            <div id="progress" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: cornflowerblue; z-index: 30001; opacity: .8; filter: alpha(opacity=70);" class="displaynone">
+                <p style="position: absolute; top: 30%; left: 35%; color: White;">
+                    <img src="@Url.Content("~/Images/ajax-loader.gif")" width="50" height="50" style="position: absolute;clear:both; ">
+                </p>
+            </div>
+
+
+
+            <div class="float-right">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section>
+            </div>
+
+
+
+            <div id="nav">
+                <ul id="menu">
+
+                    <li>
+
+                        <div class="floatleft">
+                            @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { enctype = "multipart/form-data", id = "home-form" }))
+                            { 
+                                <div>
+                                    <a id="btnSubmitIndexForm" style="cursor: pointer;">Home</a>
+                                    @*@Html.ActionLink("Home", "Index", "Home")*@
+                                </div>    
+                            }
+                        </div>
+
+                    </li>
+
+
+                    @{
+                        if (Request.IsAuthenticated)
+                        {
+                            AdministratorController ac = new AdministratorController();
+
+                            string email = User.Identity.Name;
+
+
+
+                            if (ac._IsRoleMenusAllowed(email, "mnuPayrolls"))
+                            {
+                        <li id="mnuPayrolls"><a>Payrolls</a>
+                            <ul class="submenu">
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuPayrolls"))
+                                {
+                                    <li id="subMenuPayrolls">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllPayrolls", "Payrolls", FormMethod.Get, new { enctype = "multipart/form-data", id = "payrolls-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllPayrollsForm" style="cursor: pointer;">Payrolls</a>
+                                                    @*@Html.ActionLink("Payrolls", "GetAllPayrolls", "Payrolls")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuProcessPayroll"))
+                                {
+                                    <li id="subMenuProcessPayroll">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllPayrolls", "Payrolls", FormMethod.Get, new { enctype = "multipart/form-data", id = "process-payroll-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitProcessPayrollForm" style="cursor: pointer;">Process Payroll</a>
+                                                    @*@Html.ActionLink("Process Payroll", "GetAllPayrolls", "Payrolls")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                    
+                                }
+                            </ul>
+                        </li>
+                            }
+
+
+
+
+                            if (ac._IsRoleMenusAllowed(email, "mnuDataEntry"))
+                            {
+                        <li id="mnuDataEntry"><a>Data Entry</a>
+                            <ul class="submenu">
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuEmployees"))
+                                {
+                                    <li id="subMenuEmployees">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllEmployees", "Employees", FormMethod.Get, new { enctype = "multipart/form-data", id = "employees-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllEmployeesForm" style="cursor: pointer;">Employees</a>
+                                                    @*@Html.ActionLink("Employees", "GetAllEmployees", "Employees")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuBanks"))
+                                {
+                                    <li id="subMenuBanks">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllBanks", "Banks", FormMethod.Get, new { enctype = "multipart/form-data", id = "banks-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllBanksForm" style="cursor: pointer;">Banks</a>
+                                                    @*@Html.ActionLink("Banks", "GetAllBanks", "Banks")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuBenefits"))
+                                {
+                                    <li id="subMenuBenefits">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllBenefits", "Benefits", FormMethod.Get, new { enctype = "multipart/form-data", id = "benefits-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllBenefitsForm" style="cursor: pointer;">Benefits</a>
+                                                    @*@Html.ActionLink("Benefits", "GetAllBenefits", "Benefits")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuDepartments"))
+                                {
+                                    <li id="subMenuDepartments">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllDepartments", "Departments", FormMethod.Get, new { enctype = "multipart/form-data", id = "departments-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllDepartmentsForm" style="cursor: pointer;">Departments</a>
+                                                    @*@Html.ActionLink("Departments", "GetAllDepartments", "Departments")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuPayeeRates"))
+                                {
+                                    <li id="subMenuPayeeRates">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllPayeeRates", "DataEntry", FormMethod.Get, new { enctype = "multipart/form-data", id = "payee-rates-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllPayeeRatesForm" style="cursor: pointer;">Payee Rates</a>
+                                                    @*@Html.ActionLink("Payee Rates", "GetAllPayeeRates", "DataEntry")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuNhifRates"))
+                                {
+                                    <li id="subMenuNhifRates">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllNhifRates", "DataEntry", FormMethod.Get, new { enctype = "multipart/form-data", id = "nhif-rates-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllNhifRatesForm" style="cursor: pointer;">Nhif Rates</a>
+                                                    @*@Html.ActionLink("Nhif Rates", "GetAllNhifRates", "DataEntry")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuPayrollItems"))
+                                {
+                                    <li id="subMenuPayrollItems">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllPayrollItems", "PayrollItems", FormMethod.Get, new { enctype = "multipart/form-data", id = "payroll-items-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllPayrollItemsForm" style="cursor: pointer;">Payroll Items</a>
+                                                    @*@Html.ActionLink("Payroll Items", "GetAllPayrollItems", "PayrollItems")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuNewNSSFComputaion"))
+                                {
+                                    <li id="subMenuNewNSSFComputaion">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllNewNSSFComputaion", "DataEntry", FormMethod.Get, new { enctype = "multipart/form-data", id = "new-nssf-computation-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitNewNSSFComputaionForm" style="cursor: pointer;">New NSSF Computaion</a>
+                                                    @*@Html.ActionLink("New NSSF Computaion", "GetAllNewNSSFComputaion", "DataEntry")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                    
+                                }
+                            </ul>
+                        </li>
+                            }
+
+
+
+                            if (ac._IsRoleMenusAllowed(email, "mnuTechnical"))
+                            {
+                        <li id="mnuTechnical"><a>Technical</a>
+                            <ul class="submenu">
+
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuSettings"))
+                                {
+                                    <li id="subMenuSettings">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllSettings", "Administrator", FormMethod.Get, new { enctype = "multipart/form-data", id = "settings-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllSettingsForm" style="cursor: pointer;">Settings</a>
+                                                    @*@Html.ActionLink("Settings", "GetAllSettings", "Administrator")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuTaxCalculator"))
+                                {
+                                    <li id="subMenuTaxCalculator">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllTaxCalculator", "DataEntry", FormMethod.Get, new { enctype = "multipart/form-data", id = "tax-calculator-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllTaxCalculatorForm" style="cursor: pointer;">Tax Calculator</a>
+                                                    @*@Html.ActionLink("Tax Calculator", "GetAllTaxCalculator", "DataEntry")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                     
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuReports"))
+                                {
+                                    <li id="subMenuReports">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllReports", "DataEntry", FormMethod.Get, new { enctype = "multipart/form-data", id = "reports-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllReportsForm" style="cursor: pointer;">Reports</a>
+                                                    @* @Html.ActionLink("Reports", "GetAllReports", "DataEntry")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                     
+                                }
+                            </ul>
+                        </li>
+                            }
+
+
+
+
+                            if (ac._IsRoleMenusAllowed(email, "mnuAdministrator"))
+                            {
+                        <li id="mnuAdministrator"><a>Administrator</a>
+                            <ul class="submenu">
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuEmployers"))
+                                {
+                                    <li id="subMenuEmployers">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllEmployers", "DataEntry", FormMethod.Get, new { enctype = "multipart/form-data", id = "employers-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllEmployersForm" style="cursor: pointer;">Employers</a>
+                                                    @*@Html.ActionLink("Employers", "GetAllEmployers", "DataEntry")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuRoles"))
+                                {
+                                    <li id="subMenuRoles">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllRoles", "Administrator", FormMethod.Get, new { enctype = "multipart/form-data", id = "roles-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllRolesForm" style="cursor: pointer;">Roles</a>
+                                                    @*@Html.ActionLink("Roles", "GetAllRoles", "Administrator")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuUsers"))
+                                {
+                                    <li id="subMenuUsers">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllUsers", "Administrator", FormMethod.Get, new { enctype = "multipart/form-data", id = "users-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllUsersForm" style="cursor: pointer;">Users</a>
+                                                    @*@Html.ActionLink("Users", "GetAllUsers", "Administrator")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li>
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuUsersRoles"))
+                                {
+                                    <li id="subMenuUsersRoles">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllUSersRoles", "Administrator", FormMethod.Get, new { enctype = "multipart/form-data", id = "user-roles-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllUSersRolesForm" style="cursor: pointer;">Users Roles</a>
+                                                    @*@Html.ActionLink("Users Roles", "GetAllUSersRoles", "Administrator")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li> 
+                                }
+                                @if (ac._IsRoleMenusAllowed(email, "subMenuRights"))
+                                {
+                                    <li id="subMenuRights">
+
+                                        <div class="floatleft">
+                                            @using (Html.BeginForm("GetAllRights", "Administrator", FormMethod.Get, new { enctype = "multipart/form-data", id = "rights-form" }))
+                                            { 
+                                                <div>
+                                                    <a id="btnSubmitGetAllRightsForm" style="cursor: pointer;">Rights</a>
+                                                    @*@Html.ActionLink("Rights", "GetAllRights", "Administrator")*@
+                                                </div>    
+                                            }
+                                        </div>
+
+                                    </li> 
+                                    
+                                }
+                            </ul>
+                        </li>                        
+                            }
+
+
+                        }                        
+                    }
+
+
+
+                    @Html.ActionLink("Roles", "GetAllRoles", "Administrator")
+                    @Html.ActionLink("Users Roles", "GetAllUSersRoles", "Administrator")
+                    @Html.ActionLink("Rights", "GetAllRights", "Administrator")
+                    @Html.ActionLink("Users", "GetAllUsers", "Administrator")
+                    @Html.ActionLink("Employers", "GetAllEmployers", "DataEntry")
+                    @Html.ActionLink("Employees", "GetAllEmployees", "DataEntry")
+
+
+
+                    <li><a>Help</a>
+                        <ul class="submenu">
+
+                            <li>
+
+                                <div class="floatleft">
+                                    @using (Html.BeginForm("Help", "Home", FormMethod.Get, new { enctype = "multipart/form-data", id = "help-form" }))
+                                    { 
+                                        <div>
+                                            <a id="btnSubmitHelpForm" style="cursor: pointer;">Help</a>
+                                            @*@Html.ActionLink("Help", "Help", "Home")*@
+                                        </div>    
+                                    }
+                                </div>
+
+                            </li>
+
+                            <li>
+
+                                <div class="floatleft">
+                                    @using (Html.BeginForm("ContactUs", "Home", FormMethod.Get, new { enctype = "multipart/form-data", id = "contact-us-form" }))
+                                    { 
+                                        <div>
+                                            <a id="btnSubmitContactUsForm" style="cursor: pointer;">Contact Us</a>
+                                            @*@Html.ActionLink("Contact Us", "ContactUs", "Home")*@
+                                        </div>    
+                                    }
+                                </div>
+
+                            </li>
+
+                            <li>
+
+                                <div class="floatleft">
+                                    @using (Html.BeginForm("Contact", "Home", FormMethod.Get, new { enctype = "multipart/form-data", id = "contacts-form" }))
+                                    { 
+                                        <div>
+                                            <a id="btnSubmitContactsForm" style="cursor: pointer;">Contacts</a>
+                                            @*@Html.ActionLink("Contacts", "Contact", "Home")*@
+                                        </div>    
+                                    }
+                                </div>
+
+                            </li>
+
+                            <li>
+
+                                <div class="floatleft">
+                                    @using (Html.BeginForm("About", "Home", FormMethod.Get, new { enctype = "multipart/form-data", id = "about-form" }))
+                                    { 
+                                        <div>
+                                            <a id="btnSubmitAboutForm" style="cursor: pointer;">About</a>
+                                            @*@Html.ActionLink("About", "About", "Home")*@
+                                        </div>    
+                                    }
+                                </div>
+
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </div>
+
+
+        </div>
+
+    </header>
+
+
+
+
+    <div id="body">
+
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+
+            <div id="error-display-div" class="displaynone">
+            </div>
+
+            @RenderBody()
+
+        </section>
+
+    </div>
+
+
+
+
+
+    <footer>
+
+        <hr />
+
+        <div class="content-wrapper">
+            <div class="float-left">
+
+                @Html.ActionLink("Home", "Index", "Home")|
+                   @Html.ActionLink("About", "About", "Home")|
+                   @Html.ActionLink("Contacts", "Contact", "Home")|
+                   @Html.ActionLink("Contact Us", "ContactUs", "Home")|
+                   @Html.ActionLink("Help", "Help", "Home")|
+                   @Html.ActionLink("SiteMap", "SiteMap", "Home")|                   
+                  <a href="https://www.facebook.com/SoftwareProvidersLtd" title="Facebook" target="_blank">FaceBook</a>|
+                  <a href="http://twitter.com/" title="Twitter" target="_blank">Twitter</a>|
+                  <a href="https://plus.google.com/" title="Google+" target="_blank">Google+</a>|
+                  <a href="http://www.linkedin.com/" title="LinkedIn" target="_blank">LinkedIn</a>|
+                  <a href="#" title="Blog">Blog</a>|
+                  <a href="#" title="Discussion board">Discussion board</a> |
+                  <a href="#" title="Press">Press</a>|
+                  <a href="#" title="Terms">Terms</a>|                    
+                  <a href="#" title="Jobs">Jobs</a>|                    
+                  <a href="#" title="Privacy policy">Privacy policy</a>|
+                  <a href="#" title="Principles">Principles</a>
+
+            </div>
+        </div>
+
+
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p style="font-size: 15px">Copyright &copy; @DateTime.Now.Year - Software Providers Limited. All Rights Reserved.</p>
+            </div>
+        </div>
+
+
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>
+                    <a href="@Url.Action("Index", "Home")" id="sp_logo_with_info_footer">
+                        <img src="~/Images/sp_logo_with_info.jpg" alt="Software Providers" width="460" height="100" />
+                    </a>
+                </p>
+            </div>
+        </div>
+
+
+
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+
+
+</html>

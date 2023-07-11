@@ -1,0 +1,106 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.spRole> 
+
+@{
+    ViewBag.Title = "Roles";
+    int rolescount = Model.Count();
+}
+
+<h2 class="page-title">Roles [ @rolescount ] </h2>
+
+<div>
+    @using (Html.BeginForm("CreateRole", "Administrator", FormMethod.Get, new { enctype = "multipart/form-data", id = "admin-create-role-form" }))
+    { 
+        <p>
+            <a id="btnSubmitCreateRoleForm" style="cursor: pointer;" title="Create Role">Create Role</a> 
+        </p> 
+         
+    }
+</div>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.ShortCode)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditRole", new { id = item.Id }) |
+            @Html.ActionLink("Details", "RoleDetails", new { id = item.Id }) | 
+            @Html.ActionLink("Delete", "DeleteRole", new { id = item.Id, description = item.Description })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitCreateRoleForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#admin-create-role-form").submit();
+
+        });
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,211 @@
+﻿@model SBiPayrollWeb.Entities.Customer
+
+@{
+    ViewBag.Title = "Create Customer";
+}
+
+<h2 class="page-title">Create Customer </h2>
+
+
+@using (Html.BeginForm("CreateCustomer", "DataEntry" , FormMethod.Post, new { enctype = "multipart/form-data", id = "create-customer-form" }))  
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Customer</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CustomerName, new { @autofocus = "autofocus" })
+            @Html.ValidationMessageFor(model => model.CustomerName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CustomerNo)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.CustomerNo, new { @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.CustomerNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telephone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telephone)
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreditLimit)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreditLimit)
+            @Html.ValidationMessageFor(model => model.CreditLimit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CurrentDebt)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CurrentDebt)
+            @Html.ValidationMessageFor(model => model.CurrentDebt)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillToName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BillToName)
+            @Html.ValidationMessageFor(model => model.BillToName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillToAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BillToAddress)
+            @Html.ValidationMessageFor(model => model.BillToAddress)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillToTelephone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BillToTelephone)
+            @Html.ValidationMessageFor(model => model.BillToTelephone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BillToEmail)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BillToEmail)
+            @Html.ValidationMessageFor(model => model.BillToEmail)
+        </div>
+
+        @if (Model.DateofCreation.ToString() == "1/1/0001 12:00:00 AM" || Model.DateofCreation.ToString() == "1/1/01 12:00:00 AM" || Model.DateofCreation.ToString() == "01/01/01 12:00:00 AM" || Model.DateofCreation.ToString() == "01/01/0001 12:00:00 AM" || Model.DateofCreation.ToString() == "01/01/01 12:00:00 AM" || Model.DateofCreation.ToString() == "0001-01-01 12:00:00 AM" || Model.DateofCreation.ToString() == "01-Jan-01 12:00:00 AM")
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateofCreation)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.DateofCreation, new { Value = @DateTime.Now.Date.ToString("yyyy-MM-dd"), @class = "datepicker", @type = "date", @readonly="readonly"})
+                @Html.ValidationMessageFor(model => model.DateofCreation)
+            </div>
+        }
+
+        else
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => model.DateofCreation)
+            </div>
+            <div class="editor-field">
+                @{
+            var dateAsString = Model.DateofCreation; 
+            
+                    @Html.TextBoxFor(model => model.DateofCreation, new { Value = dateAsString.ToString("yyyy-MM-dd"), @id = "dtpDateofCreation", @class = "datepicker", @type = "date" , @readonly="readonly"})
+                }
+
+                @Html.ValidationMessageFor(model => model.DateofCreation)
+            </div>
+        }
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @{
+        List<SelectListItem> lstStatus = new List<SelectListItem>();
+        lstStatus.Add(new SelectListItem
+             {
+                 Text = "Active",
+                 Value = "A",
+                 Selected = true
+             });
+        lstStatus.Add(new SelectListItem
+             {
+                 Text = "Non-Active",
+                 Value = "N"
+
+             });
+            }
+
+            @Html.DropDownListFor(model => model.Status, lstStatus, new { @id = "cboStatus", @style = "width: 310px;height: 30px;" })
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        @* <p>Date: <input type="text" id="datepicker" name="DateofCreation"></p>*@
+        @*@dateAsObject*@
+
+        <p>
+            <input type="submit" value="Create"  id="btnSubmit" />
+        </p>
+
+
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+
+        $("#btnSubmit").on("click", function (e) {
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show(); 
+
+            $("#create-customer-form").submit();
+        });
+
+
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+

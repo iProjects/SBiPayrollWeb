@@ -1,0 +1,88 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.spUser>
+
+@{
+    ViewBag.Title = "Users";
+    int Userscount = Model.Count();
+}
+
+<h2 class="page-title">Users [ @Userscount ]  </h2>
+
+<div>
+    @using (Html.BeginForm("CreateUser", "Administrator", FormMethod.Get, new { enctype = "multipart/form-data", id = "admin-create-user-form" }))
+    { 
+        <p>
+            <a id="btnSubmitCreateUSerForm" style="cursor: pointer;" title="Create User">Create User</a>
+        </p> 
+         
+    }
+</div>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditUser", new { id = item.UserId }) |
+            @Html.ActionLink("Details", "UserDetails", new { id = item.UserId }) | 
+            @Html.ActionLink("Delete", "DeleteUser", new { id = item.UserId, description = item.UserName })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitCreateUSerForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#admin-create-user-form").submit();
+
+        });
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+

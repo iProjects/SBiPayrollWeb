@@ -1,0 +1,293 @@
+﻿@model SBiPayrollWeb.Entities.Employer
+
+@{
+    ViewBag.Title = "Create Employer";
+}
+
+<h2 class="page-title">Create Employer </h2>
+
+@using (Html.BeginForm("CreateEmployer", "DataEntry", FormMethod.Post, new { enctype = "multipart/form-data", id = "create-employer-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Employer</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name, new { @autofocus = "autofocus" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Telephone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Telephone)
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Slogan)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Slogan)
+            @Html.ValidationMessageFor(model => model.Slogan)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AuthorizedSignatory)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AuthorizedSignatory)
+            @Html.ValidationMessageFor(model => model.AuthorizedSignatory)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" id="btnSubmit" />
+        </p>
+
+
+
+    </fieldset>
+}
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+
+
+
+
+        $("#btnupload").on("click", function (e) {
+            e.preventDefault();
+            //Start-Convert div form to model dialog
+            var categorydialog = $("#form-upload-logo-div").dialog({
+                autoOpen: false,
+                title: 'Upload Employer Logo',
+                height: 'auto',
+                width: 'auto',
+                toolbar: true,
+                scrollbars: true,
+                statusbar: true,
+                menubar: true,
+                resizable: true,
+                closeText: 'Close',
+                closeOnEscape: true,
+                appendTo: $("form:first"),
+                //dialogClass: 'ui-dialog-osx',
+                draggable: true,
+                show: { effect: 'slide', direction: "left", delay: 100 },
+                hide: { effect: 'slide', direction: "right", delay: 100 },
+                modal: true,
+                buttons: {
+                    "Upload": function () {
+
+                        //$(this).dialog().closest('form').submit();
+                        var input = $("#HttpPostedLogo").val();
+                        var form = $("#form-upload-logo").serialize();
+                        alert(input.toString());
+
+                        //$("#form-upload-logo").trigger('submit');
+
+                        var _logoimage = $();
+                        //get product description from control
+                        _logoimage = $("#HttpPostedLogo").val();
+                        //alert(_productdescription);
+                        //call function and pass user product description
+                        UploadEmployerLogofunction(_logoimage);
+                        //SearchStocksByProductsfunction();
+
+                        //$.ajax({
+                        //    type: "POST",
+                        //    url: "/DataEntry/FileUpload",
+                        //    data: $("#form-upload-logo").serialize(), // serializes the form's elements.
+                        //    success: function (data) {
+                        //        alert(data); // show response from the php script.
+                        //    },
+                        //   error: function (xhr, status, error) {
+                        //$("#error-display-div").empty();
+                        //$("#error-display-div").append(error.toString() + xhr.responseText.toString() + status.toString());
+                        //$("#error-display-div").removeClass('displaynone');
+                        //$("#error-display-div").addClass('displayblock');
+                        //$("#error-display-div").show();
+                        //    }
+                        //});
+
+                        $(this).dialog("close");
+                    },
+                    Close: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                //open: function () {
+                //    $(this).parent().appendTo($("form:first"));
+                //},
+                close: function () {
+                    //categoryform[0].reset();
+                    //categoryFields.removeClass("ui-state-error");
+                    //$("#categorydescription").val("");
+                    //$("#form-dialog-category").clearForm();
+                    //categorydialog.dialog("destroy");
+                    //$("#category-dialog-form").remove();
+                }
+            });
+            //End-Convert div form to model dialog
+            categorydialog.dialog("open");
+            return false;
+        });
+
+
+        function UploadEmployerLogofunction(_logoimage) {
+            $.ajax({
+                url: "/DataEntry/FileUpload",
+                data: { HttpPostedLogo: _logoimage },
+                dataType: "html",
+                cache: false,
+                type: "POST",
+                async: true,
+                success: function (result) {
+                    //reload data 
+                    //location.reload(true); 
+                    //window.location.reload(true);
+                    //$("#stockslistview").removeClass('displaynone');
+                    //$("#stockslistview").addClass('displayblock');
+                    //$("#stockslistview").empty();
+                    $("#txtLogo").val(result);
+                    //setTimeout(function () { window.location.href = result; }, 5000);
+                },
+                error: function (xhr, status, error) {
+                    $("#error-display-div").empty();
+                    $("#error-display-div").append(error.toString() + xhr.responseText.toString() + status.toString());
+                    $("#error-display-div").removeClass('displaynone');
+                    $("#error-display-div").addClass('displayblock');
+                    $("#error-display-div").show();
+                },
+                complete: function (XMLHttpRequest, textStatus) {
+                    //$('#ProductDetailsDialogDiv').dialog({
+                    //    modal: true,
+                    //    width: "300px",
+                    //    close: function (event, ui) { $("#ProductDetailsDialogDiv").html(""); },
+                    //    buttons: {
+                    //        "Ok": function () { $(this).dialog("close"); }
+                    //    }
+                    //});
+                }
+            });
+        }
+
+
+
+
+
+
+
+        $('INPUT[type="file"]').on('change keyup paste mouseup', function () {
+
+            //$('INPUT[type="file"]').change(function () {
+            //var ext = this.value.match(/\.(.+)$/)[1];
+            //var _file = $(this).val();
+            ////var filename = $("#file").val();
+            //alert(_file.toString());
+            //$("#txtLogo").val(_file.toString());
+
+            //switch (ext) {
+            //    case 'jpg':
+            //    case 'jpeg':
+            //    case 'png':
+            //    case 'gif':
+            //        //$('#uploadButton').attr('disabled', false);
+            //        break;
+            //    default:
+            //        alert('This is not an allowed file type.');
+            //        this.value = '';
+            //}
+
+            //$.ajaxSetup({
+            //    cache: false
+            //});
+
+            //$.ajax({
+            //    url: "/DataEntry/FileUpload",
+            //    data: { Logo: _file },
+            //    dataType: "html",
+            //    type: "POST",
+            //    success: function (result) {
+            //        $("#txtLogo").val(result);
+            //    },
+            //    error: function (xhr, status, error) {
+            //        alert(error.toString());
+            //    }
+            //});
+
+
+
+        });
+
+
+
+
+        $("#btnSubmit").on("click", function (e) {
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show(); 
+
+            $("#create-employer-form").submit();
+        });
+
+
+
+
+
+
+    </script>
+}

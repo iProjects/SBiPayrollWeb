@@ -1,0 +1,60 @@
+﻿@model SBiPayrollWeb.Entities.UsersInRoleModel
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<h2 class="page-title">User Roles Partial View </h2>
+
+
+
+@if (Model._UserRoles != null)
+{
+    <text>
+    <h3>Roles for this user </h3>
+    <ol>
+        @foreach (string s in Model._UserRoles)
+        {
+            <li>@s</li>   
+        }
+    </ol>
+    </text>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#loading").hide();
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

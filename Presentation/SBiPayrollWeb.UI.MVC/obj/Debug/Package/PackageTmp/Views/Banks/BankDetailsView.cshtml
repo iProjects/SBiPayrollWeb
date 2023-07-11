@@ -1,0 +1,73 @@
+﻿@model SBiPayrollWeb.Entities.Bank
+
+@{
+    ViewBag.Title = "BankDetailsView";
+}
+
+<h2>BankDetailsView</h2>
+
+@using (Html.BeginForm("UploadEmployerLogo", "DataEntry", FormMethod.Post, new { enctype = "multipart/form-data", id = "form-upload-logo" })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Bank</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankCode)
+            @Html.ValidationMessageFor(model => model.BankCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BankName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BankName)
+            @Html.ValidationMessageFor(model => model.BankName)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+
+

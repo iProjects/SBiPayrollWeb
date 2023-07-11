@@ -1,0 +1,349 @@
+﻿@model SBiPayrollWeb.Entities.Employer
+
+@{
+    ViewBag.Title = "Edit Employer";
+    var Employer = Model.Name.ToUpper(); 
+}
+
+<h2 class="page-title">Edit Employer - @Employer </h2>
+
+@using (Html.BeginForm("EditEmployer", "DataEntry", FormMethod.Post, new { enctype = "multipart/form-data", id = "edit-employer-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Edit Employer</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <article class="col1">
+            <div class="pad">
+
+                <ol>
+
+                    <li>
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.Telephone)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.Address1)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.Address2)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.Slogan)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.AuthorizedSignatory)
+                    </li>
+                </ol>
+
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name, new { @autofocus = "autofocus" })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Email)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Email)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Telephone)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Telephone)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Address1)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Address1)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Address2)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Address2)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Slogan)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Slogan)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AuthorizedSignatory)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.AuthorizedSignatory)
+                </div>
+
+            </div>
+        </article>
+
+        <article class="col2">
+            <div class="pad">
+
+                <ol>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.PIN)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.NHIF)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.NSSF)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.BankBranchSortCode)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.AccountName)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.AccountNo)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.IsActive)
+                    </li>
+                    <li>
+                        @Html.ValidationMessageFor(model => model.IsDefault)
+                    </li>
+                </ol>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.PIN)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.PIN)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NHIF)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NHIF)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.NSSF)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.NSSF)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.BankBranchSortCode)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.BankBranchSortCode)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AccountName)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.AccountName)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.AccountNo)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.AccountNo)
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.IsActive)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.IsActive)
+                </div>
+
+                @{
+                    
+    if (ViewBag.IsDefaultchkDisabled == true)
+    {
+@*<div class="editor-label">
+                        @Html.LabelFor(model => model.IsDefault)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.IsDefault, new { disabled = "disabled", type = "checkbox" })
+                        @Html.HiddenFor(model => model.IsDefault)
+                    </div>*@
+    }
+    else
+    {
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.IsDefault)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.IsDefault)
+                    </div>
+    }   
+                }
+
+            </div>
+        </article>
+
+        <p>
+            <input type="submit" value="Save" id="btnSubmitEditEmployerForm" style="float: left; clear: both" />
+        </p>
+
+    </fieldset>
+}
+
+
+
+
+
+<article class="col4">
+    <div class="pad">
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Logo)
+        </div>
+        <div class="editor-field">
+
+            @if (Model.Logo != null)
+            {               
+                <div class="editor-label">
+                    <div>
+                        @using (Html.BeginForm("UploadEmployerLogo_Edit", "DataEntry", new { id = Model.Id }, FormMethod.Get, new { enctype = "multipart/form-data", id = "change-Logo-form" }))
+                        { 
+                            <div>
+                                <a id="btnSubmitChangeEmployerLogoForm" style="cursor: pointer;">Change Logo</a>
+                            </div>    
+                        }
+                    </div>
+
+                </div>
+                
+                <br />
+                
+                        FileInfo photoInfo = new FileInfo(Path.Combine(Server.MapPath("/Images"), Model.Logo));
+                        if (photoInfo.Exists)
+                        {
+                            string directoryName = Path.GetDirectoryName(Model.Logo);
+                            if (directoryName.StartsWith(@"C:\", true, System.Globalization.CultureInfo.InvariantCulture))
+                            { 
+                <div class="editor-label">
+                    <img src="~/Images/defaultphoto.jpg" alt="Logo" width="310" height="100" />
+                </div>
+                            }
+                            else
+                            {
+                <div class="editor-label">
+                    <img src="~/Images/@Model.Logo" alt="Logo" width="310" height="100" />
+                </div>
+                            }
+                        }
+                        else
+                        {
+                <div class="editor-label">
+                    <img src="~/Images/defaultphoto.jpg" alt="Logo" width="310" height="100" />
+                </div>
+                        }
+            }
+
+            @if (Model.Logo == null)
+            {
+                <div class="editor-label">
+                    <div>
+                        @using (Html.BeginForm("UploadEmployerLogo_Edit", "DataEntry", new { id = Model.Id }, FormMethod.Get, new { enctype = "multipart/form-data", id = "upload-Logo-form" }))
+                        { 
+                            <div>
+                                <a id="btnSubmitUploadEmployerLogoForm" style="cursor: pointer;">Upload Logo</a>
+                            </div>    
+                        }
+                    </div>
+
+                </div> 
+                 
+                <br />
+                
+                <div class="editor-label">
+                    <img src="~/Images/defaultphoto.jpg" alt="Logo" width="310" height="100" />
+                </div>
+                
+            }
+
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitChangeEmployerLogoForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#change-Logo-form").submit();
+
+        });
+
+        $("#btnSubmitUploadEmployerLogoForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#upload-Logo-form").submit();
+
+        });
+
+
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+

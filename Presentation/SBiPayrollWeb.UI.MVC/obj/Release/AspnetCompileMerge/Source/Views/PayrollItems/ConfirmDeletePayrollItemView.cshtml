@@ -1,0 +1,68 @@
+﻿
+@model SBiPayrollWeb.UI.MVC.Models.ConfirmDeleteModel
+
+@{
+    ViewBag.Title = "Confirm Delete";
+    var PayrollItem = Model.Description.ToUpper(); 
+}
+
+<h2 class="page-title">Confirm Delete PayrollItem - @PayrollItem </h2>
+
+@using (Html.BeginForm("DeletePayrollItem", "PayrollItems", FormMethod.Post, new { enctype = "multipart/form-data", id = "delete-payroll-item-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Confirm Delete</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Delete"  id="btnSubmit" />
+        </p>
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () { 
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmit").on("click", function (e) {
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#delete-payroll-item-form").submit();
+        });
+
+
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

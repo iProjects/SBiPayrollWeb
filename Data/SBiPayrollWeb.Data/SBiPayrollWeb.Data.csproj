@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{354E6099-F5EB-49EE-9B70-FF84229CFB6E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SBiPayrollWeb.Data</RootNamespace>
+    <AssemblyName>SBiPayrollWeb.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.WCF.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.PolicyInjection">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.PolicyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Database">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Etw">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.Etw.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzure">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.SemanticLogging.WindowsAzure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF">
+      <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\library\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\library\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\..\library\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception">
+      <HintPath>..\..\library\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
+      <HintPath>..\..\library\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.WindowsPhone">
+      <HintPath>..\..\library\Microsoft.Practices.Unity.WindowsPhone.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountDAC.cs" />
+    <Compile Include="BankBranchDAC.cs" />
+    <Compile Include="BankDAC.cs" />
+    <Compile Include="BenefitDAC.cs" />
+    <Compile Include="DataAccessComponent.cs" />
+    <Compile Include="DepartmentDAC.cs" />
+    <Compile Include="EmployeeDAC.cs" />
+    <Compile Include="EmployeesBankTransferDAC.cs" />
+    <Compile Include="EmployeeTransactionDAC.cs" />
+    <Compile Include="Employee_ExtDAC.cs" />
+    <Compile Include="Employee_Ext_FieldDAC.cs" />
+    <Compile Include="EmployerBankDAC.cs" />
+    <Compile Include="EmployerDAC.cs" />
+    <Compile Include="EmpNonCashBenefitDAC.cs" />
+    <Compile Include="HourlyPaymentDAC.cs" />
+    <Compile Include="LeaveTransactionDAC.cs" />
+    <Compile Include="NHIFRateDAC.cs" />
+    <Compile Include="PackedTransactionDAC.cs" />
+    <Compile Include="Partials\EmployeeDAC.cs" />
+    <Compile Include="Partials\EmployerDAC.cs" />
+    <Compile Include="Partials\spAllowedRoleMenusDAC.cs" />
+    <Compile Include="Partials\spUserDAC.cs" />
+    <Compile Include="Partials\spUsersInRoleDAC.cs" />
+    <Compile Include="PayeeRateDAC.cs" />
+    <Compile Include="PayrollDAC.cs" />
+    <Compile Include="PayrollItemDAC.cs" />
+    <Compile Include="PayrollItemTypeDAC.cs" />
+    <Compile Include="PayrollTypeDAC.cs" />
+    <Compile Include="PayslipDetDAC.cs" />
+    <Compile Include="PayslipDet_TempDAC.cs" />
+    <Compile Include="PayslipMasterDAC.cs" />
+    <Compile Include="PayslipMaster_TempDAC.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingDAC.cs" />
+    <Compile Include="SettingsGroupDAC.cs" />
+    <Compile Include="spAllowedReportsRolesMenusDAC.cs" />
+    <Compile Include="spAllowedRoleMenusDAC.cs" />
+    <Compile Include="spAllowedRoleMenuswebDAC.cs" />
+    <Compile Include="spMenuItemDAC.cs" />
+    <Compile Include="spMenusDAC.cs" />
+    <Compile Include="spReportsMenuItemDAC.cs" />
+    <Compile Include="spRoleDAC.cs" />
+    <Compile Include="spUserDAC.cs" />
+    <Compile Include="spUsersInRoleDAC.cs" />
+    <Compile Include="TaxTrackingDAC.cs" />
+    <Compile Include="TechParamDAC.cs" />
+    <Compile Include="TransactionDAC.cs" />
+    <Compile Include="TransactionDefDAC.cs" />
+    <Compile Include="TxnTypeDAC.cs" />
+    <Compile Include="webpages_MembershipDAC.cs" />
+    <Compile Include="webpages_OAuthMembershipDAC.cs" />
+    <Compile Include="webpages_RoleDAC.cs" />
+    <Compile Include="webpages_UsersInRoleDAC.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\SBiPayrollWeb.Entities\SBiPayrollWeb.Entities.csproj">
+      <Project>{0807DFF2-F829-4265-8F73-26C9B936BA45}</Project>
+      <Name>SBiPayrollWeb.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\SBiPayrollWeb.Framework\SBiPayrollWeb.Framework.csproj">
+      <Project>{B0FAFC30-CDE7-41BB-8F35-4EC6B0C656ED}</Project>
+      <Name>SBiPayrollWeb.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

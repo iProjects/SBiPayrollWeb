@@ -1,0 +1,118 @@
+﻿@model SBiPayrollWeb.Entities.spUser
+
+@{
+    ViewBag.Title = "Edit User";
+    var User = Model.EmployeeName.ToUpper(); 
+}
+
+<h2 class="page-title">Edit User - @User </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>spUser</legend>
+
+        @Html.HiddenFor(model => model.UserId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmployeeId)
+        </div>
+        <div class="editor-field">
+            @{
+    List<SelectListItem> _Employees = new List<SelectListItem>();
+    foreach (var emloyee in Model._Employees)
+    {
+        _Employees.Add(new SelectListItem
+        {
+            Text = emloyee.EmployeeName,
+            Value = emloyee.Id.ToString()
+        });
+    }
+            }
+
+            @Html.DropDownListFor(model => model.EmployeeId, _Employees, new { @id = "cboEmployees", @style = "width: 310px;height: 30px;", @autofocus = "autofocus" })
+            @Html.ValidationMessageFor(model => model.EmployeeId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @{
+    List<SelectListItem> lstStatus = new List<SelectListItem>();
+    lstStatus.Add(new SelectListItem
+         {
+             Text = "Active",
+             Value = "A",
+             Selected = true
+         });
+    lstStatus.Add(new SelectListItem
+         {
+             Text = "Non-Active",
+             Value = "N"
+
+         });
+            }
+
+            @Html.DropDownListFor(model => model.Status, lstStatus, new { @id = "cboStatus", @style = "width: 310px;height: 30px;" })
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#loading").hide();
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

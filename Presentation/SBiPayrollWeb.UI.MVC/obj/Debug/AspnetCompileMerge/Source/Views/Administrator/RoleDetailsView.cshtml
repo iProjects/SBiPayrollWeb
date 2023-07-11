@@ -1,0 +1,63 @@
+﻿@model SBiPayrollWeb.Entities.RoleModel
+
+@{
+    ViewBag.Title = "Role Details";
+    var rolename = Model.RoleName.ToUpper(); 
+}
+
+<h2 class="page-title">Details for - @rolename </h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>RoleModel</legend>
+
+        @Html.HiddenFor(model => model.RoleId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RoleName)
+            @Html.ValidationMessageFor(model => model.RoleName)
+        </div>
+
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#loading").hide();
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

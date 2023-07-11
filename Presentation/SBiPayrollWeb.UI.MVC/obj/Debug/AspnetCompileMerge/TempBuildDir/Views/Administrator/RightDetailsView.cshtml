@@ -1,0 +1,101 @@
+﻿@model SBiPayrollWeb.Entities.UsersInRoleModel
+
+@{
+    ViewBag.Title = "Right Details";
+}
+
+<h2 class="page-title">Details for Right</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>UsersInRoleModel</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RoleId)
+        </div>
+        <div class="editor-field">
+            @{
+    List<SelectListItem> _lstRoles = new List<SelectListItem>();
+    foreach (var role in Model._Roles)
+    {
+        _lstRoles.Add(new SelectListItem
+        {
+            Text = role.RoleName,
+            Value = role.RoleId.ToString()
+        });
+    }
+            }
+
+            @Html.DropDownListFor(model => model.RoleId, _lstRoles, new { @id = "cboRoles", @style = "width: 310px;height: 30px;" })
+            @Html.ValidationMessageFor(model => model.RoleId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MenuItemId)
+        </div>
+        <div class="editor-field">
+            @{
+    List<SelectListItem> _lstMenus = new List<SelectListItem>();
+    foreach (var mnu in Model._Menus)
+    {
+        _lstMenus.Add(new SelectListItem
+        {
+            Text = mnu.Description,
+            Value = mnu.Id.ToString()
+        });
+    }
+            }
+
+            @Html.DropDownListFor(model => model.MenuItemId, _lstMenus, new { @id = "cboMenus", @style = "width: 310px;height: 30px;" })
+            @Html.ValidationMessageFor(model => model.MenuItemId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Allowed)
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.Allowed)
+            @Html.ValidationMessageFor(model => model.Allowed)
+        </div>
+
+
+    </fieldset>
+}
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#loading").hide();
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+        </script>
+ 
+}
+
+
+
+
+
+
+
+
+

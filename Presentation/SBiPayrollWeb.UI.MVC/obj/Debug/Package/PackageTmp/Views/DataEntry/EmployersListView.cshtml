@@ -1,0 +1,106 @@
+﻿@model IEnumerable<SBiPayrollWeb.Entities.Employer>
+
+@{
+    ViewBag.Title = "Employers";
+    int Employerscount = Model.Count();
+}
+
+<h2 class="page-title">Employers [ @Employerscount ] </h2>
+
+<div>
+    @using (Html.BeginForm("CreateEmployer", "DataEntry", FormMethod.Get, new { enctype = "multipart/form-data", id = "data-entry-create-employer-form" }))
+    { 
+        <p>
+            <a id="btnSubmitCreateEmployerForm" style="cursor: pointer;" title="Create Employer">Create Employer</a>
+        </p> 
+         
+    }
+</div>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDefault)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDefault)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditEmployer", new { id = item.Id }) |
+            @Html.ActionLink("Details", "EmployerDetails", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "DeleteEmployer", new { id = item.Id, description = item.Name })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#progress").hide();
+
+            $.ajaxSetup({ cache: false });
+
+        });
+
+        $("#btnSubmitCreateEmployerForm").on("click", function (e) {
+
+            e.preventDefault();
+
+            $("#progress").removeClass('displaynone');
+            $("#progress").addClass('displayblock');
+            $("#progress").show();
+
+            $("#data-entry-create-employer-form").submit();
+
+        });
+
+    </script>
+
+}
+
+
+
+
+
+
+
+
+

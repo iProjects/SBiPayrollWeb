@@ -1,0 +1,15 @@
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Business.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Business.pdb
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Debug\SBiPayrollWeb.Business.csprojResolveAssemblyReference.cache
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Debug\SBiPayrollWeb.Business.dll
+D:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Debug\SBiPayrollWeb.Business.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Business.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Business.pdb
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Debug\SBiPayrollWeb.Business.csprojResolveAssemblyReference.cache
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Debug\SBiPayrollWeb.Business.dll
+C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Debug\SBiPayrollWeb.Business.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Business.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Business.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Debug\SBiPayrollWeb.Business.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Debug\SBiPayrollWeb.Business.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Business\SBiPayrollWeb.Business\obj\Debug\SBiPayrollWeb.Business.pdb
