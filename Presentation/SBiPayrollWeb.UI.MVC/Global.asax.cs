@@ -39,6 +39,8 @@ namespace SBiPayrollWeb.UI.MVC
     {
         protected void Application_Start()
         {
+            var ensure_sqlserver_dll_is_copied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
@@ -49,9 +51,10 @@ namespace SBiPayrollWeb.UI.MVC
 
             DatabaseFactory.SetDatabaseProviderFactory(new DatabaseProviderFactory(), false); 
 
-            WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+            //WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
 
-
+            //WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: false);
+            
             // Code that runs on application startup
             Application["OnlineUsers"] = 0;
 
@@ -59,7 +62,6 @@ namespace SBiPayrollWeb.UI.MVC
             ViewEngines.Engines.Add(new RazorViewEngine());
 
             //BundleMobileConfig.RegisterBundles(BundleTable.Bundles);
-
 
         }
         public void Session_Start(object sender, EventArgs e)

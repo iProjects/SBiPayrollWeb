@@ -177,7 +177,7 @@ namespace SBiPayrollWeb.Data
                         employeeTransaction = new EmployeeTransaction();
 
                         // Read values.
-                        employeeTransaction.Id = base.GetDataValue<int>(dr, "Id");
+                        employeeTransaction.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employeeTransaction.PostDate = base.GetDataValue<DateTime>(dr, "PostDate");
                         employeeTransaction.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         employeeTransaction.EmployeeId = base.GetDataValue<int>(dr, "EmployeeId");
@@ -234,7 +234,7 @@ namespace SBiPayrollWeb.Data
                         EmployeeTransaction employeeTransaction = new EmployeeTransaction();
 
                         // Read values.
-                        employeeTransaction.Id = base.GetDataValue<int>(dr, "Id");
+                        employeeTransaction.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employeeTransaction.PostDate = base.GetDataValue<DateTime>(dr, "PostDate");
                         employeeTransaction.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         employeeTransaction.EmployeeId = base.GetDataValue<int>(dr, "EmployeeId");

@@ -1,0 +1,52 @@
+﻿
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border-radius: 0.5rem;
+}
+
+.nav-tabs .nav-link {
+    color: #495057;
+    font-weight: 500;
+    border: none;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: transparent;
+    color: #0d6efd;
+}
+
+.nav-tabs .nav-link.active {
+    color: #0d6efd;
+    background-color: transparent;
+    border-bottom: 2px solid #0d6efd;
+}
+
+.form-label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #333333;
+}
+
+.form-control, .form-select {
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+#tblSearchResults th {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#tblSearchResults td {
+    vertical-align: middle;
+    font-size: 0.9rem;
+}

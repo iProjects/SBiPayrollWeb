@@ -1,0 +1,41 @@
+﻿-- 1. Create your custom User Profile Table (Matches the names passed to InitializeDatabaseConnection)
+CREATE TABLE IF NOT EXISTS UserProfile (
+    UserId INTEGER PRIMARY KEY AUTOINCREMENT,
+    UserName TEXT NOT NULL UNIQUE
+);
+
+-- 2. Create the Standard WebPages Membership Table
+CREATE TABLE IF NOT EXISTS webpages_Membership (
+    UserId INTEGER PRIMARY KEY,
+    CreateDate DATETIME,
+    ConfirmationToken TEXT,
+    IsConfirmed INT DEFAULT 0,
+    LastPasswordFailureDate DATETIME,
+    PasswordFailuresSinceLastSuccess INT DEFAULT 0,
+    Password TEXT NOT NULL,
+    PasswordChangedDate DATETIME,
+    PasswordSalt TEXT NOT NULL,
+    PasswordVerificationToken TEXT,
+    PasswordVerificationTokenExpirationDate DATETIME
+);
+
+-- 3. Create the Standard WebPages OAuth Table
+CREATE TABLE IF NOT EXISTS webpages_OAuthMembership (
+    Provider TEXT NOT NULL,
+    ProviderUserId TEXT NOT NULL,
+    UserId INT NOT NULL,
+    PRIMARY KEY (Provider, ProviderUserId)
+);
+
+-- 4. Create the Roles Tables
+CREATE TABLE IF NOT EXISTS webpages_Roles (
+    RoleId INTEGER PRIMARY KEY AUTOINCREMENT,
+    RoleName TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS webpages_UsersInRoles (
+    UserId INT NOT NULL,
+    RoleId INT NOT NULL,
+    PRIMARY KEY (UserId, RoleId)
+);
+

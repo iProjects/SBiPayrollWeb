@@ -28,10 +28,10 @@ namespace SBiPayrollWeb.Business
             List<Employer> result = default(List<Employer>);
 
             // Data access component declarations.
-            EmployerDAC employerDAC = new EmployerDAC();
+            EmployerDAC_sqlite employerDAC_sqlite = new EmployerDAC_sqlite();
 
-            // Step 1 - Calling Select on EmployerDAC.
-            result = employerDAC.Select();
+            // Step 1 - Calling Select on EmployerDAC_sqlite.
+            result = employerDAC_sqlite.Select();
             return result;
 
         }
@@ -46,10 +46,10 @@ namespace SBiPayrollWeb.Business
             Employer result = default(Employer);
 
             // Data access component declarations.
-            EmployerDAC employerDAC = new EmployerDAC();
+            EmployerDAC_sqlite employerDAC_sqlite = new EmployerDAC_sqlite();
 
-            // Step 1 - Calling SelectById on EmployerDAC.
-            result = employerDAC.SelectById(id);
+            // Step 1 - Calling SelectById on EmployerDAC_sqlite.
+            result = employerDAC_sqlite.SelectById(id);
             return result;
 
         }
@@ -64,10 +64,10 @@ namespace SBiPayrollWeb.Business
             Employer result = default(Employer);
 
             // Data access component declarations.
-            EmployerDAC employerDAC = new EmployerDAC();
+            EmployerDAC_sqlite employerDAC_sqlite = new EmployerDAC_sqlite();
 
-            // Step 1 - Calling Create on EmployerDAC.
-            result = employerDAC.Create(employer);
+            // Step 1 - Calling Create on EmployerDAC_sqlite.
+            result = employerDAC_sqlite.Create(employer);
             return result;
 
         }
@@ -79,10 +79,10 @@ namespace SBiPayrollWeb.Business
         public void DeleteEmployer(int id)
         {
             // Data access component declarations.
-            EmployerDAC employerDAC = new EmployerDAC();
+            EmployerDAC_sqlite employerDAC_sqlite = new EmployerDAC_sqlite();
 
-            // Step 1 - Calling DeleteById on EmployerDAC.
-            employerDAC.DeleteById(id);
+            // Step 1 - Calling DeleteById on EmployerDAC_sqlite.
+            employerDAC_sqlite.DeleteById(id);
 
         }
 
@@ -93,10 +93,10 @@ namespace SBiPayrollWeb.Business
         public void UpdateEmployer(Employer employer)
         {
             // Data access component declarations.
-            EmployerDAC employerDAC = new EmployerDAC();
+            EmployerDAC_sqlite employerDAC_sqlite = new EmployerDAC_sqlite();
 
-            // Step 1 - Calling UpdateById on EmployerDAC.
-            employerDAC.UpdateById(employer);
+            // Step 1 - Calling UpdateById on EmployerDAC_sqlite.
+            employerDAC_sqlite.UpdateById(employer);
 
         }
     }

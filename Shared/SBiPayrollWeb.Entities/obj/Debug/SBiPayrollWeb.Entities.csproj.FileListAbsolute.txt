@@ -10,6 +10,6 @@ C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Debug\SBiPa
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Debug\SBiPayrollWeb.Entities.csprojResolveAssemblyReference.cache
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Entities.dll
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Entities.pdb
-D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Debug\SBiPayrollWeb.Entities.csprojResolveAssemblyReference.cache
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Debug\SBiPayrollWeb.Entities.dll
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Debug\SBiPayrollWeb.Entities.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Shared\SBiPayrollWeb.Entities\obj\Debug\SBiPayrollWeb.Entities.csprojResolveAssemblyReference.cache

@@ -129,7 +129,7 @@ namespace SBiPayrollWeb.Data
                         leaveTransaction = new LeaveTransaction();
 
                         // Read values.
-                        leaveTransaction.Id = base.GetDataValue<int>(dr, "Id");
+                        leaveTransaction.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         leaveTransaction.PostDate = base.GetDataValue<DateTime>(dr, "PostDate");
                         leaveTransaction.EffectiveDate = base.GetDataValue<DateTime>(dr, "EffectiveDate");
                         leaveTransaction.LeaveDesc = base.GetDataValue<string>(dr, "LeaveDesc");
@@ -168,7 +168,7 @@ namespace SBiPayrollWeb.Data
                         LeaveTransaction leaveTransaction = new LeaveTransaction();
 
                         // Read values.
-                        leaveTransaction.Id = base.GetDataValue<int>(dr, "Id");
+                        leaveTransaction.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         leaveTransaction.PostDate = base.GetDataValue<DateTime>(dr, "PostDate");
                         leaveTransaction.EffectiveDate = base.GetDataValue<DateTime>(dr, "EffectiveDate");
                         leaveTransaction.LeaveDesc = base.GetDataValue<string>(dr, "LeaveDesc");

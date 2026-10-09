@@ -1,118 +1,109 @@
 ﻿@model IEnumerable<SBiPayrollWeb.Entities.PayrollItem>
-
 @{
     ViewBag.Title = "Payroll Items";
-    int PayrollItems = Model.Count();
+    int payrollitemCount = Model != null ? Model.Count() : 0;
 }
-
-<h2 class="page-title">Payroll Items [ @PayrollItems ]  </h2>
-
-
-<div>
-    @using (Html.BeginForm("CreatePayrollItem", "PayrollItems", FormMethod.Get, new { enctype = "multipart/form-data", id = "create-payroll-item-form" }))
-    { 
-        <p>
-            <a id="btnSubmitCreatePayrollItemForm" style="cursor: pointer;" title="Create Payroll Item">Create Payroll Item</a>
-            @*@Html.ActionLink("Create Payroll Item", "CreatePayrollItem") *@
-        </p> 
-         
-    }
+<link rel="stylesheet" href="~/Content/payroll_items_modern.css" />
+<div class="payrollitems-container">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-title">
+            <h2>Payroll Items</h2>
+            <span class="badge-count" id="totalCount">@payrollitemCount</span>
+        </div>
+        <div class="header-actions">
+            @using (Html.BeginForm("CreatePayrollItem", "DataEntry", FormMethod.Get, new { id = "data-entry-create-payrollitem-form" }))
+            {
+                <button type="submit" id="btnSubmitCreatePayrollItemForm" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Create Payroll Item
+                </button>
+            }
+        </div>
+    </div>
+    <!-- Utility Bar: Search & Filters -->
+    <div class="table-utilities">
+        <div class="search-box">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="payrollitemSearchInput" placeholder="Search by name, email, or payrollitem no..." />
+            <button type="button" id="clearSearch" class="btn-clear" style="display: none;">&times;</button>
+        </div>
+        <div class="page-size-selector">
+            <label for="pageSizeSelect">Rows per page:</label>
+            <select id="pageSizeSelect">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+    </div>
+    <!-- Table Container -->
+    <div class="table-card">
+        <div class="table-responsive">
+            <table class="modern-table" id="payrollitemsTable">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Id)</th>
+                        <th>@Html.DisplayNameFor(model => model.ItemTypeId)</th>
+                        <th>@Html.DisplayNameFor(model => model.TaxTrackingId)</th>
+                        <th>@Html.DisplayNameFor(model => model.PayableTo)</th>
+                        <th>@Html.DisplayNameFor(model => model.DefaultItem)</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="payrollitemTableBody">
+                    @foreach (var item in Model)
+                    {
+                        <tr data-id="@item.Id">
+                            <td>
+                                <div class="user-avatar-cell">
+                                    <div class="avatar">@item.Id.Substring(0, 1).ToUpper()</div>
+                                    <span class="emp-name">@Html.DisplayFor(modelItem => item.Id)</span>
+                                </div>
+                            </td>
+                            <td class="font-medium">@Html.DisplayFor(modelItem => item.ItemTypeId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TaxTrackingId)</td>
+                            <td>@Html.DisplayFor(modelItem => item.PayableTo)</td>
+                            <td>
+                                <span class="status-badge @(item.DefaultItem ? "status-true" : "status-false")">
+                                    @(item.DefaultItem ? "Yes" : "No")
+                                </span> 
+                            <td class="text-right actions-cell">
+                                @Html.ActionLink("Edit", "EditPayrollItem", new { id = item.Id }, new { @class = "action-link edit" })
+                                @Html.ActionLink("Details", "PayrollItemDetails", new { id = item.Id }, new { @class = "action-link details" })
+                                @Html.ActionLink("Delete", "DeletePayrollItem", new { id = item.Id, description = item.ItemTypeId }, new { @class = "action-link delete" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="noResults" class="no-results" style="display: none;">
+                <p>No matching payrollitems found.</p>
+            </div>
+        </div>
+        <!-- Table Footer Pagination -->
+        <div class="pagination-footer">
+            <div class="pagination-info" id="paginationInfo">
+                Showing 0 to 0 of 0 entries
+            </div>
+            <div class="pagination-controls" id="paginationControls">
+                <!-- Pagination buttons generated by JavaScript -->
+            </div>
+        </div>
+    </div>
 </div>
-
-
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DefaultItem)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AddToPension)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Enable)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DefaultItem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddToPension)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Enable)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditPayrollItem", new { key = item.Id }) |
-            @Html.ActionLink("Details", "PayrollItemDetails", new { key = item.Id }) |
-            @Html.ActionLink("Delete", "DeletePayrollItem", new { key = item.Id, description = item.Description })
-            </td>
-        </tr>
-    }
-
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- Progress Spinner -->
+<div id="progress" class="loading-overlay" style="display: none;">
+    <div class="spinner"></div>
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            $("#progress").hide();
-
-            $.ajaxSetup({ cache: false });
-
-        });
-
-        $("#btnSubmitCreatePayrollItemForm").on("click", function (e) {
-
-            e.preventDefault();
-
-            $("#progress").removeClass('displaynone');
-            $("#progress").addClass('displayblock');
-            $("#progress").show();
-
-            $("#create-payroll-item-form").submit();
-
-        });
-
-    </script>
-
+    <script src="~/Scripts/payroll_items_modern.js"></script>
 }
-
-
-
-
-
-
-
-
-
-

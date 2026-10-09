@@ -123,7 +123,7 @@ namespace SBiPayrollWeb.Data
                         payrollType = new PayrollType();
 
                         // Read values.
-                        payrollType.Id = base.GetDataValue<int>(dr, "Id");
+                        payrollType.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         payrollType.Description = base.GetDataValue<string>(dr, "Description");
                         payrollType.Remarks = base.GetDataValue<string>(dr, "Remarks");
                     }
@@ -160,7 +160,7 @@ namespace SBiPayrollWeb.Data
                         PayrollType payrollType = new PayrollType();
 
                         // Read values.
-                        payrollType.Id = base.GetDataValue<int>(dr, "Id");
+                        payrollType.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         payrollType.Description = base.GetDataValue<string>(dr, "Description");
                         payrollType.Remarks = base.GetDataValue<string>(dr, "Remarks");
 

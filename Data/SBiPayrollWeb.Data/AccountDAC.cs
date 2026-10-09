@@ -126,7 +126,7 @@ namespace SBiPayrollWeb.Data
                         account = new Account();
 
                         // Read values.
-                        account.Id = base.GetDataValue<int>(dr, "Id");
+                        account.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         account.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         account.AccountType = base.GetDataValue<string>(dr, "AccountType");
                         account.BookBalance = base.GetDataValue<decimal>(dr, "BookBalance");
@@ -164,7 +164,7 @@ namespace SBiPayrollWeb.Data
                         Account account = new Account();
 
                         // Read values.
-                        account.Id = base.GetDataValue<int>(dr, "Id");
+                        account.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         account.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         account.AccountType = base.GetDataValue<string>(dr, "AccountType");
                         account.BookBalance = base.GetDataValue<decimal>(dr, "BookBalance");

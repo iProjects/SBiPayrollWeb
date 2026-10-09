@@ -108,58 +108,116 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountDAC_sqlite.cs" />
     <Compile Include="AccountDAC.cs" />
+    <Compile Include="BankBranchDAC_sqlite.cs" />
     <Compile Include="BankBranchDAC.cs" />
+    <Compile Include="BankDAC_sqlite.cs" />
     <Compile Include="BankDAC.cs" />
+    <Compile Include="BenefitDAC_sqlite.cs" />
     <Compile Include="BenefitDAC.cs" />
     <Compile Include="DataAccessComponent.cs" />
+    <Compile Include="DepartmentDAC_sqlite.cs" />
     <Compile Include="DepartmentDAC.cs" />
+    <Compile Include="EmployeeDAC_sqlite.cs" />
     <Compile Include="EmployeeDAC.cs" />
+    <Compile Include="EmployeesBankTransferDAC_sqlite.cs" />
     <Compile Include="EmployeesBankTransferDAC.cs" />
+    <Compile Include="EmployeeTransactionDAC_sqlite.cs" />
     <Compile Include="EmployeeTransactionDAC.cs" />
+    <Compile Include="Employee_ExtDAC_sqlite.cs" />
     <Compile Include="Employee_ExtDAC.cs" />
+    <Compile Include="Employee_Ext_FieldDAC_sqlite.cs" />
     <Compile Include="Employee_Ext_FieldDAC.cs" />
+    <Compile Include="EmployerBankDAC_sqlite.cs" />
     <Compile Include="EmployerBankDAC.cs" />
+    <Compile Include="EmployerDAC_sqlite.cs" />
     <Compile Include="EmployerDAC.cs" />
+    <Compile Include="EmpNonCashBenefitDAC_sqlite.cs" />
     <Compile Include="EmpNonCashBenefitDAC.cs" />
+    <Compile Include="Extensions\SqliteInterceptorDataReader.cs" />
+    <Compile Include="Extensions\SqliteInterceptorFactory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HourlyPaymentDAC_sqlite.cs" />
     <Compile Include="HourlyPaymentDAC.cs" />
+    <Compile Include="LeaveTransactionDAC_sqlite.cs" />
     <Compile Include="LeaveTransactionDAC.cs" />
+    <Compile Include="NHIFRateDAC_sqlite.cs" />
     <Compile Include="NHIFRateDAC.cs" />
+    <Compile Include="PackedTransactionDAC_sqlite.cs" />
     <Compile Include="PackedTransactionDAC.cs" />
+    <Compile Include="Partials\EmployeeDAC_sqlite.cs" />
     <Compile Include="Partials\EmployeeDAC.cs" />
+    <Compile Include="Partials\EmployerDAC_sqlite.cs" />
     <Compile Include="Partials\EmployerDAC.cs" />
+    <Compile Include="Partials\spAllowedRoleMenusDAC_sqlite.cs" />
+    <Compile Include="Partials\spAllowedRoleMenuswebDAC_sqlite.cs" />
+    <Compile Include="Partials\spAllowedRoleMenuswebDAC.cs" />
     <Compile Include="Partials\spAllowedRoleMenusDAC.cs" />
+    <Compile Include="Partials\spUserDAC_sqlite.cs" />
     <Compile Include="Partials\spUserDAC.cs" />
+    <Compile Include="Partials\spUsersInRoleDAC_sqlite.cs" />
     <Compile Include="Partials\spUsersInRoleDAC.cs" />
+    <Compile Include="PayeeRateDAC_sqlite.cs" />
     <Compile Include="PayeeRateDAC.cs" />
+    <Compile Include="PayrollDAC_sqlite.cs" />
     <Compile Include="PayrollDAC.cs" />
+    <Compile Include="PayrollItemDAC_sqlite.cs" />
     <Compile Include="PayrollItemDAC.cs" />
+    <Compile Include="PayrollItemTypeDAC_sqlite.cs" />
     <Compile Include="PayrollItemTypeDAC.cs" />
+    <Compile Include="PayrollTypeDAC_sqlite.cs" />
     <Compile Include="PayrollTypeDAC.cs" />
+    <Compile Include="PayslipDetDAC_sqlite.cs" />
     <Compile Include="PayslipDetDAC.cs" />
+    <Compile Include="PayslipDet_TempDAC_sqlite.cs" />
     <Compile Include="PayslipDet_TempDAC.cs" />
+    <Compile Include="PayslipMasterDAC_sqlite.cs" />
     <Compile Include="PayslipMasterDAC.cs" />
+    <Compile Include="PayslipMaster_TempDAC_sqlite.cs" />
     <Compile Include="PayslipMaster_TempDAC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingDAC_sqlite.cs" />
     <Compile Include="SettingDAC.cs" />
+    <Compile Include="SettingsGroupDAC_sqlite.cs" />
     <Compile Include="SettingsGroupDAC.cs" />
+    <Compile Include="spAllowedReportsRolesMenusDAC_sqlite.cs" />
     <Compile Include="spAllowedReportsRolesMenusDAC.cs" />
+    <Compile Include="spAllowedRoleMenusDAC_sqlite.cs" />
     <Compile Include="spAllowedRoleMenusDAC.cs" />
+    <Compile Include="spAllowedRoleMenuswebDAC_sqlite.cs" />
     <Compile Include="spAllowedRoleMenuswebDAC.cs" />
+    <Compile Include="spMenuItemDAC_sqlite.cs" />
     <Compile Include="spMenuItemDAC.cs" />
+    <Compile Include="spMenusDAC_sqlite.cs" />
     <Compile Include="spMenusDAC.cs" />
+    <Compile Include="spReportsMenuItemDAC_sqlite.cs" />
     <Compile Include="spReportsMenuItemDAC.cs" />
+    <Compile Include="spRoleDAC_sqlite.cs" />
     <Compile Include="spRoleDAC.cs" />
+    <Compile Include="spUserDAC_sqlite.cs" />
     <Compile Include="spUserDAC.cs" />
+    <Compile Include="spUsersInRoleDAC_sqlite.cs" />
     <Compile Include="spUsersInRoleDAC.cs" />
+    <Compile Include="Extensions\SqliteDatabase.cs" />
+    <Compile Include="TaxTrackingDAC_sqlite.cs" />
     <Compile Include="TaxTrackingDAC.cs" />
+    <Compile Include="TechParamDAC_sqlite.cs" />
     <Compile Include="TechParamDAC.cs" />
+    <Compile Include="TransactionDAC_sqlite.cs" />
     <Compile Include="TransactionDAC.cs" />
+    <Compile Include="TransactionDefDAC_sqlite.cs" />
     <Compile Include="TransactionDefDAC.cs" />
+    <Compile Include="TxnTypeDAC_sqlite.cs" />
     <Compile Include="TxnTypeDAC.cs" />
+    <Compile Include="webpages_MembershipDAC_sqlite.cs" />
     <Compile Include="webpages_MembershipDAC.cs" />
+    <Compile Include="webpages_OAuthMembershipDAC_sqlite.cs" />
     <Compile Include="webpages_OAuthMembershipDAC.cs" />
+    <Compile Include="webpages_RoleDAC_sqlite.cs" />
     <Compile Include="webpages_RoleDAC.cs" />
+    <Compile Include="webpages_UsersInRoleDAC_sqlite.cs" />
     <Compile Include="webpages_UsersInRoleDAC.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +230,7 @@
       <Name>SBiPayrollWeb.Framework</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

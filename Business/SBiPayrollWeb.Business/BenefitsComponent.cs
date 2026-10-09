@@ -28,10 +28,10 @@ namespace SBiPayrollWeb.Business
             List<Benefit> result = default(List<Benefit>);
 
             // Data access component declarations.
-            BenefitDAC benefitDAC = new BenefitDAC();
+            BenefitDAC_sqlite benefitDAC_sqlite = new BenefitDAC_sqlite();
 
-            // Step 1 - Calling Select on BenefitDAC.
-            result = benefitDAC.Select();
+            // Step 1 - Calling Select on BenefitDAC_sqlite.
+            result = benefitDAC_sqlite.Select();
             return result;
 
         }
@@ -46,10 +46,10 @@ namespace SBiPayrollWeb.Business
             Benefit result = default(Benefit);
 
             // Data access component declarations.
-            BenefitDAC benefitDAC = new BenefitDAC();
+            BenefitDAC_sqlite benefitDAC_sqlite = new BenefitDAC_sqlite();
 
-            // Step 1 - Calling SelectById on BenefitDAC.
-            result = benefitDAC.SelectById(id);
+            // Step 1 - Calling SelectById on BenefitDAC_sqlite.
+            result = benefitDAC_sqlite.SelectById(id);
             return result;
 
         }
@@ -64,10 +64,10 @@ namespace SBiPayrollWeb.Business
             Benefit result = default(Benefit);
 
             // Data access component declarations.
-            BenefitDAC benefitDAC = new BenefitDAC();
+            BenefitDAC_sqlite benefitDAC_sqlite = new BenefitDAC_sqlite();
 
-            // Step 1 - Calling Create on BenefitDAC.
-            result = benefitDAC.Create(benefit);
+            // Step 1 - Calling Create on BenefitDAC_sqlite.
+            result = benefitDAC_sqlite.Create(benefit);
             return result;
 
         }
@@ -79,10 +79,10 @@ namespace SBiPayrollWeb.Business
         public void UpdateBenefit(Benefit benefit)
         {
             // Data access component declarations.
-            BenefitDAC benefitDAC = new BenefitDAC();
+            BenefitDAC_sqlite benefitDAC_sqlite = new BenefitDAC_sqlite();
 
-            // Step 1 - Calling UpdateById on BenefitDAC.
-            benefitDAC.UpdateById(benefit);
+            // Step 1 - Calling UpdateById on BenefitDAC_sqlite.
+            benefitDAC_sqlite.UpdateById(benefit);
 
         }
 
@@ -93,10 +93,10 @@ namespace SBiPayrollWeb.Business
         public void DeleteBenefitById(int id)
         {
             // Data access component declarations.
-            BenefitDAC benefitDAC = new BenefitDAC();
+            BenefitDAC_sqlite benefitDAC_sqlite = new BenefitDAC_sqlite();
 
-            // Step 1 - Calling DeleteById on BenefitDAC.
-            benefitDAC.DeleteById(id);
+            // Step 1 - Calling DeleteById on BenefitDAC_sqlite.
+            benefitDAC_sqlite.DeleteById(id);
 
         }
     }

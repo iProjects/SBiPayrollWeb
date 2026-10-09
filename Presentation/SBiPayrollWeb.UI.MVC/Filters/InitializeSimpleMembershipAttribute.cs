@@ -38,10 +38,11 @@ namespace SBiPayrollWeb.UI.MVC.Filters
                         }
                     }
 
-                    //WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("DefaultConnection", "UserProfile", "UserId", "UserName", autoCreateTables: false);
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.ToString());
                     throw new InvalidOperationException("The ASP.NET Simple Membership database could not be initialized. For more information, please see http://go.microsoft.com/fwlink/?LinkId=256588", ex);
                 }
             }

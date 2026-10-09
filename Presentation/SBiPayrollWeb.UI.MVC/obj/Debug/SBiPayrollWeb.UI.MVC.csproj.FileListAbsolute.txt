@@ -346,7 +346,6 @@ D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.M
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\Microsoft.Practices.Unity.Interception.xml
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\Microsoft.Practices.Unity.Interception.Configuration.xml
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\Newtonsoft.Json.xml
-D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\EntityFramework.xml
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\System.Web.Helpers.xml
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\System.Web.Mvc.xml
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\System.Web.Razor.xml
@@ -398,3 +397,15 @@ D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.M
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\obj\Debug\SBiPayrollWeb.UI.MVC.csprojResolveAssemblyReference.cache
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\obj\Debug\SBiPayrollWeb.UI.MVC.dll
 D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\obj\Debug\SBiPayrollWeb.UI.MVC.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\x64\SQLite.Interop.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\x86\SQLite.Interop.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\App_Data\sbpayroll_db_2026.db
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\x64\EntityFramework.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\x64\EntityFramework.SqlServer.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\x64\System.Data.SQLite.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\x64\System.Data.SQLite.EF6.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\x64\System.Data.SQLite.Linq.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\System.Data.SQLite.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\System.Data.SQLite.EF6.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\EntityFramework.SqlServer.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\bin\Images\uploads\defaultphoto.jpg

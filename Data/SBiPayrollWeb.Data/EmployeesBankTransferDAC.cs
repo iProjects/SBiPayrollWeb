@@ -132,7 +132,7 @@ namespace SBiPayrollWeb.Data
                         employeesBankTransfer = new EmployeesBankTransfer();
 
                         // Read values.
-                        employeesBankTransfer.Id = base.GetDataValue<int>(dr, "Id");
+                        employeesBankTransfer.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employeesBankTransfer.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         employeesBankTransfer.BankSortCode = base.GetDataValue<string>(dr, "BankSortCode");
                         employeesBankTransfer.EmployerBankId = base.GetDataValue<int>(dr, "EmployerBankId");
@@ -172,7 +172,7 @@ namespace SBiPayrollWeb.Data
                         EmployeesBankTransfer employeesBankTransfer = new EmployeesBankTransfer();
 
                         // Read values.
-                        employeesBankTransfer.Id = base.GetDataValue<int>(dr, "Id");
+                        employeesBankTransfer.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employeesBankTransfer.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         employeesBankTransfer.BankSortCode = base.GetDataValue<string>(dr, "BankSortCode");
                         employeesBankTransfer.EmployerBankId = base.GetDataValue<int>(dr, "EmployerBankId");

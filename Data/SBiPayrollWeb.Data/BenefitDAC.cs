@@ -126,7 +126,7 @@ namespace SBiPayrollWeb.Data
                         benefit = new Benefit();
 
                         // Read values.
-                        benefit.Id = base.GetDataValue<int>(dr, "Id");
+                        benefit.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         benefit.Description = base.GetDataValue<string>(dr, "Description");
                         benefit.Rate = base.GetDataValue<decimal>(dr, "Rate");
                         benefit.IsDeleted = base.GetDataValue<bool>(dr, "IsDeleted");
@@ -164,7 +164,7 @@ namespace SBiPayrollWeb.Data
                         Benefit benefit = new Benefit();
 
                         // Read values.
-                        benefit.Id = base.GetDataValue<int>(dr, "Id");
+                        benefit.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         benefit.Description = base.GetDataValue<string>(dr, "Description");
                         benefit.Rate = base.GetDataValue<decimal>(dr, "Rate");
                         benefit.IsDeleted = base.GetDataValue<bool>(dr, "IsDeleted");

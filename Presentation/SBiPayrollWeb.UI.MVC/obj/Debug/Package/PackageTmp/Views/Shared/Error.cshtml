@@ -2,12 +2,12 @@
 
 @{
     ViewBag.Title = "Error";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
 <hgroup class="title">
     <h1 class="error">Generic Error.</h1>
-    <h2 class="error">An error occurred while processing your request.</h2> 
+    <h2 class="error">An error occurred while processing your request.</h2>
 </hgroup>
 
 <p>
@@ -29,7 +29,7 @@
 </p>
 
 
- 
+
 
 
 @section Scripts {
@@ -43,8 +43,8 @@
             $.ajaxSetup({ cache: false });
 
         });
-        </script>
- 
+    </script>
+
 }
 
 

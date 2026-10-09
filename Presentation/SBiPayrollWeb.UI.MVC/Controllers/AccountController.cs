@@ -1,4 +1,4 @@
-﻿using System; 
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics;
@@ -7,11 +7,11 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Transactions; 
+using System.Transactions;
 using System.Web;
-using System.Web.Mvc; 
+using System.Web.Mvc;
 using System.Web.Security;
-using System.Web.UI; 
+using System.Web.UI;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Practices.EnterpriseLibrary.Common;
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
@@ -25,13 +25,14 @@ using Microsoft.Practices.EnterpriseLibrary.Logging.Filters;
 using Microsoft.Practices.EnterpriseLibrary.Logging.Formatters;
 using Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners;
 using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration; 
+using Microsoft.Practices.Unity.Configuration;
 using Microsoft.Web.WebPages.OAuth;
 using SBiPayrollWeb.UI.MVC.Filters;
-using SBiPayrollWeb.UI.MVC.Models; 
+using SBiPayrollWeb.UI.MVC.Models;
 using WebMatrix.WebData;
 using SBiPayrollWeb.Business;
 using SBiPayrollWeb.Entities;
+using System.IO;
 
 namespace SBiPayrollWeb.UI.MVC.Controllers
 {
@@ -58,13 +59,27 @@ namespace SBiPayrollWeb.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
+            if (ModelState.IsValid)
             {
-                return RedirectToLocal(returnUrl);
+                AdministratorComponent ac = new AdministratorComponent();
+
+                // Custom Login Validation via Component/DAC layers
+                spUser authenticatedUser = ValidateUser(model.UserName, model.Password);
+
+                if (authenticatedUser != null)
+                {
+                    // Set Forms Authentication Cookie
+                    FormsAuthentication.SetAuthCookie(authenticatedUser.UserName, model.RememberMe);
+
+                    // Store logged-in user details in Session
+                    SetLoggedInUserSession(authenticatedUser);
+
+                    return RedirectToLocal(returnUrl);
+                }
+
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
             }
 
-            // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "The user name or password provided is incorrect.");
             return View(model);
         }
 
@@ -75,7 +90,10 @@ namespace SBiPayrollWeb.UI.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            WebSecurity.Logout();
+            // Clear custom session and sign out
+            Session.Clear();
+            Session.Abandon();
+            FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
@@ -102,26 +120,22 @@ namespace SBiPayrollWeb.UI.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Attempt to register the _user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    WebSecurity.Login(model.UserName, model.Password);
-
                     spUser returnedUser = CreateUser(model);
 
-                    Session["UserId"] = null;
-                    Session["UserId"] = returnedUser.Id;
+                    // Auto login user after registration using custom session method
+                    FormsAuthentication.SetAuthCookie(returnedUser.UserName, false);
+                    SetLoggedInUserSession(returnedUser);
 
                     return RedirectToAction("UploadUserPhoto");
                 }
-                catch (MembershipCreateUserException e)
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
+                    ModelState.AddModelError("", "Registration failed: " + ex.Message);
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 
@@ -131,11 +145,6 @@ namespace SBiPayrollWeb.UI.MVC.Controllers
             spUser _user = new spUser();
             _user.UserName = model.UserName;
             _user.Password = model.Password;
-            _user.RoleId = int.Parse(System.Configuration.ConfigurationManager.AppSettings["DEFAULTROLEID"]);
-            _user.Status = "A";
-            _user.IsDeleted = false;
-            _user.Locked = false;
-            _user.SystemId = "web";
             _user.Surname = model.Surname;
             _user.OtherNames = model.OtherNames;
             _user.InformBy = model.InformBy;
@@ -144,7 +153,23 @@ namespace SBiPayrollWeb.UI.MVC.Controllers
             _user.Email = model.UserName;
             _user.NationalID = model.NationalID;
             _user.DateOfBirth = model.DateOfBirth;
-            _user.DateJoined = DateTime.Today;
+            _user.Photo = model.Photo;
+
+            _user.DateJoined = DateTime.Now;
+            _user.RoleId = int.Parse(System.Configuration.ConfigurationManager.AppSettings["DEFAULTROLEID"]);
+            _user.Status = "A";
+            _user.IsDeleted = false;
+            _user.Locked = false;
+            _user.SystemId = "web";
+
+            string salt = Utils.create_random_salt();
+            string salted_password = salt + _user.Password;
+            string password_salt_hash = Utils.get_SHA512_hash(salted_password);
+
+            _user.password_hash = password_salt_hash;
+            _user.password_salt = salt;
+
+            _user.Password = Utils.encrypt_string(_user.Password);
 
             spUser UserReturned = ac.CreateUser(_user);
 
@@ -197,20 +222,70 @@ namespace SBiPayrollWeb.UI.MVC.Controllers
             string email = User.Identity.Name;
             AdministratorComponent ac = new AdministratorComponent();
             spUser model = ac.GetUserByEmail(email);
+
             if (model == null)
             {
                 throw new ArgumentNullException("", "Error Retrieving User Info.");
             }
-            if (model.DateOfBirth == null)
-            {
-                model.DateOfBirth = DateTime.Now.AddYears(-18);
-            }
+            //if (model.DateOfBirth == null)
+            //{
+            //    model.DateOfBirth = DateTime.Now.AddYears(-18);
+            //}
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult EditProfile(spUser model)
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfile(spUser model, HttpPostedFileBase PhotoUpload)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    var errors = ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage)
+                        .ToList();
+
+                    return Json(new { success = false, message = string.Join("<br/>", errors) });
+                }
+
+                // Handle File Upload if provided
+                if (PhotoUpload != null && PhotoUpload.ContentLength > 0)
+                {
+                    string fileName = Path.GetFileName(PhotoUpload.FileName);
+                    string extension = Path.GetExtension(fileName);
+                    var unique_file_name = Utils.create_datetime_integer_string();
+                    //string uniqueFileName = Guid.NewGuid().ToString() + extension;
+                    string uniqueFileName = unique_file_name + extension;
+
+                    string uploadFolder = Server.MapPath("~/Images/uploads/");
+                    if (!Directory.Exists(uploadFolder))
+                    {
+                        Directory.CreateDirectory(uploadFolder);
+                    }
+
+                    string targetPath = Path.Combine(uploadFolder, uniqueFileName);
+
+                    PhotoUpload.SaveAs(targetPath);
+
+                    // Update model photo property with the filename
+                    model.Photo = uniqueFileName;
+                }
+
+                // TODO: Update user record in database using model
+                update_profile(model);
+
+                return Json(new { success = true, message = "Profile updated successfully!" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "An error occurred: " + ex.Message });
+            }
+        }
+
+        public void update_profile(spUser model)
         {
             AdministratorComponent ac = new AdministratorComponent();
             spUser _user = ac.GetUserById(model.Id);
@@ -221,10 +296,10 @@ namespace SBiPayrollWeb.UI.MVC.Controllers
             _user.Telephone = model.Telephone;
             _user.NationalID = model.NationalID;
             _user.DateOfBirth = model.DateOfBirth;
+            _user.Photo = model.Photo;
 
             ac.UpdateUser(_user);
 
-            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult EditUserPhoto(int id)
@@ -579,5 +654,46 @@ namespace SBiPayrollWeb.UI.MVC.Controllers
             }
         }
         #endregion
+
+
+
+
+
+
+
+
+        public spUser ValidateUser(string userName, string rawPassword)
+        {
+            AdministratorComponent cd = new AdministratorComponent();
+            spUser user = cd.SelectByUserName(userName);
+
+            if (user == null || user.Locked || user.IsDeleted)
+            {
+                return null;
+            }
+
+            // Salt and verify hash
+            string computedHash = Utils.get_SHA512_hash(user.password_salt + rawPassword);
+            if (user.password_hash == computedHash)
+            {
+                return user;
+            }
+
+            return null;
+        }
+
+        // Helper method to set session variables for current logged-in user
+        private void SetLoggedInUserSession(spUser user)
+        {
+            Session["UserId"] = user.Id;
+            Session["UserName"] = user.UserName;
+            Session["CurrentUser"] = user;
+        }
+
+
+
+
+
+
     }
 }

@@ -1,0 +1,23 @@
+﻿-- Step 1: Remove all rows
+DELETE FROM spUsers;
+DELETE FROM spUsersInRoles;
+DELETE FROM spAllowedRoleMenusweb;
+DELETE FROM spAllowedReportsRolesMenus;
+
+-- Step 2: Reset the auto-increment counter
+DELETE FROM sqlite_sequence WHERE name = 'spUsers';
+DELETE FROM sqlite_sequence WHERE name = 'spUsersInRoles';
+DELETE FROM sqlite_sequence WHERE name = 'spAllowedRoleMenusweb';
+DELETE FROM sqlite_sequence WHERE name = 'spAllowedReportsRolesMenus';
+DELETE FROM sqlite_sequence WHERE name = 'table_name';
+DELETE FROM sqlite_sequence WHERE name = 'table_name';
+DELETE FROM sqlite_sequence WHERE name = 'table_name';
+DELETE FROM sqlite_sequence WHERE name = 'table_name';
+DELETE FROM sqlite_sequence WHERE name = 'table_name';
+DELETE FROM sqlite_sequence WHERE name = 'table_name';
+DELETE FROM sqlite_sequence WHERE name = 'table_name';
+DELETE FROM sqlite_sequence WHERE name = 'table_name';
+DELETE FROM sqlite_sequence WHERE name = 'table_name';
+
+--shrink the actual file size on your hard drive after truncating a large table, 
+VACUUM;

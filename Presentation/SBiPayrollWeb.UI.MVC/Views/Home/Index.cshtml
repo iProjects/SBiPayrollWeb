@@ -1,91 +1,216 @@
 ﻿@{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Dashboard";
 }
-
-
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-
-            <hgroup class="title">
-                <h1>Soft Books Payroll.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-
-            <hgroup class="title">
-                <h2 class="page-title">How Soft Books Payroll works.</h2>
-            </hgroup>
-
-            <div>
-                <p>
-                    SoftBooks Payroll is a low-cost payroll solution that supports an unlimited number of employees and users, with support for tracking benefit accruals and multiple deduction types, as well as providing compliance reporting tools. The system comprises of integrated modules in all aspects of Payroll functions including management of pension disbursements.<br>
-                    The software is preferably configured on server to be accessed by various authorized users from their respective workstations.<br>
-                    Tax is a dynamic area in Kenya. The changes that Government implement on tax policies have far reaching implications on business every year and as a result there is need for a dynamic system to keep abreast of them.<br>
-                    Soft Books Payroll System is a multi-user Client/Server.<br>
-                    The objective of the system is to assist businesses manage their growth process, finance, investment and management issues generally adding professional value to the business. The Soft Books Payroll system provides the ultimate solution for organizations and Higher Education Institutions with a diverse range from small to large employee base. It offers support for accountants representing multiple clients or can be used directly by small and mid-sized businesses.<br>
-                    The Soft Books Payroll system has been developed using the latest software development tools to ensure that it meets all the requirements a user could want from a payroll (either in-house, hosted or outsourced).
-                </p>
+<link href="~/Content/dashboard_modern.css" rel="stylesheet" />
+<div class="dashboard-container">
+    <!-- Page Header -->
+    <div class="dashboard-header">
+        <div>
+            <h1 class="page-title">Soft Books Payroll</h1>
+            <p class="page-subtitle">@ViewBag.Message</p>
+        </div>
+        <div class="header-actions">
+            @using (Html.BeginForm("ProcessPayroll", "Payrolls", FormMethod.Get))
+            {
+                <button type="submit" class="btn-action-primary">
+                    <i class="fa-solid fa-play"></i> Process Payroll
+                </button>
+            }
+        </div>
+    </div>
+    <!-- Metric Cards Grid -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-icon icon-blue">
+                <i class="fa-solid fa-users"></i>
             </div>
-
-
-            <div>
-
-                <img src="~/Images/images.jpg" alt="" />
-
-                <ol class="round">
-                    <li class="one">
-                        <h5>Join SBiPayroll!</h5>
-                        Enter your details on the register screen by clicking @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            <div class="metric-info">
+                <span class="metric-label">Total Employees</span>
+                <h3 class="metric-value">128</h3>
+                <span class="metric-subtext text-success"><i class="fa-solid fa-arrow-up"></i> +4 this month</span>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon icon-green">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div class="metric-info">
+                <span class="metric-label">Total Payroll (Current)</span>
+                <h3 class="metric-value">KES 4,250,000</h3>
+                <span class="metric-subtext text-neutral">For September 2026</span>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon icon-amber">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+            </div>
+            <div class="metric-info">
+                <span class="metric-label">PAYE Deductions</span>
+                <h3 class="metric-value">KES 680,200</h3>
+                <span class="metric-subtext text-neutral">Statutory Return</span>
+            </div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-icon icon-purple">
+                <i class="fa-solid fa-building"></i>
+            </div>
+            <div class="metric-info">
+                <span class="metric-label">Active Departments</span>
+                <h3 class="metric-value">8</h3>
+                <span class="metric-subtext text-neutral">Fully Assigned</span>
+            </div>
+        </div>
+    </div>
+    <!-- Quick Navigation Shortcuts -->
+    <div class="section-block">
+        <h2 class="section-title">Quick Actions</h2>
+        <div class="quick-actions-grid">
+            <a href="@Url.Action("GetAllEmployees", "DataEntry")" class="action-card">
+                <i class="fa-solid fa-user-plus"></i>
+                <span>Manage Employees</span>
+            </a>
+            <a href="@Url.Action("GetAllPayrollItems", "PayrollItems")" class="action-card">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Payroll Items</span>
+            </a>
+            <a href="@Url.Action("GetAllReports", "DataEntry")" class="action-card">
+                <i class="fa-solid fa-chart-pie"></i>
+                <span>Generate Reports</span>
+            </a>
+            <a href="@Url.Action("GetAllTaxCalculator", "DataEntry")" class="action-card">
+                <i class="fa-solid fa-calculator"></i>
+                <span>Tax Calculator</span>
+            </a>
+        </div>
+    </div>
+    <!-- System Overview & Onboarding Steps -->
+    <div class="dashboard-columns margin-bottom-lg">
+        <!-- About System Info Card -->
+        <div class="card-panel">
+            <div class="panel-header">
+                <h3><i class="fa-solid fa-circle-info icon-inline"></i> How Soft Books Payroll Works</h3>
+            </div>
+            <div class="panel-body">
+                <div class="system-intro-content">
+                    @*<img src="~/Images/images.jpg" alt="Soft Books Payroll" class="system-overview-img" />*@
+                    <p>
+                        SoftBooks Payroll is a low-cost payroll solution that supports an unlimited number of employees and users, with support for tracking benefit accruals and multiple deduction types, as well as providing compliance reporting tools. The system comprises of integrated modules in all aspects of Payroll functions including management of pension disbursements.<br>
+                        The software is preferably configured on server to be accessed by various authorized users from their respective workstations.
+                    </p>
+                    <p>
+                        Tax is a dynamic area in Kenya. The changes that Government implement on tax policies have far reaching implications on business every year and as a result there is need for a dynamic system to keep abreast of them.<br>
+                        Soft Books Payroll System is a multi-user Client/Server.<br>
+                        The objective of the system is to assist businesses manage their growth process, finance, investment and management issues generally adding professional value to the business. The Soft Books Payroll system provides the ultimate solution for organizations and Higher Education Institutions with a diverse range from small to large employee base. It offers support for accountants representing multiple clients or can be used directly by small and mid-sized businesses.<br>
+                        The Soft Books Payroll system has been developed using the latest software development tools to ensure that it meets all the requirements a user could want from a payroll (either in-house, hosted or outsourced).
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Getting Started / Onboarding Card -->
+        <div class="card-panel">
+            <div class="panel-header">
+                <h3><i class="fa-solid fa-rocket icon-inline"></i> Getting Started</h3>
+            </div>
+            <div class="panel-body">
+                <ol class="onboarding-steps">
+                    <li class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-details">
+                            <h5>Join SBiPayroll!</h5>
+                            <p>Enter your details on the register screen by clicking @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</p>
+                        </div>
                     </li>
-
-                    <li class="two">
-                        <h5>Complete Your Profile</h5>
-                        After clicking register you will automatically be redirected to the home page, click on @Html.ActionLink("My Profile", "EditProfile", "Account") and complete your profile by clicking edit
+                    <li class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-details">
+                            <h5>Complete Your Profile</h5>
+                            <p>Click on @Html.ActionLink("My Profile", "EditProfile", "Account") to edit and complete your account information.</p>
+                        </div>
                     </li>
                 </ol>
-
             </div>
-
-
-
         </div>
-    </section>
-}
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+    <!-- Lower Section Grid: Recent Activity & Status -->
+    <div class="dashboard-columns">
+        <!-- Recent Payroll Runs -->
+        <div class="card-panel">
+            <div class="panel-header">
+                <h3>Recent Payroll Processes</h3>
+                <a href="@Url.Action("GetAllPayrolls", "Payrolls")" class="link-more">View All</a>
+            </div>
+            <div class="table-responsive">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Period</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>August 2026</td>
+                            <td>KES 4,120,000</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                            <td><a href="#" class="table-link">Payslips</a></td>
+                        </tr>
+                        <tr>
+                            <td>July 2026</td>
+                            <td>KES 4,080,000</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                            <td><a href="#" class="table-link">Payslips</a></td>
+                        </tr>
+                        <tr>
+                            <td>June 2026</td>
+                            <td>KES 3,950,000</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                            <td><a href="#" class="table-link">Payslips</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- System Alerts / Activity -->
+        <div class="card-panel">
+            <div class="panel-header">
+                <h3>Statutory & Compliance Alerts</h3>
+            </div>
+            <div class="activity-feed">
+                <div class="activity-item">
+                    <div class="activity-icon icon-amber"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="activity-content">
+                        <p class="activity-text">NSSF Tier I & II returns pending submission.</p>
+                        <span class="activity-time">Due in 5 days</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon icon-green"><i class="fa-solid fa-circle-check"></i></div>
+                    <div class="activity-content">
+                        <p class="activity-text">NHIF rates verified and matched to current guidelines.</p>
+                        <span class="activity-time">Updated yesterday</span>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon icon-blue"><i class="fa-solid fa-info-circle"></i></div>
+                    <div class="activity-content">
+                        <p class="activity-text">PAYE statutory brackets active for current tax year.</p>
+                        <span class="activity-time">System verified</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
-
         $(document).ready(function () {
-
             $("#progress").hide();
-
             $.ajaxSetup({ cache: false });
-
         });
     </script>
-
 }
-
-
-
-
-
-
-
-
-
-

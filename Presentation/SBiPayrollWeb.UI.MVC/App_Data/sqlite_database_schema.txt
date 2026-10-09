@@ -1,0 +1,585 @@
+﻿CREATE TABLE IF NOT EXISTS "SettingsGroup" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"GroupName" TEXT NOT NULL,
+	"Parent" INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "Settings" (
+	"SSKey" TEXT NOT NULL,
+	"SSValue" TEXT NOT NULL,
+	"SSValueType" TEXT NOT NULL,
+	"Description" TEXT NOT NULL,
+	"SGroup" INT NOT NULL,
+	"SSSystem" INT NOT NULL,
+	PRIMARY KEY ("SSKey")
+);
+
+CREATE TABLE IF NOT EXISTS "Accounts" (
+	"Id" INT NOT NULL,
+	"EmpNo" TEXT NOT NULL,
+	"AccountType" TEXT NOT NULL,
+	"BookBalance" DECIMAL NOT NULL,
+	PRIMARY KEY ("Id")
+);
+
+CREATE TABLE IF NOT EXISTS "UserProfile" (
+	"UserId" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"UserName" TEXT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "webpages_UsersInRoles" (
+	"UserId" INT NOT NULL,
+	"RoleId" INT NOT NULL,
+	PRIMARY KEY ("UserId", "RoleId")
+);
+
+CREATE TABLE IF NOT EXISTS "webpages_Roles" (
+	"RoleId" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"RoleName" TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "webpages_OAuthMembership" (
+	"Provider" TEXT NOT NULL,
+	"ProviderUserId" TEXT NOT NULL,
+	"UserId" INT NOT NULL,
+	PRIMARY KEY ("Provider", "ProviderUserId")
+);
+
+CREATE TABLE IF NOT EXISTS "webpages_Membership" (
+	"UserId" INT NOT NULL,
+	"CreateDate" TEXT NULL,
+	"ConfirmationToken" TEXT NULL,
+	"IsConfirmed" BOOLEAN NULL,
+	"LastPasswordFailureDate" TEXT NULL,
+	"PasswordFailuresSinceLastSuccess" INT NOT NULL,
+	"Password" TEXT NOT NULL,
+	"PasswordChangedDate" TEXT NULL,
+	"PasswordSalt" TEXT NOT NULL,
+	"PasswordVerificationToken" TEXT NULL,
+	"PasswordVerificationTokenExpirationDate" TEXT NULL,
+	PRIMARY KEY ("UserId")
+);
+
+CREATE TABLE IF NOT EXISTS "PayeeRates" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"FromAmt" DECIMAL NOT NULL,
+	"ToAmt" DECIMAL NOT NULL,
+	"Rate" DECIMAL NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "PackedTransactions" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"PackDate" TEXT NOT NULL,
+	"EmpNo" TEXT NOT NULL,
+	"EmployeeId" INT NOT NULL,
+	"TxnCode" TEXT NOT NULL,
+	"Amount" DECIMAL NOT NULL,
+	"CreatedBy" TEXT NULL,
+	"Authorized" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "NHIFRates" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"FromAmt" DECIMAL NOT NULL,
+	"ToAmt" DECIMAL NOT NULL,
+	"Rate" DECIMAL NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "LeaveTransactions" (
+	"Id" INT NOT NULL,
+	"PostDate" TEXT NULL,
+	"EffectiveDate" TEXT NULL,
+	"LeaveDesc" TEXT NULL,
+	"NoofDays" INT NULL,
+	PRIMARY KEY ("Id")
+);
+
+CREATE TABLE IF NOT EXISTS "HourlyPayment" (
+	"EmployeeId" INT NOT NULL,
+	"Empno" TEXT NOT NULL,
+	"WorkDate" TEXT NOT NULL,
+	"WorkHours" INT NOT NULL,
+	"RatePerHour" DECIMAL NOT NULL,
+	PRIMARY KEY ("Empno", "WorkDate")
+);
+
+CREATE TABLE IF NOT EXISTS "Benefits" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"Description" TEXT NULL,
+	"Rate" DECIMAL NULL,
+	"IsDeleted" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "Banks" (
+	"BankCode" TEXT NOT NULL,
+	"BankName" TEXT NOT NULL,
+	PRIMARY KEY ("BankCode")
+);
+
+CREATE TABLE IF NOT EXISTS "Employee_Ext_Fields" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"Description" TEXT NOT NULL,
+	"FType" TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "Employee_Ext" (
+	"EmpNo" TEXT NOT NULL,
+	"ExFieldName" INT NOT NULL,
+	"ExFieldStr" TEXT NULL,
+	"ExFieldInt" INT NULL,
+	"ExFieldDate" TEXT NULL,
+	"ExFieldDecimal" DECIMAL NULL,
+	"EmployerId" INT NULL,
+	PRIMARY KEY ("EmpNo", "ExFieldName")
+);
+
+CREATE TABLE IF NOT EXISTS "Departments" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"Code" TEXT NULL,
+	"Description" TEXT NULL,
+	"IsDeleted" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "DeductionsTracker" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"PayrollItemId" TEXT NULL,
+	"ItemTypeDescription" TEXT NULL,
+	"LoanYTD" DECIMAL NULL,
+	"SaccoYTD" DECIMAL NULL,
+	"Amount" DECIMAL NULL,
+	"EmployeeName" TEXT NULL,
+	"EmployeeId" INT NULL,
+	"EmployeeTransactionId" INT NULL,
+	"Year" INT NULL,
+	"Term" INT NULL,
+	"IsProcessed" BOOLEAN NULL,
+	"IsClosed" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "EmpNonCashBenefits" (
+	"EmployeeId" INT NOT NULL,
+	"EmpNo" TEXT NOT NULL,
+	"BenefitId" INT NOT NULL,
+	"Quantity" INT NOT NULL,
+	"Rate" DECIMAL NOT NULL,
+	PRIMARY KEY ("EmpNo", "BenefitId")
+);
+
+CREATE TABLE IF NOT EXISTS "Employers" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"Name" TEXT NULL,
+	"Code" TEXT NULL,
+	"Email" TEXT NULL,
+	"Telephone" TEXT NULL,
+	"Address1" TEXT NULL,
+	"Address2" TEXT NULL,
+	"Slogan" TEXT NULL,
+	"AuthorizedSignatory" TEXT NULL,
+	"PIN" TEXT NULL,
+	"NHIF" TEXT NULL,
+	"NSSF" TEXT NULL,
+	"BankBranchSortCode" TEXT NULL,
+	"AccountName" TEXT NULL,
+	"AccountNo" TEXT NULL,
+	"Logo" TEXT NULL,
+	"IsDefault" BOOLEAN NULL,
+	"IsActive" BOOLEAN NULL,
+	"IsDeleted" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "EmployerBanks" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"EmployerId" INT NULL,
+	"BankSortCode" TEXT NULL,
+	"AccountName" TEXT NULL,
+	"AccountNo" TEXT NULL,
+	"Signatory" TEXT NULL,
+	"IsDefault" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "EmployeeTransactions" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"PostDate" TEXT NOT NULL,
+	"EmpNo" TEXT NOT NULL,
+	"EmployeeId" INT NOT NULL,
+	"Enabled" BOOLEAN NOT NULL,
+	"Recurrent" BOOLEAN NOT NULL,
+	"ItemId" TEXT NOT NULL,
+	"Amount" DECIMAL NOT NULL,
+	"Balance" DECIMAL NULL,
+	"InitialAmount" DECIMAL NULL,
+	"Processed" BOOLEAN NULL,
+	"TrackYTD" BOOLEAN NULL,
+	"ShowYTDInPayslip" BOOLEAN NULL,
+	"CreatedBy" TEXT NULL,
+	"LastChangedBy" TEXT NULL,
+	"LastChangeDate" TEXT NULL,
+	"AuthorizedBy" TEXT NULL,
+	"AuthorizeDate" TEXT NULL,
+	"LoanType" TEXT NULL,
+	"AccumulativePayment" DECIMAL NULL,
+	"IsDeleted" BOOLEAN NULL,
+	"IsLoanRepaymentInFull" BOOLEAN NULL,
+	"LoanBeingRepayedId" INT NULL,
+	"SaccoBeingRepayedId" INT NULL,
+	"IsLoanRepaymentInCash" BOOLEAN NULL,
+	"IsSharesRepaymentInCash" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "EmployeesBankTransfers" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"EmpNo" TEXT NULL,
+	"BankSortCode" TEXT NULL,
+	"EmployerBankId" INT NULL,
+	"EmployerId" INT NULL,
+	"EmployeeId" INT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "PayslipMaster_Temp" (
+	"Period" INT NOT NULL,
+	"Year" INT NOT NULL,
+	"EmpNo" TEXT NOT NULL,
+	"EmployeeId" INT NOT NULL,
+	"EmployerId" INT NULL,
+	"PaymentDate" TEXT NOT NULL,
+	"PrintedBy" TEXT NOT NULL,
+	"PrintedOn" TEXT NOT NULL,
+	"EmpName" TEXT NOT NULL,
+	"PayPoint" TEXT NULL,
+	"PIN" TEXT NULL,
+	"NHIFNo" TEXT NULL,
+	"NSSFNo" TEXT NULL,
+	"Department" TEXT NULL,
+	"EmpGroup" TEXT NULL,
+	"EmpPayroll" TEXT NULL,
+	"CompName" TEXT NULL,
+	"CompAddr" TEXT NULL,
+	"CompTel" TEXT NULL,
+	"PayeTax" DECIMAL NOT NULL,
+	"BasicPay" DECIMAL NOT NULL,
+	"Benefits" DECIMAL NOT NULL,
+	"Variables" DECIMAL NOT NULL,
+	"OtherDeductions" DECIMAL NOT NULL,
+	"GrossTaxableEarnings" DECIMAL NOT NULL,
+	"NetTaxableEarnings" DECIMAL NOT NULL,
+	"MortgageRelief" DECIMAL NOT NULL,
+	"InsuranceRelief" DECIMAL NOT NULL,
+	"GrossTax" DECIMAL NOT NULL,
+	"PersonalRelief" DECIMAL NOT NULL,
+	"PensionEmployer" DECIMAL NOT NULL,
+	"EmployerNSSF" DECIMAL NOT NULL,
+	"PensionEmployee" DECIMAL NOT NULL,
+	"BankBranch" TEXT NULL,
+	"Account" TEXT NULL,
+	"NSSF" DECIMAL NOT NULL,
+	"NHIF" DECIMAL NOT NULL,
+	"NetPay" DECIMAL NOT NULL,
+	"SHIF" DECIMAL NULL,
+	"AHL" DECIMAL NULL,
+	"IDNo" TEXT NULL,
+	PRIMARY KEY ("Period", "Year", "EmpNo")
+);
+
+CREATE TABLE IF NOT EXISTS "PayslipMaster" (
+	"Period" INT NOT NULL,
+	"Year" INT NOT NULL,
+	"EmpNo" TEXT NOT NULL,
+	"EmployeeId" INT NOT NULL,
+	"EmployerId" INT NULL,
+	"PaymentDate" TEXT NOT NULL,
+	"PrintedBy" TEXT NOT NULL,
+	"PrintedOn" TEXT NOT NULL,
+	"EmpName" TEXT NOT NULL,
+	"PayPoint" TEXT NULL,
+	"PIN" TEXT NULL,
+	"NHIFNo" TEXT NULL,
+	"NSSFNo" TEXT NULL,
+	"Department" TEXT NULL,
+	"EmpGroup" TEXT NULL,
+	"EmpPayroll" TEXT NULL,
+	"CompName" TEXT NULL,
+	"CompAddr" TEXT NULL,
+	"CompTel" TEXT NULL,
+	"PayeTax" DECIMAL NOT NULL,
+	"BasicPay" DECIMAL NOT NULL,
+	"Benefits" DECIMAL NOT NULL,
+	"Variables" DECIMAL NOT NULL,
+	"OtherDeductions" DECIMAL NOT NULL,
+	"GrossTaxableEarnings" DECIMAL NOT NULL,
+	"NetTaxableEarnings" DECIMAL NOT NULL,
+	"MortgageRelief" DECIMAL NOT NULL,
+	"InsuranceRelief" DECIMAL NOT NULL,
+	"GrossTax" DECIMAL NOT NULL,
+	"PersonalRelief" DECIMAL NOT NULL,
+	"PensionEmployer" DECIMAL NOT NULL,
+	"EmployerNSSF" DECIMAL NOT NULL,
+	"PensionEmployee" DECIMAL NOT NULL,
+	"BankBranch" TEXT NULL,
+	"Account" TEXT NULL,
+	"NSSF" DECIMAL NOT NULL,
+	"NHIF" DECIMAL NOT NULL,
+	"NetPay" DECIMAL NOT NULL,
+	"SHIF" DECIMAL NULL,
+	"AHL" DECIMAL NULL,
+	"IDNo" TEXT NULL,
+	PRIMARY KEY ("Period", "Year", "EmpNo")
+);
+
+CREATE TABLE IF NOT EXISTS "PayslipDet_Temp" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"EmpNo" TEXT NOT NULL,
+	"EmployeeId" INT NOT NULL,
+	"EmployerId" INT NULL,
+	"EmpTxnId" INT NOT NULL,
+	"Period" INT NOT NULL,
+	"Year" INT NULL,
+	"Description" TEXT NOT NULL,
+	"TaxTracking" TEXT NOT NULL,
+	"Amount" DECIMAL NOT NULL,
+	"DEType" TEXT NOT NULL,
+	"IsStatutory" BOOLEAN NOT NULL,
+	"ShowInPayslip" BOOLEAN NULL,
+	"YTD" DECIMAL NULL,
+	"IsLoanRepaymentInCash" BOOLEAN NULL,
+	"IsSharesRepaymentInCash" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "PayslipDet" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"EmpNo" TEXT NOT NULL,
+	"EmployeeId" INT NOT NULL,
+	"EmployerId" INT NULL,
+	"EmpTxnId" INT NOT NULL,
+	"Period" INT NOT NULL,
+	"Year" INT NULL,
+	"Description" TEXT NOT NULL,
+	"TaxTracking" TEXT NOT NULL,
+	"Amount" DECIMAL NOT NULL,
+	"DEType" TEXT NOT NULL,
+	"IsStatutory" BOOLEAN NOT NULL,
+	"ShowInPayslip" BOOLEAN NULL,
+	"YTD" DECIMAL NULL,
+	"IsLoanRepaymentInCash" BOOLEAN NULL,
+	"IsSharesRepaymentInCash" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "PayrollTypes" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"Description" TEXT NULL,
+	"Remarks" TEXT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "Payrolls" (
+	"Period" INT NOT NULL,
+	"Year" INT NOT NULL,
+	"EmployerId" INT NOT NULL,
+	"DateRun" TEXT NULL,
+	"RunBy" TEXT NULL,
+	"Approved" BOOLEAN NULL,
+	"ApprovedBy" TEXT NULL,
+	"IsOpen" BOOLEAN NOT NULL,
+	"Processed" BOOLEAN NOT NULL,
+	"ProcessedBy" TEXT NULL,
+	"TimeRun" TEXT NULL,
+	PRIMARY KEY ("Period", "Year", "EmployerId")
+);
+
+CREATE TABLE IF NOT EXISTS "PayrollItemType" (
+	"Id" TEXT NOT NULL,
+	"Parent" TEXT NULL,
+	"Description" TEXT NULL,
+	"Status" TEXT NULL,
+	"IsDefault" BOOLEAN NULL,
+	PRIMARY KEY ("Id")
+);
+
+CREATE TABLE IF NOT EXISTS "TxnType" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"Description" TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "Transactions" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"PostDate" TEXT NULL,
+	"Amount" DECIMAL NULL,
+	"DRCR" TEXT NULL,
+	"Narrative" TEXT NULL,
+	"TxnType" INT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "TransactionDef" (
+	"TxnCode" TEXT NOT NULL,
+	"DataEntry" TEXT NOT NULL,
+	"PayrollItem" TEXT NOT NULL,
+	"DefaultAmount" DECIMAL NULL,
+	"Enabled" BOOLEAN NULL,
+	"Recurrent" BOOLEAN NULL,
+	"TrackYTD" BOOLEAN NULL,
+	PRIMARY KEY ("TxnCode")
+);
+
+CREATE TABLE IF NOT EXISTS "TechParams" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"strtdt" TEXT NULL,
+	"edc" INT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "tbl_LAS" (
+	"las_id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"mac_address" TEXT NULL,
+	"computer_name" TEXT NULL,
+	"activation_key" TEXT NULL,
+	"date_activated" TEXT NULL,
+	"next_expiry_date" TEXT NULL,
+	"days_for_expiry" TEXT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "TaxTracking" (
+	"Id" TEXT NOT NULL,
+	"Description" TEXT NULL,
+	"Status" TEXT NULL,
+	"IsDefault" BOOLEAN NULL,
+	PRIMARY KEY ("Id")
+);
+
+CREATE TABLE IF NOT EXISTS "spUsersInRoles" (
+	"UserId" INT NOT NULL,
+	"RoleId" INT NOT NULL,
+	PRIMARY KEY ("UserId", "RoleId")
+);
+
+CREATE TABLE IF NOT EXISTS "spUsers" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"RoleId" INT NOT NULL,
+	"UserName" TEXT NOT NULL,
+	"Password" TEXT NOT NULL,
+	"Status" TEXT NOT NULL,
+	"Locked" BOOLEAN NOT NULL,
+	"IsDeleted" BOOLEAN NOT NULL,
+	"SystemId" TEXT NOT NULL,
+	"Surname" TEXT NULL,
+	"OtherNames" TEXT NULL,
+	"NationalID" TEXT NULL,
+	"DateOfBirth" TEXT NULL,
+	"Gender" TEXT NULL,
+	"Telephone" TEXT NULL,
+	"Email" TEXT NULL,
+	"DateJoined" TEXT NULL,
+	"InformBy" TEXT NULL,
+	"Photo" TEXT NULL,
+	"password_hash" TEXT NULL,
+	"password_salt" TEXT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "spRoles" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"ShortCode" TEXT NOT NULL,
+	"Description" TEXT NOT NULL,
+	"IsDeleted" BOOLEAN NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "spReportsMenuItems" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"mnuName" TEXT NOT NULL,
+	"Description" TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "spMenus" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"mnuName" TEXT NULL,
+	"Description" TEXT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "spMenuItems" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"mnuName" TEXT NOT NULL,
+	"Description" TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "spAllowedRoleMenusweb" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"RoleId" INT NULL,
+	"MenuItemId" INT NULL,
+	"Allowed" BOOLEAN NULL
+);
+
+CREATE TABLE IF NOT EXISTS "spAllowedRoleMenus" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"RoleId" INT NOT NULL,
+	"MenuItemId" INT NOT NULL,
+	"Allowed" BOOLEAN NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "spAllowedReportsRolesMenus" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"RoleId" INT NOT NULL,
+	"MenuItemId" INT NOT NULL,
+	"Allowed" BOOLEAN NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "PayrollItems" (
+	"Id" TEXT NOT NULL,
+	"Description" TEXT NULL,
+	"ItemTypeId" TEXT NULL,
+	"TaxTrackingId" TEXT NULL,
+	"PayableTo" TEXT NULL,
+	"GLAccount" TEXT NULL,
+	"ReFField" INT NULL,
+	"DefaultItem" BOOLEAN NULL,
+	"AddToPension" BOOLEAN NULL,
+	"Active" BOOLEAN NULL,
+	"Enable" BOOLEAN NULL,
+	"IsDeleted" BOOLEAN NULL,
+	PRIMARY KEY ("Id")
+);
+
+CREATE TABLE IF NOT EXISTS "Employees" (
+	"Id" INTEGER PRIMARY KEY AUTOINCREMENT,
+	"EmpNo" TEXT NULL,
+	"Surname" TEXT NULL,
+	"OtherNames" TEXT NULL,
+	"EmployerId" INT NOT NULL,
+	"Email" TEXT NULL,
+	"PhoneNo" TEXT NULL,
+	"DoB" TEXT NULL,
+	"DepartmentId" INT NULL,
+	"MaritalStatus" TEXT NULL,
+	"Gender" TEXT NULL,
+	"Photo" TEXT NULL,
+	"DoE" TEXT NULL,
+	"BasicComputation" TEXT NULL,
+	"BasicPay" DECIMAL NULL,
+	"PersonalRelief" DECIMAL NULL,
+	"MortgageRelief" DECIMAL NULL,
+	"InsuranceRelief" DECIMAL NULL,
+	"NSSFNo" TEXT NULL,
+	"NHIFNo" TEXT NULL,
+	"IDNo" TEXT NULL,
+	"PINNo" TEXT NULL,
+	"PayPoint" TEXT NULL,
+	"EmpGroup" TEXT NULL,
+	"EmpPayroll" TEXT NULL,
+	"PrevEmployer" TEXT NULL,
+	"DateLeft" TEXT NULL,
+	"PaymentMode" TEXT NULL,
+	"TelephoneNo" TEXT NULL,
+	"ChequeNo" TEXT NULL,
+	"BankCode" TEXT NULL,
+	"BankAccount" TEXT NULL,
+	"LeaveBalance" TEXT NULL,
+	"IsActive" BOOLEAN NULL,
+	"CreatedBy" TEXT NULL,
+	"CreatedOn" TEXT NULL,
+	"IsDeleted" BOOLEAN NULL,
+	"SystemId" TEXT NULL,
+	"IsDisabled" BOOLEAN NULL,
+	"MpesaReferenceNo" TEXT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "BankBranch" (
+	"BankSortCode" TEXT NOT NULL,
+	"BranchCode" TEXT NOT NULL,
+	"BranchName" TEXT NOT NULL,
+	"BankCode" TEXT NOT NULL,
+	PRIMARY KEY ("BankSortCode")
+);

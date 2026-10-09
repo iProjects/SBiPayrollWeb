@@ -139,7 +139,7 @@ namespace SBiPayrollWeb.Data
                         packedTransaction = new PackedTransaction();
 
                         // Read values.
-                        packedTransaction.Id = base.GetDataValue<int>(dr, "Id");
+                        packedTransaction.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         packedTransaction.PackDate = base.GetDataValue<DateTime>(dr, "PackDate");
                         packedTransaction.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         packedTransaction.EmployeeId = base.GetDataValue<int>(dr, "EmployeeId");
@@ -182,7 +182,7 @@ namespace SBiPayrollWeb.Data
                         PackedTransaction packedTransaction = new PackedTransaction();
 
                         // Read values.
-                        packedTransaction.Id = base.GetDataValue<int>(dr, "Id");
+                        packedTransaction.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         packedTransaction.PackDate = base.GetDataValue<DateTime>(dr, "PackDate");
                         packedTransaction.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         packedTransaction.EmployeeId = base.GetDataValue<int>(dr, "EmployeeId");

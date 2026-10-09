@@ -126,7 +126,7 @@ namespace SBiPayrollWeb.Data
                         department = new Department();
 
                         // Read values.
-                        department.Id = base.GetDataValue<int>(dr, "Id");
+                        department.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         department.Code = base.GetDataValue<string>(dr, "Code");
                         department.Description = base.GetDataValue<string>(dr, "Description");
                         department.IsDeleted = base.GetDataValue<bool>(dr, "IsDeleted");
@@ -164,7 +164,7 @@ namespace SBiPayrollWeb.Data
                         Department department = new Department();
 
                         // Read values.
-                        department.Id = base.GetDataValue<int>(dr, "Id");
+                        department.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         department.Code = base.GetDataValue<string>(dr, "Code");
                         department.Description = base.GetDataValue<string>(dr, "Description");
                         department.IsDeleted = base.GetDataValue<bool>(dr, "IsDeleted");

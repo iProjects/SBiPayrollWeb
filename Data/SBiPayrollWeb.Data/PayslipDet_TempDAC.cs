@@ -154,7 +154,7 @@ namespace SBiPayrollWeb.Data
                         payslipDet_Temp = new PayslipDet_Temp();
 
                         // Read values.
-                        payslipDet_Temp.Id = base.GetDataValue<int>(dr, "Id");
+                        payslipDet_Temp.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         payslipDet_Temp.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         payslipDet_Temp.EmployeeId = base.GetDataValue<int>(dr, "EmployeeId");
                         payslipDet_Temp.EmpTxnId = base.GetDataValue<int>(dr, "EmpTxnId");
@@ -202,7 +202,7 @@ namespace SBiPayrollWeb.Data
                         PayslipDet_Temp payslipDet_Temp = new PayslipDet_Temp();
 
                         // Read values.
-                        payslipDet_Temp.Id = base.GetDataValue<int>(dr, "Id");
+                        payslipDet_Temp.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         payslipDet_Temp.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         payslipDet_Temp.EmployeeId = base.GetDataValue<int>(dr, "EmployeeId");
                         payslipDet_Temp.EmpTxnId = base.GetDataValue<int>(dr, "EmpTxnId");

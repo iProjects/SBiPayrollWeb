@@ -1,116 +1,107 @@
 ﻿@model IEnumerable<SBiPayrollWeb.Entities.Payroll>
-
 @{
     ViewBag.Title = "Payrolls";
-    int Payrolls = Model.Count();
+    int payrollsCount = Model != null ? Model.Count() : 0;
 }
-
-<h2 class="page-title">Payrolls [ @Payrolls ]  </h2>
-
-
-<div>
-    @using (Html.BeginForm("CreatePayroll", "Payrolls", FormMethod.Get, new { enctype = "multipart/form-data", id = "create-payroll-form" }))
-    { 
-        <p>
-            <a id="btnSubmitCreatePayrollForm" style="cursor: pointer;" title="Create Payroll">Create Payroll</a>
-            @*@Html.ActionLink("Create Payroll", "CreatePayroll") *@
-        </p> 
-         
-    }
+<!-- External CSS -->
+<link href="~/Content/payrolls_modern.css" rel="stylesheet" type="text/css" />
+<!-- Loading Overlay -->
+<div id="progress-overlay">
+    <div class="spinner"></div>
+</div>
+<!-- Header / Actions Bar -->
+<div class="payroll-header">
+    <div>
+        <h2 class="payroll-title">
+            Payrolls
+            <span class="payroll-badge-count">@payrollsCount</span>
+        </h2>
+    </div>
+    <div>
+        @using (Html.BeginForm("CreatePayroll", "Payrolls", FormMethod.Get, new { id = "create-payroll-form" }))
+        {
+            <button type="submit" id="btnSubmitCreatePayrollForm" class="btn-primary-custom">
+                <i class="glyphicon glyphicon-plus"></i> Create Payroll
+            </button>
+        }
+    </div>
+</div>
+<!-- Main Table Card -->
+<div class="payroll-card">
+    <div class="table-responsive">
+        <table class="payroll-table" id="payrollTable">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Period)</th>
+                    <th>@Html.DisplayNameFor(model => model.Year)</th>
+                    <th>@Html.DisplayNameFor(model => model.EmployerId)</th>
+                    <th>@Html.DisplayNameFor(model => model.DateRun)</th>
+                    <th>@Html.DisplayNameFor(model => model.RunBy)</th>
+                    <th>@Html.DisplayNameFor(model => model.Approved)</th>
+                    <th>@Html.DisplayNameFor(model => model.ApprovedBy)</th>
+                    <th>@Html.DisplayNameFor(model => model.IsOpen)</th>
+                    <th>@Html.DisplayNameFor(model => model.Processed)</th>
+                    <th class="text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="payroll-row">
+                        <td><strong>@Html.DisplayFor(modelItem => item.Period)</strong></td>
+                        <td>@Html.DisplayFor(modelItem => item.Year)</td>
+                        <td>@Html.DisplayFor(modelItem => item.EmployerId)</td>
+                        <td>
+                            @Html.TextBoxFor(model => item.DateRun, new
+                       {
+                           Value = item.DateRun.ToString("yyyy-MM-dd"),
+                           @readonly = "readonly",
+                           @class = "payroll-date-input",
+                           type = "date"
+                       })
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.RunBy)</td>
+                        <td>
+                            <span class="status-badge @(item.Approved ? "status-true" : "status-false")">
+                                @(item.Approved ? "Approved" : "Pending")
+                            </span>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.ApprovedBy)</td>
+                        <td>
+                            <span class="status-badge @(item.IsOpen ? "status-true" : "status-false")">
+                                @(item.IsOpen ? "Open" : "Closed")
+                            </span>
+                        </td>
+                        <td>
+                            <span class="status-badge @(item.Processed ? "status-true" : "status-false")">
+                                @(item.Processed ? "Yes" : "No")
+                            </span>
+                        </td>
+                        <td class="action-links text-right">
+                            @Html.ActionLink("Edit", "EditPayroll", new { Year = item.Year, Period = item.Period }) |
+                            @Html.ActionLink("Details", "PayrollDetails", new { Year = item.Year, Period = item.Period }) |
+                            @Html.ActionLink("Delete", "DeletePayroll", new { Year = item.Year, Period = item.Period })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- Pagination Footer -->
+    <div class="pagination-footer">
+        <div class="pagination-info" id="paginationInfo">
+            Showing 0 to 0 of 0 entries
+        </div>
+        <div class="pagination-controls">
+            <button type="button" class="page-btn" id="btnPrevPage">Previous</button>
+            <div id="pageNumbers" style="display: inline-flex; gap: 0.25rem;"></div>
+            <button type="button" class="page-btn" id="btnNextPage">Next</button>
+        </div>
+    </div>
 </div>
 
-
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Period)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Year)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateRun)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsOpen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Processed)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Period)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @{
-        var DateRunAsString = item.DateRun;
-                }
-
-                @Html.TextBoxFor(model => item.DateRun, new { Value = DateRunAsString.ToString("yyyy-MM-dd"), @readonly = "readonly", @class = "datepicker", type = "date" })
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsOpen)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Processed)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditPayroll", new { Year = item.Year, Period = item.Period }) |
-         @Html.ActionLink("Details", "PayrollDetails", new { Year = item.Year, Period = item.Period }) |
-         @Html.ActionLink("Delete", "DeletePayroll", new { Year = item.Year, Period = item.Period })
-            </td>
-        </tr>
-    }
-
-</table>
-
-
-
-
-
-
-
+ 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            $("#progress").hide();
-
-            $.ajaxSetup({ cache: false });
-
-        });
-
-        $("#btnSubmitCreatePayrollForm").on("click", function (e) {
-
-            e.preventDefault();
-
-            $("#progress").removeClass('displaynone');
-            $("#progress").addClass('displayblock');
-            $("#progress").show();
-
-            $("#create-payroll-form").submit();
-
-        });
-
-    </script>
-
+    <script src="~/Scripts/payrolls_modern.js"></script>
 }
-
-
-
-
-
-
-
-
-

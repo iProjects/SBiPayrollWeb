@@ -1,0 +1,165 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Data.Common;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using SBiPayrollWeb.Entities;
+
+namespace SBiPayrollWeb.Data
+{
+    /// <summary>
+    /// Employee_Ext_Fields data access component. Manages CRUD operations for the Employee_Ext_Fields table.
+    /// </summary>
+    public partial class Employee_Ext_FieldDAC_sqlite : DataAccessComponent
+    {
+        /// <summary>
+        /// Inserts a new row in the Employee_Ext_Fields table.
+        /// </summary>
+        /// <param name="employee_Ext_Field">A Employee_Ext_Field object.</param>
+        /// <returns>An updated Employee_Ext_Field object.</returns>
+        public Employee_Ext_Field Create(Employee_Ext_Field employee_Ext_Field)
+        {
+            const string SQL_STATEMENT =
+                "INSERT INTO [Employee_Ext_Fields] ([Description], [FType]) " +
+                "VALUES(@Description, @FType); SELECT last_insert_rowid();";
+
+            // Connect to database.
+            Database db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                // Set parameter values.
+                db.AddInParameter(cmd, "@Description", DbType.String, employee_Ext_Field.Description);
+                db.AddInParameter(cmd, "@FType", DbType.String, employee_Ext_Field.FType);
+
+                // Get the primary key value.
+                employee_Ext_Field.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
+            }
+
+            return employee_Ext_Field;
+        }
+
+        /// <summary>
+        /// Updates an existing row in the Employee_Ext_Fields table.
+        /// </summary>
+        /// <param name="employee_Ext_Field">A Employee_Ext_Field entity object.</param>
+        public void UpdateById(Employee_Ext_Field employee_Ext_Field)
+        {
+            const string SQL_STATEMENT =
+                "UPDATE [Employee_Ext_Fields] " +
+                "SET " +
+                    "[Description]=@Description, " +
+                    "[FType]=@FType " +
+                "WHERE [Id]=@Id ";
+
+            // Connect to database.
+            Database db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                // Set parameter values.
+                db.AddInParameter(cmd, "@Description", DbType.String, employee_Ext_Field.Description);
+                db.AddInParameter(cmd, "@FType", DbType.String, employee_Ext_Field.FType);
+                db.AddInParameter(cmd, "@Id", DbType.Int32, employee_Ext_Field.Id);
+
+                db.ExecuteNonQuery(cmd);
+            }
+        }
+
+        /// <summary>
+        /// Conditionally deletes one or more rows in the Employee_Ext_Fields table.
+        /// </summary>
+        /// <param name="id">A id value.</param>
+        public void DeleteById(int id)
+        {
+            const string SQL_STATEMENT = "DELETE FROM [Employee_Ext_Fields] " +
+                                         "WHERE [Id]=@Id ";
+
+            // Connect to database.
+            Database db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                // Set parameter values.
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+
+                db.ExecuteNonQuery(cmd);
+            }
+        }
+
+        /// <summary>
+        /// Returns a row from the Employee_Ext_Fields table.
+        /// </summary>
+        /// <param name="id">A Id value.</param>
+        /// <returns>A Employee_Ext_Field object with data populated from the database.</returns>
+        public Employee_Ext_Field SelectById(int id)
+        {
+            const string SQL_STATEMENT =
+                "SELECT [Id], [Description], [FType] " +
+                "FROM [Employee_Ext_Fields] " +
+                "WHERE [Id]=@Id ";
+
+            Employee_Ext_Field employee_Ext_Field = null;
+
+            // Connect to database.
+            Database db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                db.AddInParameter(cmd, "@Id", DbType.Int32, id);
+
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    if (dr.Read())
+                    {
+                        // Create a new Employee_Ext_Field
+                        employee_Ext_Field = new Employee_Ext_Field();
+
+                        // Read values.
+                        employee_Ext_Field.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
+                        employee_Ext_Field.Description = base.GetDataValue<string>(dr, "Description");
+                        employee_Ext_Field.FType = base.GetDataValue<string>(dr, "FType");
+                    }
+                }
+            }
+
+            return employee_Ext_Field;
+        }
+
+        /// <summary>
+        /// Conditionally retrieves one or more rows from the Employee_Ext_Fields table.
+        /// </summary>
+        /// <returns>A collection of Employee_Ext_Field objects.</returns>		
+        public List<Employee_Ext_Field> Select()
+        {
+            const string SQL_STATEMENT =
+                "SELECT [Id], [Description], [FType] " +
+                "FROM [Employee_Ext_Fields] ";
+
+            List<Employee_Ext_Field> result = new List<Employee_Ext_Field>();
+
+            // Connect to database.
+            Database db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
+            using (DbCommand cmd = db.GetSqlStringCommand(SQL_STATEMENT))
+            {
+                using (IDataReader dr = db.ExecuteReader(cmd))
+                {
+                    while (dr.Read())
+                    {
+                        // Create a new Employee_Ext_Field
+                        Employee_Ext_Field employee_Ext_Field = new Employee_Ext_Field();
+
+                        // Read values.
+                        employee_Ext_Field.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
+                        employee_Ext_Field.Description = base.GetDataValue<string>(dr, "Description");
+                        employee_Ext_Field.FType = base.GetDataValue<string>(dr, "FType");
+
+                        // Add to List.
+                        result.Add(employee_Ext_Field);
+                    }
+                }
+            }
+
+            return result;
+        }
+    }
+}

@@ -132,7 +132,7 @@ namespace SBiPayrollWeb.Data
                         transaction = new Transaction();
 
                         // Read values.
-                        transaction.Id = base.GetDataValue<int>(dr, "Id");
+                        transaction.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         transaction.PostDate = base.GetDataValue<DateTime>(dr, "PostDate");
                         transaction.Amount = base.GetDataValue<decimal>(dr, "Amount");
                         transaction.DRCR = base.GetDataValue<string>(dr, "DRCR");
@@ -172,7 +172,7 @@ namespace SBiPayrollWeb.Data
                         Transaction transaction = new Transaction();
 
                         // Read values.
-                        transaction.Id = base.GetDataValue<int>(dr, "Id");
+                        transaction.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         transaction.PostDate = base.GetDataValue<DateTime>(dr, "PostDate");
                         transaction.Amount = base.GetDataValue<decimal>(dr, "Amount");
                         transaction.DRCR = base.GetDataValue<string>(dr, "DRCR");

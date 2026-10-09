@@ -123,7 +123,7 @@ namespace SBiPayrollWeb.Data
                         employee_Ext_Field = new Employee_Ext_Field();
 
                         // Read values.
-                        employee_Ext_Field.Id = base.GetDataValue<int>(dr, "Id");
+                        employee_Ext_Field.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employee_Ext_Field.Description = base.GetDataValue<string>(dr, "Description");
                         employee_Ext_Field.FType = base.GetDataValue<string>(dr, "FType");
                     }
@@ -160,7 +160,7 @@ namespace SBiPayrollWeb.Data
                         Employee_Ext_Field employee_Ext_Field = new Employee_Ext_Field();
 
                         // Read values.
-                        employee_Ext_Field.Id = base.GetDataValue<int>(dr, "Id");
+                        employee_Ext_Field.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employee_Ext_Field.Description = base.GetDataValue<string>(dr, "Description");
                         employee_Ext_Field.FType = base.GetDataValue<string>(dr, "FType");
 

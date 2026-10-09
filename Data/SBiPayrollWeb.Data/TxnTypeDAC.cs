@@ -120,7 +120,7 @@ namespace SBiPayrollWeb.Data
                         txnType = new TxnType();
 
                         // Read values.
-                        txnType.Id = base.GetDataValue<int>(dr, "Id");
+                        txnType.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         txnType.Description = base.GetDataValue<string>(dr, "Description");
                     }
                 }
@@ -156,7 +156,7 @@ namespace SBiPayrollWeb.Data
                         TxnType txnType = new TxnType();
 
                         // Read values.
-                        txnType.Id = base.GetDataValue<int>(dr, "Id");
+                        txnType.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         txnType.Description = base.GetDataValue<string>(dr, "Description");
 
                         // Add to List.

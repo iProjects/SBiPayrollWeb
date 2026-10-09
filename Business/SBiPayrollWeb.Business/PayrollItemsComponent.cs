@@ -28,10 +28,10 @@ namespace SBiPayrollWeb.Business
             List<PayrollItem> result = default(List<PayrollItem>);
 
             // Data access component declarations.
-            PayrollItemDAC payrollItemDAC = new PayrollItemDAC();
+            PayrollItemDAC_sqlite payrollItemDAC_sqlite = new PayrollItemDAC_sqlite();
 
-            // Step 1 - Calling Select on PayrollItemDAC.
-            result = payrollItemDAC.Select();
+            // Step 1 - Calling Select on PayrollItemDAC_sqlite.
+            result = payrollItemDAC_sqlite.Select();
             return result;
 
         }
@@ -46,10 +46,10 @@ namespace SBiPayrollWeb.Business
             PayrollItem result = default(PayrollItem);
 
             // Data access component declarations.
-            PayrollItemDAC payrollItemDAC = new PayrollItemDAC();
+            PayrollItemDAC_sqlite payrollItemDAC_sqlite = new PayrollItemDAC_sqlite();
 
-            // Step 1 - Calling SelectById on PayrollItemDAC.
-            result = payrollItemDAC.SelectById(id);
+            // Step 1 - Calling SelectById on PayrollItemDAC_sqlite.
+            result = payrollItemDAC_sqlite.SelectById(id);
             return result;
 
         }
@@ -64,10 +64,10 @@ namespace SBiPayrollWeb.Business
             PayrollItem result = default(PayrollItem);
 
             // Data access component declarations.
-            PayrollItemDAC payrollItemDAC = new PayrollItemDAC();
+            PayrollItemDAC_sqlite payrollItemDAC_sqlite = new PayrollItemDAC_sqlite();
 
-            // Step 1 - Calling Create on PayrollItemDAC.
-            result = payrollItemDAC.Create(payrollItem);
+            // Step 1 - Calling Create on PayrollItemDAC_sqlite.
+            result = payrollItemDAC_sqlite.Create(payrollItem);
             return result;
 
         }
@@ -79,10 +79,10 @@ namespace SBiPayrollWeb.Business
         public void DeletePayrollItemById(string id)
         {
             // Data access component declarations.
-            PayrollItemDAC payrollItemDAC = new PayrollItemDAC();
+            PayrollItemDAC_sqlite payrollItemDAC_sqlite = new PayrollItemDAC_sqlite();
 
-            // Step 1 - Calling DeleteById on PayrollItemDAC.
-            payrollItemDAC.DeleteById(id);
+            // Step 1 - Calling DeleteById on PayrollItemDAC_sqlite.
+            payrollItemDAC_sqlite.DeleteById(id);
 
         }
 
@@ -93,10 +93,10 @@ namespace SBiPayrollWeb.Business
         public void UpdatePayrollItem(PayrollItem payrollItem)
         {
             // Data access component declarations.
-            PayrollItemDAC payrollItemDAC = new PayrollItemDAC();
+            PayrollItemDAC_sqlite payrollItemDAC_sqlite = new PayrollItemDAC_sqlite();
 
-            // Step 1 - Calling UpdateById on PayrollItemDAC.
-            payrollItemDAC.UpdateById(payrollItem);
+            // Step 1 - Calling UpdateById on PayrollItemDAC_sqlite.
+            payrollItemDAC_sqlite.UpdateById(payrollItem);
 
         }
     }

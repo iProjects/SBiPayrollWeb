@@ -8,3 +8,8 @@ C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.pdb
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows\obj\Debug\SBiPayrollWeb.Workflows.csprojResolveAssemblyReference.cache
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows\obj\Debug\SBiPayrollWeb.Workflows.dll
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows\obj\Debug\SBiPayrollWeb.Workflows.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows\obj\Debug\SBiPayrollWeb.Workflows.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows\obj\Debug\SBiPayrollWeb.Workflows.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows\obj\Debug\SBiPayrollWeb.Workflows.pdb

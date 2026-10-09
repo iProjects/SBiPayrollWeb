@@ -28,10 +28,10 @@ namespace SBiPayrollWeb.Business
             List<Department> result = default(List<Department>);
 
             // Data access component declarations.
-            DepartmentDAC departmentDAC = new DepartmentDAC();
+            DepartmentDAC_sqlite departmentDAC_sqlite = new DepartmentDAC_sqlite();
 
-            // Step 1 - Calling Select on DepartmentDAC.
-            result = departmentDAC.Select();
+            // Step 1 - Calling Select on DepartmentDAC_sqlite.
+            result = departmentDAC_sqlite.Select();
             return result;
 
         }
@@ -46,10 +46,10 @@ namespace SBiPayrollWeb.Business
             Department result = default(Department);
 
             // Data access component declarations.
-            DepartmentDAC departmentDAC = new DepartmentDAC();
+            DepartmentDAC_sqlite departmentDAC_sqlite = new DepartmentDAC_sqlite();
 
-            // Step 1 - Calling SelectById on DepartmentDAC.
-            result = departmentDAC.SelectById(id);
+            // Step 1 - Calling SelectById on DepartmentDAC_sqlite.
+            result = departmentDAC_sqlite.SelectById(id);
             return result;
 
         }
@@ -64,10 +64,10 @@ namespace SBiPayrollWeb.Business
             Department result = default(Department);
 
             // Data access component declarations.
-            DepartmentDAC departmentDAC = new DepartmentDAC();
+            DepartmentDAC_sqlite departmentDAC_sqlite = new DepartmentDAC_sqlite();
 
-            // Step 1 - Calling Create on DepartmentDAC.
-            result = departmentDAC.Create(department);
+            // Step 1 - Calling Create on DepartmentDAC_sqlite.
+            result = departmentDAC_sqlite.Create(department);
             return result;
 
         }
@@ -79,10 +79,10 @@ namespace SBiPayrollWeb.Business
         public void UpdateDepartment(Department department)
         {
             // Data access component declarations.
-            DepartmentDAC departmentDAC = new DepartmentDAC();
+            DepartmentDAC_sqlite departmentDAC_sqlite = new DepartmentDAC_sqlite();
 
-            // Step 1 - Calling UpdateById on DepartmentDAC.
-            departmentDAC.UpdateById(department);
+            // Step 1 - Calling UpdateById on DepartmentDAC_sqlite.
+            departmentDAC_sqlite.UpdateById(department);
 
         }
 
@@ -93,10 +93,10 @@ namespace SBiPayrollWeb.Business
         public void DeleteDepartmentById(int id)
         {
             // Data access component declarations.
-            DepartmentDAC departmentDAC = new DepartmentDAC();
+            DepartmentDAC_sqlite departmentDAC_sqlite = new DepartmentDAC_sqlite();
 
-            // Step 1 - Calling DeleteById on DepartmentDAC.
-            departmentDAC.DeleteById(id);
+            // Step 1 - Calling DeleteById on DepartmentDAC_sqlite.
+            departmentDAC_sqlite.DeleteById(id);
 
         }
     }

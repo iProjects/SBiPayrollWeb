@@ -136,7 +136,7 @@ namespace SBiPayrollWeb.Data
                         employerBank = new EmployerBank();
 
                         // Read values.
-                        employerBank.Id = base.GetDataValue<int>(dr, "Id");
+                        employerBank.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employerBank.EmployerId = base.GetDataValue<int>(dr, "EmployerId");
                         employerBank.BankSortCode = base.GetDataValue<string>(dr, "BankSortCode");
                         employerBank.AccountName = base.GetDataValue<string>(dr, "AccountName");
@@ -178,7 +178,7 @@ namespace SBiPayrollWeb.Data
                         EmployerBank employerBank = new EmployerBank();
 
                         // Read values.
-                        employerBank.Id = base.GetDataValue<int>(dr, "Id");
+                        employerBank.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employerBank.EmployerId = base.GetDataValue<int>(dr, "EmployerId");
                         employerBank.BankSortCode = base.GetDataValue<string>(dr, "BankSortCode");
                         employerBank.AccountName = base.GetDataValue<string>(dr, "AccountName");

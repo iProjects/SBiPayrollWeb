@@ -616,9 +616,9 @@ namespace SBiPayrollWeb.UI.MVC.Controllers
             AdministratorComponent ac = new AdministratorComponent();
             DataEntryComponent dc = new DataEntryComponent();
 
-            var _allowedrolemenusquery = from rm in ac.GetAllspAllowedRoleMenus()
+            var _allowedrolemenusquery = from rm in ac.GetAllspAllowedRoleMenusweb()
                                          join rl in ac.GetAllRoles() on rm.RoleId equals rl.Id
-                                         join mn in ac.GetAllspMenus() on rm.MenuItemId equals mn.Id
+                                         join mn in ac.GetAllspMenuItem() on rm.MenuItemId equals mn.Id
                                          join usr in ac.GetAllUSersRoles() on rl.Id equals usr.RoleId
                                          join us in ac.GetAllUsers() on usr.UserId equals us.Id
                                          where us.UserName == email

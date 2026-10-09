@@ -90,7 +90,7 @@ namespace SBiPayrollWeb.UI.MVC.Models
 
         [Required(ErrorMessage = "Please enter your Password")]
         [RegularExpression(@"^(?=\S{6,}$)(?=.*?\d)(?=.*?[a-zA-Z]).+$",
-            ErrorMessage = "The Password provided is invalid. \nValid Password must at least 6 characters,\nand to be a mix of letters and numbers with no spaces")]
+            ErrorMessage = "The Password provided is invalid. \nValid Password must at least 8 characters,\nand to be a mix of letters and numbers with no spaces")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]

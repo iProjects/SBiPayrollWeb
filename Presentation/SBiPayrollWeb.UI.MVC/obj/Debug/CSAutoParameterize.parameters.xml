@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="server=.\sqlexpress;database=SBPayrollDB;uid=sa;password=123456789;multipleactiveresultsets=false" tags="SqlConnectionString">
+  <parameter name="SQLiteConnectionString-Web.config Connection String" description="SQLiteConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=|DataDirectory|\sbpayroll_db_2026.db;Version=3;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\wakxpx\\csharp\\visualstudio\\2013\\SBiPayrollWeb\\Presentation\\SBiPayrollWeb\.UI\.MVC\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SQLiteConnectionString']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=|DataDirectory|\sbpayroll_db_2026.db;Version=3;" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="D:\\wakxpx\\csharp\\visualstudio\\2013\\SBiPayrollWeb\\Presentation\\SBiPayrollWeb\.UI\.MVC\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
-  <parameter name="default-Web.config Connection String" description="default Connection String used in web.config by the application to access the database." defaultValue="server=.\sqlexpress;database=SBPayrollDB;uid=sa;password=123456789;multipleactiveresultsets=false" tags="SqlConnectionString">
+  <parameter name="default-Web.config Connection String" description="default Connection String used in web.config by the application to access the database." defaultValue="Data Source=|DataDirectory|\sbpayroll_db_2026.db;Version=3;" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="D:\\wakxpx\\csharp\\visualstudio\\2013\\SBiPayrollWeb\\Presentation\\SBiPayrollWeb\.UI\.MVC\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='default']/@connectionString" />
+  </parameter>
+  <parameter name="SBiPayrollWeb.UI.MVC.Models.UsersContext-Web.config Connection String" description="SBiPayrollWeb.UI.MVC.Models.UsersContext Connection String used in web.config by the application to access the database." defaultValue="SBiPayrollWeb.UI.MVC.Models.UsersContext_ConnectionString" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\wakxpx\\csharp\\visualstudio\\2013\\SBiPayrollWeb\\Presentation\\SBiPayrollWeb\.UI\.MVC\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SBiPayrollWeb.UI.MVC.Models.UsersContext']/@connectionString" />
   </parameter>
 </parameters>

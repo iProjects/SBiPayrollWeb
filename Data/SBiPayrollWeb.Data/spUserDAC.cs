@@ -30,8 +30,8 @@ namespace SBiPayrollWeb.Data
         public spUser Create(spUser spUser)
         {
             const string SQL_STATEMENT =
-                "INSERT INTO dbo.spUsers ([RoleId], [UserName], [Password], [Status], [Locked], [IsDeleted], [SystemId], [Surname], [OtherNames], [DateOfBirth], [Gender], [Telephone], [Email], [DateJoined], [InformBy], [Photo], [NationalID]) " +
-                "VALUES(@RoleId, @UserName, @Password, @Status, @Locked, @IsDeleted, @SystemId, @Surname, @OtherNames, @DateOfBirth, @Gender, @Telephone, @Email, @DateJoined, @InformBy, @Photo, @NationalID); SELECT SCOPE_IDENTITY();";
+                "INSERT INTO dbo.spUsers ([RoleId], [UserName], [Password], [Status], [Locked], [IsDeleted], [SystemId], [Surname], [OtherNames], [DateOfBirth], [Gender], [Telephone], [Email], [DateJoined], [InformBy], [Photo], [NationalID], [password_hash], [password_salt]) " +
+                "VALUES(@RoleId, @UserName, @Password, @Status, @Locked, @IsDeleted, @SystemId, @Surname, @OtherNames, @DateOfBirth, @Gender, @Telephone, @Email, @DateJoined, @InformBy, @Photo, @NationalID, @password_hash, @password_salt); SELECT SCOPE_IDENTITY();";
 
             // Connect to database.
             Database db = DatabaseFactory.CreateDatabase(CONNECTION_NAME);
@@ -55,6 +55,8 @@ namespace SBiPayrollWeb.Data
                 db.AddInParameter(cmd, "@InformBy", DbType.String, spUser.InformBy);
                 db.AddInParameter(cmd, "@Photo", DbType.String, spUser.Photo);
                 db.AddInParameter(cmd, "@NationalID", DbType.String, spUser.NationalID);
+                db.AddInParameter(cmd, "@password_hash", DbType.String, spUser.password_hash);
+                db.AddInParameter(cmd, "@password_salt", DbType.String, spUser.password_salt);
 
                 // Get the primary key value.
                 spUser.Id = Convert.ToInt32(db.ExecuteScalar(cmd));
@@ -170,7 +172,7 @@ namespace SBiPayrollWeb.Data
                         spUser = new spUser();
 
                         // Read values.
-                        spUser.Id = base.GetDataValue<int>(dr, "Id");
+                        spUser.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         spUser.RoleId = base.GetDataValue<int>(dr, "RoleId");
                         spUser.UserName = base.GetDataValue<string>(dr, "UserName");
                         spUser.Password = base.GetDataValue<string>(dr, "Password");
@@ -224,7 +226,7 @@ namespace SBiPayrollWeb.Data
                         spUser spUser = new spUser();
 
                         // Read values.
-                        spUser.Id = base.GetDataValue<int>(dr, "Id");
+                        spUser.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         spUser.RoleId = base.GetDataValue<int>(dr, "RoleId");
                         spUser.UserName = base.GetDataValue<string>(dr, "UserName");
                         spUser.Password = base.GetDataValue<string>(dr, "Password");
@@ -251,6 +253,9 @@ namespace SBiPayrollWeb.Data
 
             return result;
         }
+
+
+
     }
 }
 

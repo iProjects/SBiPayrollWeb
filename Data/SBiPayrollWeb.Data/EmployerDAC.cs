@@ -170,7 +170,7 @@ namespace SBiPayrollWeb.Data
                         employer = new Employer();
 
                         // Read values.
-                        employer.Id = base.GetDataValue<int>(dr, "Id");
+                        employer.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employer.Name = base.GetDataValue<string>(dr, "Name");
                         employer.Email = base.GetDataValue<string>(dr, "Email");
                         employer.Telephone = base.GetDataValue<string>(dr, "Telephone");
@@ -224,7 +224,7 @@ namespace SBiPayrollWeb.Data
                         Employer employer = new Employer();
 
                         // Read values.
-                        employer.Id = base.GetDataValue<int>(dr, "Id");
+                        employer.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employer.Name = base.GetDataValue<string>(dr, "Name");
                         employer.Email = base.GetDataValue<string>(dr, "Email");
                         employer.Telephone = base.GetDataValue<string>(dr, "Telephone");

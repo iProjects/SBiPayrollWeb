@@ -49,6 +49,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>x64\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>..\..\library\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -120,6 +124,14 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SQLite, Version=1.0.116.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>x86\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.116.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>x64\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -264,6 +276,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayrollsController.cs" />
     <Compile Include="Controllers\PayrollItemsController.cs" />
+    <Compile Include="Controllers\ui_utils.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -276,11 +289,42 @@
     <Compile Include="Models\ErrorHandlerModel.cs" />
     <Compile Include="Models\HashHelper.cs" />
     <Compile Include="Models\JQueryDataTableParamModel.cs" />
+    <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Payslip.cs" />
     <Compile Include="Models\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\data_mipulation commands.txt" />
+    <Content Include="App_Data\Employees.txt" />
+    <Content Include="App_Data\webpages.txt" />
+    <Content Include="App_Data\Menus.txt" />
+    <Content Include="App_Data\Payrolls.txt" />
+    <Content Include="App_Data\Settings.txt" />
+    <Content Include="App_Data\Users.txt" />
+    <Content Include="App_Data\Employers.txt" />
+    <Content Include="App_Data\BankBranch.txt" />
+    <Content Include="App_Data\sqlite_database_schema.txt" />
+    <Content Include="App_Data\default_data.txt" />
+    <Content Include="App_Data\independent_tables_data.txt" />
+    <Content Include="App_Data\websecurity_schema.txt" />
+    <Content Include="Content\dashboard_modern.css" />
+    <Content Include="Content\banks_modern.css" />
+    <Content Include="Content\departments_modern.css" />
+    <Content Include="Content\login_modern.css" />
+    <Content Include="Content\bootstrap-3.3.7.css" />
+    <Content Include="Content\cookie_consent.css" />
+    <Content Include="Content\process_payroll_modern.css" />
+    <Content Include="Content\toast.css" />
+    <Content Include="Content\create_employee_modern.css" />
+    <Content Include="Content\payroll_items_modern.css" />
+    <Content Include="Content\employers_modern.css" />
+    <Content Include="Content\employees_modern.css" />
+    <Content Include="Content\jquery-ui-1.12.1.css" />
+    <Content Include="Content\payrolls_modern.css" />
+    <Content Include="Content\edit_profile_modern.css" />
+    <Content Include="Content\register_modern.css" />
+    <Content Include="Content\modern_layout.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -338,9 +382,51 @@
     <Content Include="Dollar.ico" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\uploads\defaultphoto.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\departments_modern.js" />
+    <Content Include="Scripts\banks_modern.js" />
+    <Content Include="Scripts\payrolls_modern.js" />
+    <Content Include="Scripts\process_payroll_modern.js" />
+    <Content Include="Scripts\register_modern.js" />
+    <Content Include="Scripts\login_modern.js" />
+    <Content Include="Scripts\toast.js" />
+    <Content Include="Scripts\edit_profile_modern.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="x64\EntityFramework.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\EntityFramework.SqlServer.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\System.Data.SQLite.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\System.Data.SQLite.EF6.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x64\System.Data.SQLite.Linq.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\System.Data.SQLite.dll" />
+    <Content Include="App_Data\sbpayroll_db_2026.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\iis_deployment.pubxml" />
     <None Include="Properties\PublishProfiles\SBiPayrollWeb.pubxml" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <None Include="Properties\PublishProfiles\sbipayrollweb_2023.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\background.png" />
     <Content Include="Images\bg.gif" />
@@ -360,9 +446,17 @@
     <Content Include="Images\software_Providers_logowebsmall.jpg" />
     <Content Include="Images\sp_logo_with_info.jpg" />
     <Content Include="Images\twitter.png" />
+    <Content Include="Scripts\bootstrap-3.3.7.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\cookie_consent.js" />
+    <Content Include="Scripts\create_employee_modern.js" />
+    <Content Include="Scripts\payroll_items_modern.js" />
+    <Content Include="Scripts\employers_modern.js" />
+    <Content Include="Scripts\employees_modern.js" />
     <Content Include="Scripts\CustomScripts.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\indexdb.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
@@ -386,6 +480,7 @@
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\_variables.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -513,10 +608,9 @@
     <Content Include="Views\Account\EditUserPhoto.cshtml" />
     <Content Include="Views\DataEntry\UploadEmployeePhoto.cshtml" />
     <Content Include="Views\DataEntry\UploadEmployerLogo.cshtml" />
+    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -524,6 +618,10 @@
     <ProjectReference Include="..\..\Business\SBiPayrollWeb.Business\SBiPayrollWeb.Business.csproj">
       <Project>{0bc1506a-01e5-455b-b4a9-cf446c1b1022}</Project>
       <Name>SBiPayrollWeb.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\SBiPayrollWeb.Data\SBiPayrollWeb.Data.csproj">
+      <Project>{354e6099-f5eb-49ee-9b70-ff84229cfb6e}</Project>
+      <Name>SBiPayrollWeb.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Shared\SBiPayrollWeb.Entities\SBiPayrollWeb.Entities.csproj">
       <Project>{0807DFF2-F829-4265-8F73-26C9B936BA45}</Project>

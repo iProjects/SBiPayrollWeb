@@ -123,7 +123,7 @@ namespace SBiPayrollWeb.Data
                         spMenus = new spMenus();
 
                         // Read values.
-                        spMenus.Id = base.GetDataValue<int>(dr, "Id");
+                        spMenus.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         spMenus.mnuName = base.GetDataValue<string>(dr, "mnuName");
                         spMenus.Description = base.GetDataValue<string>(dr, "Description");
                     }
@@ -160,7 +160,7 @@ namespace SBiPayrollWeb.Data
                         spMenus spMenus = new spMenus();
 
                         // Read values.
-                        spMenus.Id = base.GetDataValue<int>(dr, "Id");
+                        spMenus.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         spMenus.mnuName = base.GetDataValue<string>(dr, "mnuName");
                         spMenus.Description = base.GetDataValue<string>(dr, "Description");
 

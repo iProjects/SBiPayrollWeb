@@ -35,19 +35,46 @@ namespace SBiPayrollWeb.Data
             }
         }
 
+        //protected T GetDataValue<T>(IDataReader dr, string columnName)
+        //{
+        //    // NOTE: GetOrdinal() is used to automatically determine where the column
+        //    //       is physically located in the database table. This allows the
+        //    //       schema to be changed without affecting this piece of code.
+        //    //       This of course sacrifices a little performance for maintainability.
+        //    int i = dr.GetOrdinal(columnName);
+
+        //    if (!dr.IsDBNull(i))
+        //        return (T)dr.GetValue(i);
+        //    else
+        //        return default(T);
+        //}
+
         protected T GetDataValue<T>(IDataReader dr, string columnName)
         {
-            // NOTE: GetOrdinal() is used to automatically determine where the column
-            //       is physically located in the database table. This allows the
-            //       schema to be changed without affecting this piece of code.
-            //       This of course sacrifices a little performance for maintainability.
             int i = dr.GetOrdinal(columnName);
 
-            if (!dr.IsDBNull(i))
-                return (T)dr.GetValue(i);
-            else
+            if (dr.IsDBNull(i))
+            {
                 return default(T);
+            }
+
+            object value = dr.GetValue(i);
+            Type targetType = Nullable.GetUnderlyingType(typeof(T)) ?? typeof(T);
+
+            if (targetType.IsEnum)
+            {
+                string strValue = value as string;
+                if (strValue != null)
+                {
+                    return (T)Enum.Parse(targetType, strValue, true);
+                }
+
+                return (T)Enum.ToObject(targetType, value);
+            }
+
+            return (T)Convert.ChangeType(value, targetType);
         }
+
 
         protected string FormatFilterStatement(string filter)
         {

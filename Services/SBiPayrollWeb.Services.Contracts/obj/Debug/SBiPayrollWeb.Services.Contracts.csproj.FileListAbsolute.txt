@@ -8,3 +8,8 @@ C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Services.Contracts.pdb
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.dll
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.pdb
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Services.Contracts.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Services.Contracts.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Services\SBiPayrollWeb.Services.Contracts\obj\Debug\SBiPayrollWeb.Services.Contracts.pdb

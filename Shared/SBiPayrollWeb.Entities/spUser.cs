@@ -46,7 +46,11 @@ namespace SBiPayrollWeb.Entities
         /// </summary>
         [DataMember]
         public string Password { get; set; }
-
+         [DataMember]
+        public string password_hash { get; set; } 
+        [DataMember]
+        public string password_salt { get; set; }
+         
         /// <summary>
         /// Gets or sets a string value for the Status column.
         /// </summary>

@@ -3,4 +3,5 @@
   <IisApp path="D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\obj\Debug\Package\PackageTmp" managedRuntimeVersion="v4.0" />
   <setAcl path="D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
   <setAcl path="D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <setAcl path="D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Presentation\SBiPayrollWeb.UI.MVC\obj\Debug\Package\PackageTmp\App_Data" setAclResourceType="Directory" setAclAccess="Write" />
 </sitemanifest>

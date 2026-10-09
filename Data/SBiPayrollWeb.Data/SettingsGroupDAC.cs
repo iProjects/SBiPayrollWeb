@@ -123,7 +123,7 @@ namespace SBiPayrollWeb.Data
                         settingsGroup = new SettingsGroup();
 
                         // Read values.
-                        settingsGroup.Id = base.GetDataValue<int>(dr, "Id");
+                        settingsGroup.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         settingsGroup.GroupName = base.GetDataValue<string>(dr, "GroupName");
                         settingsGroup.Parent = base.GetDataValue<int>(dr, "Parent");
                     }
@@ -160,7 +160,7 @@ namespace SBiPayrollWeb.Data
                         SettingsGroup settingsGroup = new SettingsGroup();
 
                         // Read values.
-                        settingsGroup.Id = base.GetDataValue<int>(dr, "Id");
+                        settingsGroup.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         settingsGroup.GroupName = base.GetDataValue<string>(dr, "GroupName");
                         settingsGroup.Parent = base.GetDataValue<int>(dr, "Parent");
 

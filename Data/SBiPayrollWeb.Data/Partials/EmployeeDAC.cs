@@ -79,7 +79,7 @@ namespace SBiPayrollWeb.Data
                         employee = new Employee();
 
                         // Read values.
-                        employee.Id = base.GetDataValue<int>(dr, "Id");
+                        employee.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         employee.EmpNo = base.GetDataValue<string>(dr, "EmpNo");
                         employee.Surname = base.GetDataValue<string>(dr, "Surname");
                         employee.OtherNames = base.GetDataValue<string>(dr, "OtherNames");

@@ -1,0 +1,110 @@
+﻿.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99999;
+    max-width: 440px;
+    width: calc(100% - 40px);
+}
+
+.cookie-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #1f2937;
+}
+
+.cookie-header h3 {
+    margin: 0 0 6px 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.cookie-header p {
+    margin: 0 0 16px 0;
+    font-size: 13px;
+    color: #4b5563;
+    line-height: 1.4;
+}
+
+.cookie-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.cookie-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f9fafb;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #f3f4f6;
+}
+
+.option-info {
+    display: flex;
+    flex-direction: column;
+    padding-right: 12px;
+}
+
+.option-title {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.option-desc {
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.cookie-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.btn-cookie {
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-cookie-primary {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-cookie-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-cookie-outline {
+    background-color: transparent;
+    border: 1px solid #d1d5db;
+    color: #374151;
+}
+
+.btn-cookie-outline:hover {
+    background-color: #f3f4f6;
+}
+
+.btn-cookie-secondary {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.btn-cookie-secondary:hover {
+    background-color: #d1d5db;
+}
+

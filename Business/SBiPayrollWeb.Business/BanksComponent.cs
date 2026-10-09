@@ -28,10 +28,10 @@ namespace SBiPayrollWeb.Business
             List<Bank> result = default(List<Bank>);
 
             // Data access component declarations.
-            BankDAC bankDAC = new BankDAC();
+            BankDAC_sqlite bankDAC_sqlite = new BankDAC_sqlite();
 
-            // Step 1 - Calling Select on BankDAC.
-            result = bankDAC.Select();
+            // Step 1 - Calling Select on BankDAC_sqlite.
+            result = bankDAC_sqlite.Select();
             return result;
 
         }
@@ -46,10 +46,10 @@ namespace SBiPayrollWeb.Business
             Bank result = default(Bank);
 
             // Data access component declarations.
-            BankDAC bankDAC = new BankDAC();
+            BankDAC_sqlite bankDAC_sqlite = new BankDAC_sqlite();
 
-            // Step 1 - Calling SelectById on BankDAC.
-            result = bankDAC.SelectById(bankCode);
+            // Step 1 - Calling SelectById on BankDAC_sqlite.
+            result = bankDAC_sqlite.SelectById(bankCode);
             return result;
 
         }
@@ -64,10 +64,10 @@ namespace SBiPayrollWeb.Business
             Bank result = default(Bank);
 
             // Data access component declarations.
-            BankDAC bankDAC = new BankDAC();
+            BankDAC_sqlite bankDAC_sqlite = new BankDAC_sqlite();
 
-            // Step 1 - Calling Create on BankDAC.
-            result = bankDAC.Create(bank);
+            // Step 1 - Calling Create on BankDAC_sqlite.
+            result = bankDAC_sqlite.Create(bank);
             return result;
 
         }
@@ -79,10 +79,10 @@ namespace SBiPayrollWeb.Business
         public void UpdateBank(Bank bank)
         {
             // Data access component declarations.
-            BankDAC bankDAC = new BankDAC();
+            BankDAC_sqlite bankDAC_sqlite = new BankDAC_sqlite();
 
-            // Step 1 - Calling UpdateById on BankDAC.
-            bankDAC.UpdateById(bank);
+            // Step 1 - Calling UpdateById on BankDAC_sqlite.
+            bankDAC_sqlite.UpdateById(bank);
 
         }
 
@@ -93,10 +93,10 @@ namespace SBiPayrollWeb.Business
         public void DeleteBankById(string bankCode)
         {
             // Data access component declarations.
-            BankDAC bankDAC = new BankDAC();
+            BankDAC_sqlite bankDAC_sqlite = new BankDAC_sqlite();
 
-            // Step 1 - Calling DeleteById on BankDAC.
-            bankDAC.DeleteById(bankCode);
+            // Step 1 - Calling DeleteById on BankDAC_sqlite.
+            bankDAC_sqlite.DeleteById(bankCode);
 
         }
     }

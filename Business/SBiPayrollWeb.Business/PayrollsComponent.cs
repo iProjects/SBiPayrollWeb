@@ -28,10 +28,10 @@ namespace SBiPayrollWeb.Business
             List<Payroll> result = default(List<Payroll>);
 
             // Data access component declarations.
-            PayrollDAC payrollDAC = new PayrollDAC();
+            PayrollDAC_sqlite payrollDAC_sqlite = new PayrollDAC_sqlite();
 
-            // Step 1 - Calling Select on PayrollDAC.
-            result = payrollDAC.Select();
+            // Step 1 - Calling Select on PayrollDAC_sqlite.
+            result = payrollDAC_sqlite.Select();
             return result;
 
         }
@@ -46,10 +46,10 @@ namespace SBiPayrollWeb.Business
             Payroll result = default(Payroll);
 
             // Data access component declarations.
-            PayrollDAC payrollDAC = new PayrollDAC();
+            PayrollDAC_sqlite payrollDAC_sqlite = new PayrollDAC_sqlite();
 
-            // Step 1 - Calling Create on PayrollDAC.
-            result = payrollDAC.Create(payroll);
+            // Step 1 - Calling Create on PayrollDAC_sqlite.
+            result = payrollDAC_sqlite.Create(payroll);
             return result;
 
         }
@@ -61,10 +61,10 @@ namespace SBiPayrollWeb.Business
         public void DeletePayroll(int period)
         {
             // Data access component declarations.
-            PayrollDAC payrollDAC = new PayrollDAC();
+            PayrollDAC_sqlite payrollDAC_sqlite = new PayrollDAC_sqlite();
 
-            // Step 1 - Calling DeleteById on PayrollDAC.
-            payrollDAC.DeleteById(period);
+            // Step 1 - Calling DeleteById on PayrollDAC_sqlite.
+            payrollDAC_sqlite.DeleteById(period);
 
         }
 
@@ -75,10 +75,10 @@ namespace SBiPayrollWeb.Business
         public void UpdatePayroll(Payroll payroll)
         {
             // Data access component declarations.
-            PayrollDAC payrollDAC = new PayrollDAC();
+            PayrollDAC_sqlite payrollDAC_sqlite = new PayrollDAC_sqlite();
 
-            // Step 1 - Calling UpdateById on PayrollDAC.
-            payrollDAC.UpdateById(payroll);
+            // Step 1 - Calling UpdateById on PayrollDAC_sqlite.
+            payrollDAC_sqlite.UpdateById(payroll);
 
         }
 
@@ -93,10 +93,10 @@ namespace SBiPayrollWeb.Business
             Payroll result = default(Payroll);
 
             // Data access component declarations.
-            PayrollDAC payrollDAC = new PayrollDAC();
+            PayrollDAC_sqlite payrollDAC_sqlite = new PayrollDAC_sqlite();
 
-            // Step 1 - Calling SelectById on PayrollDAC.
-            result = payrollDAC.SelectById(period, year);
+            // Step 1 - Calling SelectById on PayrollDAC_sqlite.
+            result = payrollDAC_sqlite.SelectById(period, year);
             return result;
 
         }

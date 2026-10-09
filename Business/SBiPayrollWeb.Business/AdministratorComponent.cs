@@ -26,9 +26,9 @@ namespace SBiPayrollWeb.Business
             List<spRole> result = new List<spRole>();
 
             // Data access component declarations.
-            spRoleDAC spRoleDAC = new spRoleDAC();
+            spRoleDAC_sqlite spRoleDAC_sqlite = new spRoleDAC_sqlite();
 
-            result = spRoleDAC.Select();
+            result = spRoleDAC_sqlite.Select();
             return result;
         }
         public List<spUsersInRole> GetAllUsersInRole()
@@ -36,15 +36,15 @@ namespace SBiPayrollWeb.Business
             List<spUsersInRole> result = default(List<spUsersInRole>);
 
             // Data access component declarations.
-            spUsersInRoleDAC spUsersInRoleDAC = new spUsersInRoleDAC();
+            spUsersInRoleDAC_sqlite spUsersInRoleDAC_sqlite = new spUsersInRoleDAC_sqlite();
 
-            result = spUsersInRoleDAC.Select();
+            result = spUsersInRoleDAC_sqlite.Select();
             return result;
 
         }
         public spRole CreateRole(spRole model)
         {
-            spRoleDAC cd = new spRoleDAC();
+            spRoleDAC_sqlite cd = new spRoleDAC_sqlite();
 
             spRole role = new spRole();
             role.Description = model.Description;
@@ -57,7 +57,7 @@ namespace SBiPayrollWeb.Business
         }
         public void DeleteRoleById(int Id)
         {
-            spRoleDAC cd = new spRoleDAC();
+            spRoleDAC_sqlite cd = new spRoleDAC_sqlite();
             cd.DeleteById(Id);
         }
         public spRole GetRolebyId(int Id)
@@ -65,7 +65,7 @@ namespace SBiPayrollWeb.Business
             spRole result = new spRole();
 
             // Data access component declarations.
-            spRoleDAC cd = new spRoleDAC();
+            spRoleDAC_sqlite cd = new spRoleDAC_sqlite();
 
             result = cd.SelectById(Id);
             return result;
@@ -73,7 +73,7 @@ namespace SBiPayrollWeb.Business
         public void UpdateRole(spRole role)
         {
             // Data access component declarations.
-            spRoleDAC cd = new spRoleDAC();
+            spRoleDAC_sqlite cd = new spRoleDAC_sqlite();
 
             cd.UpdateById(role);
         }
@@ -84,9 +84,9 @@ namespace SBiPayrollWeb.Business
             List<spUsersInRole> result = default(List<spUsersInRole>);
 
             // Data access component declarations.
-            spUsersInRoleDAC webpages_RoleDAC = new spUsersInRoleDAC();
+            spUsersInRoleDAC_sqlite webpages_RoleDAC_sqlite = new spUsersInRoleDAC_sqlite();
 
-            result = webpages_RoleDAC.Select();
+            result = webpages_RoleDAC_sqlite.Select();
             return result;
         }
         public List<spUsersInRole> GetAllUSerRoles(int userid)
@@ -94,9 +94,9 @@ namespace SBiPayrollWeb.Business
             List<spUsersInRole> result = default(List<spUsersInRole>);
 
             // Data access component declarations.
-            spUsersInRoleDAC webpages_RoleDAC = new spUsersInRoleDAC();
+            spUsersInRoleDAC_sqlite webpages_RoleDAC_sqlite = new spUsersInRoleDAC_sqlite();
 
-            result = webpages_RoleDAC.Select(userid);
+            result = webpages_RoleDAC_sqlite.Select(userid);
             return result;
         }
         public List<spUsersInRole> GetAllRolesforUser(int userid)
@@ -104,15 +104,15 @@ namespace SBiPayrollWeb.Business
             List<spUsersInRole> result = default(List<spUsersInRole>);
 
             // Data access component declarations.
-            spUsersInRoleDAC spUsersInRoleDAC = new spUsersInRoleDAC();
+            spUsersInRoleDAC_sqlite spUsersInRoleDAC_sqlite = new spUsersInRoleDAC_sqlite();
 
-            result = spUsersInRoleDAC.Select(userid);
+            result = spUsersInRoleDAC_sqlite.Select(userid);
             return result;
 
         }
         public spUsersInRole CreateUSerRole(spUsersInRole model)
         {
-            spUsersInRoleDAC cd = new spUsersInRoleDAC();
+            spUsersInRoleDAC_sqlite cd = new spUsersInRoleDAC_sqlite();
 
             spUsersInRole userrole = new spUsersInRole();
             userrole.RoleId = model.RoleId;
@@ -124,7 +124,7 @@ namespace SBiPayrollWeb.Business
         }
         public void DeleteUserRoleById(int userid, int roleid)
         {
-            spUsersInRoleDAC cd = new spUsersInRoleDAC();
+            spUsersInRoleDAC_sqlite cd = new spUsersInRoleDAC_sqlite();
             cd.DeleteById(userid, roleid);
         }
         public spUsersInRole GetUSerRolebyId(int userid, int roleid)
@@ -132,7 +132,7 @@ namespace SBiPayrollWeb.Business
             spUsersInRole result = default(spUsersInRole);
 
             // Data access component declarations.
-            spUsersInRoleDAC cd = new spUsersInRoleDAC();
+            spUsersInRoleDAC_sqlite cd = new spUsersInRoleDAC_sqlite();
 
             result = cd.SelectById(userid, roleid);
             return result;
@@ -140,7 +140,7 @@ namespace SBiPayrollWeb.Business
         public void UpdateUSerRole(spUsersInRole userrole)
         {
             // Data access component declarations.
-            spUsersInRoleDAC cd = new spUsersInRoleDAC();
+            spUsersInRoleDAC_sqlite cd = new spUsersInRoleDAC_sqlite();
 
             cd.UpdateById(userrole);
         }
@@ -151,14 +151,14 @@ namespace SBiPayrollWeb.Business
             List<spUser> result = default(List<spUser>);
 
             // Data access component declarations.
-            spUserDAC _spUserDAC = new spUserDAC();
+            spUserDAC_sqlite _spUserDAC_sqlite = new spUserDAC_sqlite();
 
-            result = _spUserDAC.Select();
+            result = _spUserDAC_sqlite.Select();
             return result;
         }
         public spUser CreateUser(spUser model)
         {
-            spUserDAC cd = new spUserDAC();
+            spUserDAC_sqlite cd = new spUserDAC_sqlite();
 
             spUser User = new spUser();
             User.UserName = model.UserName;
@@ -177,6 +177,8 @@ namespace SBiPayrollWeb.Business
             User.NationalID = model.NationalID;
             User.DateOfBirth = model.DateOfBirth;
             User.DateJoined = model.DateJoined;
+            User.password_hash = model.password_hash;
+            User.password_salt = model.password_salt;
 
             spUser UserReturned = cd.Create(User);
 
@@ -184,7 +186,7 @@ namespace SBiPayrollWeb.Business
         }
         public void DeleteUserById(int Id)
         {
-            spUserDAC cd = new spUserDAC();
+            spUserDAC_sqlite cd = new spUserDAC_sqlite();
             cd.DeleteById(Id);
         }
         public spUser GetUserById(int Id)
@@ -192,7 +194,7 @@ namespace SBiPayrollWeb.Business
             spUser result = default(spUser);
 
             // Data access component declarations.
-            spUserDAC cd = new spUserDAC();
+            spUserDAC_sqlite cd = new spUserDAC_sqlite();
 
             result = cd.SelectById(Id);
             return result;
@@ -202,7 +204,7 @@ namespace SBiPayrollWeb.Business
             spUser result = default(spUser);
 
             // Data access component declarations.
-            spUserDAC cd = new spUserDAC();
+            spUserDAC_sqlite cd = new spUserDAC_sqlite();
             var userquery = from us in cd.Select()
                             where us.UserName == email
                             select us;
@@ -213,16 +215,26 @@ namespace SBiPayrollWeb.Business
         public void UpdateUser(spUser User)
         {
             // Data access component declarations.
-            spUserDAC cd = new spUserDAC();
+            spUserDAC_sqlite cd = new spUserDAC_sqlite();
 
             cd.UpdateById(User);
         }
         public void UploadUserPhoto(spUser User)
         {
             // Data access component declarations.
-            spUserDAC _spUserDAC = new spUserDAC();
+            spUserDAC_sqlite _spUserDAC_sqlite = new spUserDAC_sqlite();
 
-            _spUserDAC.UploadUserPhoto(User);
+            _spUserDAC_sqlite.UploadUserPhoto(User);
+        }
+        public spUser SelectByUserName(string email)
+        {
+            spUser result = default(spUser);
+
+            // Data access component declarations.
+            spUserDAC_sqlite cd = new spUserDAC_sqlite();
+            result = cd.SelectByUserName(email);
+
+            return result;
         }
         #endregion "Users"
         #region "spMenus"
@@ -231,14 +243,14 @@ namespace SBiPayrollWeb.Business
             List<spMenus> result = default(List<spMenus>);
 
             // Data access component declarations.
-            spMenusDAC _spMenusDAC = new spMenusDAC();
+            spMenusDAC_sqlite _spMenusDAC_sqlite = new spMenusDAC_sqlite();
 
-            result = _spMenusDAC.Select();
+            result = _spMenusDAC_sqlite.Select();
             return result;
         }
         public spMenus CreatespMenu(spMenus model)
         {
-            spMenusDAC cd = new spMenusDAC();
+            spMenusDAC_sqlite cd = new spMenusDAC_sqlite();
 
             spMenus _spMenus = new spMenus();
             _spMenus.mnuName = model.mnuName;
@@ -250,7 +262,7 @@ namespace SBiPayrollWeb.Business
         }
         public void DeletespMenusById(int Id)
         {
-            spMenusDAC cd = new spMenusDAC();
+            spMenusDAC_sqlite cd = new spMenusDAC_sqlite();
             cd.DeleteById(Id);
         }
         public spMenus GetspMenusbyId(int Id)
@@ -258,7 +270,7 @@ namespace SBiPayrollWeb.Business
             spMenus result = default(spMenus);
 
             // Data access component declarations.
-            spMenusDAC cd = new spMenusDAC();
+            spMenusDAC_sqlite cd = new spMenusDAC_sqlite();
 
             result = cd.SelectById(Id);
             return result;
@@ -266,7 +278,7 @@ namespace SBiPayrollWeb.Business
         public void UpdatespMenus(spMenus _spMenus)
         {
             // Data access component declarations.
-            spMenusDAC cd = new spMenusDAC();
+            spMenusDAC_sqlite cd = new spMenusDAC_sqlite();
 
             cd.UpdateById(_spMenus);
         }
@@ -277,14 +289,14 @@ namespace SBiPayrollWeb.Business
             List<spAllowedRoleMenus> result = default(List<spAllowedRoleMenus>);
 
             // Data access component declarations.
-            spAllowedRoleMenusDAC _spAllowedRoleMenusDAC = new spAllowedRoleMenusDAC();
+            spAllowedRoleMenusDAC_sqlite _spAllowedRoleMenusDAC_sqlite = new spAllowedRoleMenusDAC_sqlite();
 
-            result = _spAllowedRoleMenusDAC.Select();
+            result = _spAllowedRoleMenusDAC_sqlite.Select();
             return result;
         }
         public spAllowedRoleMenus CreatespAllowedRoleMenu(spAllowedRoleMenus model)
         {
-            spAllowedRoleMenusDAC cd = new spAllowedRoleMenusDAC();
+            spAllowedRoleMenusDAC_sqlite cd = new spAllowedRoleMenusDAC_sqlite();
 
             spAllowedRoleMenus _spAllowedRoleMenus = new spAllowedRoleMenus();
             _spAllowedRoleMenus.RoleId = model.RoleId;
@@ -297,7 +309,7 @@ namespace SBiPayrollWeb.Business
         }
         public void DeletespAllowedRoleMenusById(int Id)
         {
-            spAllowedRoleMenusDAC cd = new spAllowedRoleMenusDAC();
+            spAllowedRoleMenusDAC_sqlite cd = new spAllowedRoleMenusDAC_sqlite();
             cd.DeleteById(Id);
         }
         public spAllowedRoleMenus GetspAllowedRoleMenusbyId(int Id)
@@ -305,7 +317,7 @@ namespace SBiPayrollWeb.Business
             spAllowedRoleMenus result = default(spAllowedRoleMenus);
 
             // Data access component declarations.
-            spAllowedRoleMenusDAC cd = new spAllowedRoleMenusDAC();
+            spAllowedRoleMenusDAC_sqlite cd = new spAllowedRoleMenusDAC_sqlite();
 
             result = cd.SelectById(Id);
             return result;
@@ -315,7 +327,7 @@ namespace SBiPayrollWeb.Business
             spAllowedRoleMenus result = default(spAllowedRoleMenus);
 
             // Data access component declarations.
-            spAllowedRoleMenusDAC cd = new spAllowedRoleMenusDAC();
+            spAllowedRoleMenusDAC_sqlite cd = new spAllowedRoleMenusDAC_sqlite();
 
             result = cd.SelectRight(Roleid, Menuitemid);
             return result;
@@ -323,11 +335,114 @@ namespace SBiPayrollWeb.Business
         public void UpdatespAllowedRoleMenus(spAllowedRoleMenus _spAllowedRoleMenus)
         {
             // Data access component declarations.
-            spAllowedRoleMenusDAC cd = new spAllowedRoleMenusDAC();
+            spAllowedRoleMenusDAC_sqlite cd = new spAllowedRoleMenusDAC_sqlite();
 
             cd.UpdateById(_spAllowedRoleMenus);
         }
         #endregion "spAllowedRoleMenus"
+        #region "spMenuItem"
+        public List<spMenuItem> GetAllspMenuItem()
+        {
+            List<spMenuItem> result = default(List<spMenuItem>);
+
+            // Data access component declarations.
+            spMenuItemDAC_sqlite _spMenuItemDAC_sqlite = new spMenuItemDAC_sqlite();
+
+            result = _spMenuItemDAC_sqlite.Select();
+            return result;
+        }
+        public spMenuItem CreatespMenu(spMenuItem model)
+        {
+            spMenuItemDAC_sqlite cd = new spMenuItemDAC_sqlite();
+
+            spMenuItem _spMenuItem = new spMenuItem();
+            _spMenuItem.mnuName = model.mnuName;
+            _spMenuItem.Description = model.Description;
+
+            spMenuItem MenuReturned = cd.Create(_spMenuItem);
+
+            return MenuReturned;
+        }
+        public void DeletespMenuItemById(int Id)
+        {
+            spMenuItemDAC_sqlite cd = new spMenuItemDAC_sqlite();
+            cd.DeleteById(Id);
+        }
+        public spMenuItem GetspMenuItembyId(int Id)
+        {
+            spMenuItem result = default(spMenuItem);
+
+            // Data access component declarations.
+            spMenuItemDAC_sqlite cd = new spMenuItemDAC_sqlite();
+
+            result = cd.SelectById(Id);
+            return result;
+        }
+        public void UpdatespMenuItem(spMenuItem _spMenuItem)
+        {
+            // Data access component declarations.
+            spMenuItemDAC_sqlite cd = new spMenuItemDAC_sqlite();
+
+            cd.UpdateById(_spMenuItem);
+        }
+        #endregion "spMenuItem"
+        #region "spAllowedRoleMenusweb"
+        public List<spAllowedRoleMenusweb> GetAllspAllowedRoleMenusweb()
+        {
+            List<spAllowedRoleMenusweb> result = default(List<spAllowedRoleMenusweb>);
+
+            // Data access component declarations.
+            spAllowedRoleMenuswebDAC_sqlite _spAllowedRoleMenuswebDAC_sqlite = new spAllowedRoleMenuswebDAC_sqlite();
+
+            result = _spAllowedRoleMenuswebDAC_sqlite.Select();
+            return result;
+        }
+        public spAllowedRoleMenusweb CreatespAllowedRoleMenu(spAllowedRoleMenusweb model)
+        {
+            spAllowedRoleMenuswebDAC_sqlite cd = new spAllowedRoleMenuswebDAC_sqlite();
+
+            spAllowedRoleMenusweb _spAllowedRoleMenusweb = new spAllowedRoleMenusweb();
+            _spAllowedRoleMenusweb.RoleId = model.RoleId;
+            _spAllowedRoleMenusweb.MenuItemId = model.MenuItemId;
+            _spAllowedRoleMenusweb.Allowed = model.Allowed;
+
+            spAllowedRoleMenusweb AllowedRoleMenusReturned = cd.Create(_spAllowedRoleMenusweb);
+
+            return AllowedRoleMenusReturned;
+        }
+        public void DeletespAllowedRoleMenuswebById(int Id)
+        {
+            spAllowedRoleMenuswebDAC_sqlite cd = new spAllowedRoleMenuswebDAC_sqlite();
+            cd.DeleteById(Id);
+        }
+        public spAllowedRoleMenusweb GetspAllowedRoleMenuswebbyId(int Id)
+        {
+            spAllowedRoleMenusweb result = default(spAllowedRoleMenusweb);
+
+            // Data access component declarations.
+            spAllowedRoleMenuswebDAC_sqlite cd = new spAllowedRoleMenuswebDAC_sqlite();
+
+            result = cd.SelectById(Id);
+            return result;
+        }
+        public spAllowedRoleMenusweb GetRightweb(int Roleid, int Menuitemid)
+        {
+            spAllowedRoleMenusweb result = default(spAllowedRoleMenusweb);
+
+            // Data access component declarations.
+            spAllowedRoleMenuswebDAC_sqlite cd = new spAllowedRoleMenuswebDAC_sqlite();
+
+            result = cd.SelectRight(Roleid, Menuitemid);
+            return result;
+        }
+        public void UpdatespAllowedRoleMenusweb(spAllowedRoleMenusweb _spAllowedRoleMenusweb)
+        {
+            // Data access component declarations.
+            spAllowedRoleMenuswebDAC_sqlite cd = new spAllowedRoleMenuswebDAC_sqlite();
+
+            cd.UpdateById(_spAllowedRoleMenusweb);
+        }
+        #endregion "spAllowedRoleMenusweb"
 
     }
 }

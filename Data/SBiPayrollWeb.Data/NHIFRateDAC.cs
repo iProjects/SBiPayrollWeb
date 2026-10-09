@@ -126,7 +126,7 @@ namespace SBiPayrollWeb.Data
                         nHIFRate = new NHIFRate();
 
                         // Read values.
-                        nHIFRate.Id = base.GetDataValue<int>(dr, "Id");
+                        nHIFRate.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         nHIFRate.FromAmt = base.GetDataValue<decimal>(dr, "FromAmt");
                         nHIFRate.ToAmt = base.GetDataValue<decimal>(dr, "ToAmt");
                         nHIFRate.Rate = base.GetDataValue<decimal>(dr, "Rate");
@@ -164,7 +164,7 @@ namespace SBiPayrollWeb.Data
                         NHIFRate nHIFRate = new NHIFRate();
 
                         // Read values.
-                        nHIFRate.Id = base.GetDataValue<int>(dr, "Id");
+                        nHIFRate.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         nHIFRate.FromAmt = base.GetDataValue<decimal>(dr, "FromAmt");
                         nHIFRate.ToAmt = base.GetDataValue<decimal>(dr, "ToAmt");
                         nHIFRate.Rate = base.GetDataValue<decimal>(dr, "Rate");

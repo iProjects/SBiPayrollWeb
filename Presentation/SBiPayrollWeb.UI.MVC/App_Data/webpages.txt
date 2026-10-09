@@ -1,0 +1,30 @@
+﻿
+
+INSERT INTO UserProfile (UserId, UserName) VALUES (2, 'kevinmk30@gmail.com');
+INSERT INTO UserProfile (UserId, UserName) VALUES (5, 'm@m.m');
+INSERT INTO UserProfile (UserId, UserName) VALUES (6, 'denique@denique.denique');
+INSERT INTO UserProfile (UserId, UserName) VALUES (7, '87@rte.90');
+INSERT INTO UserProfile (UserId, UserName) VALUES (8, 'd@w.m');
+INSERT INTO UserProfile (UserId, UserName) VALUES (9, 'kevinmk40@gmail.com');
+INSERT INTO UserProfile (UserId, UserName) VALUES (10, 'kevinmk50@gmail.com');
+INSERT INTO UserProfile (UserId, UserName) VALUES (11, 'calvinr451@gmail.com');
+INSERT INTO UserProfile (UserId, UserName) VALUES (12, 'kevinmutugikithinji254@gmail.com');
+
+INSERT INTO webpages_Roles (RoleId, RoleName) VALUES (1, 'Administrator');
+INSERT INTO webpages_Roles (RoleId, RoleName) VALUES (2, 'Employee');
+INSERT INTO webpages_Roles (RoleId, RoleName) VALUES (3, 'Customer');
+INSERT INTO webpages_Roles (RoleId, RoleName) VALUES (4, 'Registered User');
+
+INSERT INTO webpages_UsersInRoles (UserId, RoleId) VALUES (4, 1);
+INSERT INTO webpages_UsersInRoles (UserId, RoleId) VALUES (4, 2);
+INSERT INTO webpages_UsersInRoles (UserId, RoleId) VALUES (4, 3);
+
+INSERT INTO webpages_Membership (UserId, CreateDate, ConfirmationToken, IsConfirmed, LastPasswordFailureDate, PasswordFailuresSinceLastSuccess, Password, PasswordChangedDate, PasswordSalt, PasswordVerificationToken, PasswordVerificationTokenExpirationDate) VALUES (2, '2014-09-16 05:27:00', NULL, 1, '2015-01-05 06:38:00', 1, 'AD2S8hQbSHPK6cHC1vUia14Sf1oRrU6jMzMS8AYa7zEIUfOxkjTD/D6UT8VrOKFyxA==', '2014-09-16 05:27:00', '', NULL, NULL);
+INSERT INTO webpages_Membership (UserId, CreateDate, ConfirmationToken, IsConfirmed, LastPasswordFailureDate, PasswordFailuresSinceLastSuccess, Password, PasswordChangedDate, PasswordSalt, PasswordVerificationToken, PasswordVerificationTokenExpirationDate) VALUES (5, '2015-01-01 09:03:00', NULL, 1, NULL, 0, 'ABo9P8cQzsEIDiXLLUPl1kHize6xSKjoi43I4pxyOuKWxzbMXNOBDAHce8HFXdsYHg==', '2015-01-01 09:03:00', '', NULL, NULL);
+INSERT INTO webpages_Membership (UserId, CreateDate, ConfirmationToken, IsConfirmed, LastPasswordFailureDate, PasswordFailuresSinceLastSuccess, Password, PasswordChangedDate, PasswordSalt, PasswordVerificationToken, PasswordVerificationTokenExpirationDate) VALUES (6, '2015-01-02 03:53:00', NULL, 1, NULL, 0, 'AAzJHounAtvFJuQqEUPZ9oa7j9KzqkKc+yyTdBotfVPJeVkwdKrD4qNyPv7WujzfpA==', '2015-01-02 03:53:00', '', NULL, NULL);
+INSERT INTO webpages_Membership (UserId, CreateDate, ConfirmationToken, IsConfirmed, LastPasswordFailureDate, PasswordFailuresSinceLastSuccess, Password, PasswordChangedDate, PasswordSalt, PasswordVerificationToken, PasswordVerificationTokenExpirationDate) VALUES (7, '2015-01-02 05:09:00', NULL, 1, NULL, 0, 'ANgIJsoF80b1o3OoH6z3po0IntyiZwQfjAUQIEQDNJ8ceyYiBKClO++Um82QDBT7bw==', '2015-01-02 05:09:00', '', NULL, NULL);
+INSERT INTO webpages_Membership (UserId, CreateDate, ConfirmationToken, IsConfirmed, LastPasswordFailureDate, PasswordFailuresSinceLastSuccess, Password, PasswordChangedDate, PasswordSalt, PasswordVerificationToken, PasswordVerificationTokenExpirationDate) VALUES (8, '2015-01-02 09:19:00', NULL, 1, NULL, 0, 'AGRgKrxLAZe94NV9m/Xif7IMOWyg1t6By5fqZUg0MTkFx1oo7HZ+KS+vcJnpmbI5tA==', '2015-01-02 09:19:00', '', NULL, NULL);
+INSERT INTO webpages_Membership (UserId, CreateDate, ConfirmationToken, IsConfirmed, LastPasswordFailureDate, PasswordFailuresSinceLastSuccess, Password, PasswordChangedDate, PasswordSalt, PasswordVerificationToken, PasswordVerificationTokenExpirationDate) VALUES (9, '2015-01-19 17:43:00', NULL, 1, NULL, 0, 'AOdn9KHJ6fY8maLXts7y2LU/pj9DcsgisbY5DhPhW83F94q2HPbxYhnPWcFkcVRgXg==', '2015-01-19 17:43:00', '', NULL, NULL);
+INSERT INTO webpages_Membership (UserId, CreateDate, ConfirmationToken, IsConfirmed, LastPasswordFailureDate, PasswordFailuresSinceLastSuccess, Password, PasswordChangedDate, PasswordSalt, PasswordVerificationToken, PasswordVerificationTokenExpirationDate) VALUES (10, '2015-01-21 00:54:00', NULL, 1, NULL, 0, 'AIReWECy+M2qOM/F8TeHUWqZd5qVzj1BGUwJPWWdhirRbWvO3SIuSdpPWjmJGpscWQ==', '2015-01-21 00:54:00', '', NULL, NULL);
+INSERT INTO webpages_Membership (UserId, CreateDate, ConfirmationToken, IsConfirmed, LastPasswordFailureDate, PasswordFailuresSinceLastSuccess, Password, PasswordChangedDate, PasswordSalt, PasswordVerificationToken, PasswordVerificationTokenExpirationDate) VALUES (11, '2026-09-21 19:51:00', NULL, 1, NULL, 0, 'AHZNC2EQ65plWXALAgGJOTkOmSll/+hDb6DmzQRvEI9N0l6CwhPkzIAljbu59uYSIA==', '2026-09-21 19:51:00', '', NULL, NULL);
+INSERT INTO webpages_Membership (UserId, CreateDate, ConfirmationToken, IsConfirmed, LastPasswordFailureDate, PasswordFailuresSinceLastSuccess, Password, PasswordChangedDate, PasswordSalt, PasswordVerificationToken, PasswordVerificationTokenExpirationDate) VALUES (12, '2026-09-21 21:30:00', NULL, 1, NULL, 0, 'AKWWI4i8AVPHAP6Ejy0mxlumktpHBT4EunqCP8PeDm9CtFMDxMTAB8QB8k+vInJCxg==', '2026-09-21 21:30:00', '', NULL, NULL);

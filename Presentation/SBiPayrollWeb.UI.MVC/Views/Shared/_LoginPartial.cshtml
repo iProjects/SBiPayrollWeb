@@ -1,90 +1,108 @@
-﻿<div id="loginPartial-div">
-
+﻿@{
+    // Safe extraction of Application["OnlineUsers"] compatible with .NET 4.0 / C# 4.0
+    object onlineUsersObj = Context.ApplicationInstance.Application["OnlineUsers"];
+    string onlineUsersCount = (onlineUsersObj != null) ? onlineUsersObj.ToString() : "0";
+}
+<div id="loginPartial-div" class="topbar-login-wrapper">
     @if (Request.IsAuthenticated)
     {
-        <text>
+        <div class="topbar-auth-container">
+            <!-- Online Users Indicator -->
+            <div class="online-status-pill" title="Current Active Users">
+                <span class="status-dot"></span>
+                <i class="fa-solid fa-users"></i>
+                <span class="online-count">@onlineUsersCount</span>
+            </div>
+            <!-- User Menu Dropdown -->
+            <div class="user-profile-dropdown">
+                <button type="button" class="user-dropdown-btn" id="userMenuToggle" aria-expanded="false">
+                    <div class="user-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span class="user-display-name">@User.Identity.Name</span>
+                    <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                </button>
+                <!-- Dropdown Menu -->
+                <div class="dropdown-menu-custom" id="userDropdownMenu">
+                    <div class="dropdown-header">
+                        <span class="dropdown-header-title">Signed in as</span>
+                        <strong class="dropdown-header-user">@User.Identity.Name</strong>
+                    </div>
+                    <div class="dropdown-divider"></div>
 
-        <b>No of Users Online:</b>
-        <b>@Context.ApplicationInstance.Application["OnlineUsers"].ToString()</b><br />
-        <br />
+                    @Html.ActionLink("Edit Profile", "EditProfile", "Account", routeValues: null, htmlAttributes: new { @class = "dropdown-item-custom" })
 
-        
-
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "log-off-partial-form" }))
-        {
-            @Html.AntiForgeryToken()
-             <text>
-            Welcome To Soft Books Payroll,  @Html.ActionLink(User.Identity.Name, "EditProfile", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage Profile"}) !
-<a  id="btnSubmitLogOffPartialForm" style="cursor: pointer;" title="Log Off">Log off</a>
-     </text>
-        }
-
-        </text>
+                    <div class="dropdown-divider"></div>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { enctype = "multipart/form-data", id = "log-off-partial-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button type="button" id="btnSubmitLogOffPartialForm" class="dropdown-item-custom logout-item">
+                            <i class="fa-solid fa-right-from-bracket me-2"></i> Log off
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
     }
-
-
     else
     {
-        <text>
-        <b>No of Users Online:</b>
-        <b>@Context.ApplicationInstance.Application["OnlineUsers"].ToString()</b><br />
-        <br />
-        </text>
-    
-        <ul>
-
-            <li>
-                <div class="floatleft">
-                    @using (Html.BeginForm("Register", "Account", FormMethod.Get, new { enctype = "multipart/form-data", id = "register-partial-form" }))
-                    { 
-                        <div>
-                            <a id="btnSubmitRegisterPartialForm" style="cursor: pointer;" title="Register">Register</a>
-                        </div>    
-                    }
-                </div>
-            </li>
-
-            <li>
-                <div class="floatleft">
-                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Get, new { enctype = "multipart/form-data", id = "login-partial-form" }))
-                    { 
-                        <div>
-                            <a id="btnSubmitLoginPartialForm" style="cursor: pointer;" title="Log In">Log in</a>
-                        </div>    
-                    }
-                </div>
-            </li>
-
-        </ul>
-     
+        <div class="topbar-guest-container">
+            <!-- Online Users Indicator -->
+            <div class="online-status-pill me-2" title="Current Active Users">
+                <span class="status-dot"></span>
+                <i class="fa-solid fa-users"></i>
+                <span class="online-count">@onlineUsersCount</span>
+            </div>
+            <!-- Guest Action Buttons -->
+            <div class="guest-actions">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Get, new { enctype = "multipart/form-data", id = "register-partial-form", @class = "d-inline" }))
+                {
+                    <button type="button" id="btnSubmitRegisterPartialForm" class="btn btn-outline-primary btn-sm" title="Register Account">
+                        Register
+                    </button>
+                }
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Get, new { enctype = "multipart/form-data", id = "login-partial-form", @class = "d-inline" }))
+                {
+                    <button type="button" id="btnSubmitLoginPartialForm" class="btn btn-primary btn-sm" title="Log In">
+                        Log in
+                    </button>
+                }
+            </div>
+        </div>
     }
-
-
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#progress").hide();
+        $.ajaxSetup({ cache: false });
 
-
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            $("#progress").hide();
-
-            $.ajaxSetup({ cache: false });
-
+        // Toggle user dropdown menu
+        $('#userMenuToggle').on('click', function (e) {
+            e.stopPropagation();
+            $('#userDropdownMenu').toggleClass('show');
         });
-    </script>
 
-}
+        // Close dropdown when clicking outside
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('.user-profile-dropdown').length) {
+                $('#userDropdownMenu').removeClass('show');
+            }
+        });
 
+        // Submit form triggers
+        $("#btnSubmitLogOffPartialForm").on("click", function (e) {
+            e.preventDefault();
+            $("#log-off-partial-form").submit();
+        });
 
+        $("#btnSubmitRegisterPartialForm").on("click", function (e) {
+            e.preventDefault();
+            $("#register-partial-form").submit();
+        });
 
-
-
-
-
-
-
+        $("#btnSubmitLoginPartialForm").on("click", function (e) {
+            e.preventDefault();
+            $("#login-partial-form").submit();
+        });
+    });
+</script>

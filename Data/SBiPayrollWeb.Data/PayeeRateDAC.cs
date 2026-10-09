@@ -126,7 +126,7 @@ namespace SBiPayrollWeb.Data
                         payeeRate = new PayeeRate();
 
                         // Read values.
-                        payeeRate.Id = base.GetDataValue<int>(dr, "Id");
+                        payeeRate.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         payeeRate.FromAmt = base.GetDataValue<decimal>(dr, "FromAmt");
                         payeeRate.ToAmt = base.GetDataValue<decimal>(dr, "ToAmt");
                         payeeRate.Rate = base.GetDataValue<decimal>(dr, "Rate");
@@ -164,7 +164,7 @@ namespace SBiPayrollWeb.Data
                         PayeeRate payeeRate = new PayeeRate();
 
                         // Read values.
-                        payeeRate.Id = base.GetDataValue<int>(dr, "Id");
+                        payeeRate.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         payeeRate.FromAmt = base.GetDataValue<decimal>(dr, "FromAmt");
                         payeeRate.ToAmt = base.GetDataValue<decimal>(dr, "ToAmt");
                         payeeRate.Rate = base.GetDataValue<decimal>(dr, "Rate");

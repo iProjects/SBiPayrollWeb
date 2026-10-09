@@ -126,7 +126,7 @@ namespace SBiPayrollWeb.Data
                         spRole = new spRole();
 
                         // Read values.
-                        spRole.Id = base.GetDataValue<int>(dr, "Id");
+                        spRole.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         spRole.ShortCode = base.GetDataValue<string>(dr, "ShortCode");
                         spRole.Description = base.GetDataValue<string>(dr, "Description");
                         spRole.IsDeleted = base.GetDataValue<bool>(dr, "IsDeleted");
@@ -164,7 +164,7 @@ namespace SBiPayrollWeb.Data
                         spRole spRole = new spRole();
 
                         // Read values.
-                        spRole.Id = base.GetDataValue<int>(dr, "Id");
+                        spRole.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         spRole.ShortCode = base.GetDataValue<string>(dr, "ShortCode");
                         spRole.Description = base.GetDataValue<string>(dr, "Description");
                         spRole.IsDeleted = base.GetDataValue<bool>(dr, "IsDeleted");

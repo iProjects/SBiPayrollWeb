@@ -126,7 +126,7 @@ namespace SBiPayrollWeb.Data
                         spAllowedRoleMenus = new spAllowedRoleMenus();
 
                         // Read values.
-                        spAllowedRoleMenus.Id = base.GetDataValue<int>(dr, "Id");
+                        spAllowedRoleMenus.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         spAllowedRoleMenus.RoleId = base.GetDataValue<int>(dr, "RoleId");
                         spAllowedRoleMenus.MenuItemId = base.GetDataValue<int>(dr, "MenuItemId");
                         spAllowedRoleMenus.Allowed = base.GetDataValue<bool>(dr, "Allowed");
@@ -164,7 +164,7 @@ namespace SBiPayrollWeb.Data
                         spAllowedRoleMenus spAllowedRoleMenus = new spAllowedRoleMenus();
 
                         // Read values.
-                        spAllowedRoleMenus.Id = base.GetDataValue<int>(dr, "Id");
+                        spAllowedRoleMenus.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         spAllowedRoleMenus.RoleId = base.GetDataValue<int>(dr, "RoleId");
                         spAllowedRoleMenus.MenuItemId = base.GetDataValue<int>(dr, "MenuItemId");
                         spAllowedRoleMenus.Allowed = base.GetDataValue<bool>(dr, "Allowed");

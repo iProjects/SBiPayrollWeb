@@ -1,107 +1,106 @@
 ﻿@model IEnumerable<SBiPayrollWeb.Entities.Employee>
-
 @{
     ViewBag.Title = "Employees";
-    int Employees = Model.Count();
+    int employeeCount = Model != null ? Model.Count() : 0;
 }
-
-<h2 class="page-title">Employees [ @Employees ] </h2>
-
-<div>
-    @using (Html.BeginForm("CreateEmployee", "DataEntry", FormMethod.Get, new { enctype = "multipart/form-data", id = "data-entry-create-employee-form" }))
-    { 
-        <p>
-            <a id="btnSubmitCreateEmployeeForm" style="cursor: pointer;" title="Create Employee">Create Employee</a>
-            @*@Html.ActionLink("Create Employee", "CreateEmployee")*@
-        </p> 
-         
-    }
+<link rel="stylesheet" href="~/Content/employees_modern.css" />
+<div class="employees-container">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-title">
+            <h2>Employees</h2>
+            <span class="badge-count" id="totalCount">@employeeCount</span>
+        </div>
+        <div class="header-actions">
+            @using (Html.BeginForm("CreateEmployee", "DataEntry", FormMethod.Get, new { id = "data-entry-create-employee-form" }))
+            {
+                <button type="submit" id="btnSubmitCreateEmployeeForm" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Create Employee
+                </button>
+            }
+        </div>
+    </div>
+    <!-- Utility Bar: Search & Filters -->
+    <div class="table-utilities">
+        <div class="search-box">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="employeeSearchInput" placeholder="Search by name, email, or employee no..." />
+            <button type="button" id="clearSearch" class="btn-clear" style="display: none;">&times;</button>
+        </div>
+        <div class="page-size-selector">
+            <label for="pageSizeSelect">Rows per page:</label>
+            <select id="pageSizeSelect">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+        </div>
+    </div>
+    <!-- Table Container -->
+    <div class="table-card">
+        <div class="table-responsive">
+            <table class="modern-table" id="employeesTable">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.EmpNo)</th>
+                        <th>@Html.DisplayNameFor(model => model.OtherNames)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <th>@Html.DisplayNameFor(model => model.TelephoneNo)</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTableBody">
+                    @foreach (var item in Model)
+                    {
+                        <tr data-id="@item.Id">
+                            <td class="font-medium">@Html.DisplayFor(modelItem => item.EmpNo)</td>
+                            <td>
+                                <div class="user-avatar-cell">
+                                    <div class="avatar">@item.OtherNames.Substring(0, 1).ToUpper()</div>
+                                    <span class="emp-name">@Html.DisplayFor(modelItem => item.OtherNames)</span>
+                                </div>
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.TelephoneNo)</td>
+                            <td class="text-right actions-cell">
+                                @Html.ActionLink("Edit", "EditEmployee", new { id = item.Id }, new { @class = "action-link edit" })
+                                @Html.ActionLink("Details", "EmployeeDetails", new { id = item.Id }, new { @class = "action-link details" })
+                                @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.Id, description = item.OtherNames }, new { @class = "action-link delete" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="noResults" class="no-results" style="display: none;">
+                <p>No matching employees found.</p>
+            </div>
+        </div>
+        <!-- Table Footer Pagination -->
+        <div class="pagination-footer">
+            <div class="pagination-info" id="paginationInfo">
+                Showing 0 to 0 of 0 entries
+            </div>
+            <div class="pagination-controls" id="paginationControls">
+                <!-- Pagination buttons generated by JavaScript -->
+            </div>
+        </div>
+    </div>
 </div>
-  
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.EmpNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TelephoneNo)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmpNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmployeeName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelephoneNo)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditEmployee", new { id = item.Id }) |
-            @Html.ActionLink("Details", "EmployeeDetails", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.Id, description = item.EmployeeName })
-            </td>
-        </tr>
-    }
-
-</table>
-
-
-
-
-
-
-
-
-
+<!-- Progress Spinner -->
+<div id="progress" class="loading-overlay" style="display: none;">
+    <div class="spinner"></div>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-
-        $(document).ready(function () { 
-
-            $("#progress").hide();
-
-            $.ajaxSetup({ cache: false });
-
-        });
-
-        $("#btnSubmitCreateEmployeeForm").on("click", function (e) {
-
-            e.preventDefault();
-
-            $("#progress").removeClass('displaynone');
-            $("#progress").addClass('displayblock');
-            $("#progress").show();
-
-            $("#data-entry-create-employee-form").submit();
-
-        });
-
-        </script>
- 
+    <script src="~/Scripts/employees_modern.js"></script>
 }
-
-
-
-
-
-
-
-
-

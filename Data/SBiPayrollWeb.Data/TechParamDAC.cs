@@ -123,7 +123,7 @@ namespace SBiPayrollWeb.Data
                         techParam = new TechParam();
 
                         // Read values.
-                        techParam.Id = base.GetDataValue<int>(dr, "Id");
+                        techParam.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         techParam.strtdt = base.GetDataValue<DateTime>(dr, "strtdt");
                         techParam.edc = base.GetDataValue<int>(dr, "edc");
                     }
@@ -160,7 +160,7 @@ namespace SBiPayrollWeb.Data
                         TechParam techParam = new TechParam();
 
                         // Read values.
-                        techParam.Id = base.GetDataValue<int>(dr, "Id");
+                        techParam.Id = Convert.ToInt32(base.GetDataValue<long>(dr, "Id"));
                         techParam.strtdt = base.GetDataValue<DateTime>(dr, "strtdt");
                         techParam.edc = base.GetDataValue<int>(dr, "edc");
 

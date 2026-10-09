@@ -24,10 +24,10 @@ namespace SBiPayrollWeb.Business
             List<PayeeRate> result = default(List<PayeeRate>);
 
             // Data access component declarations.
-            PayeeRateDAC payeeRateDAC = new PayeeRateDAC();
+            PayeeRateDAC_sqlite payeeRateDAC_sqlite = new PayeeRateDAC_sqlite();
 
-            // Step 1 - Calling Select on PayeeRateDAC.
-            result = payeeRateDAC.Select();
+            // Step 1 - Calling Select on PayeeRateDAC_sqlite.
+            result = payeeRateDAC_sqlite.Select();
             return result;
 
         }
@@ -37,10 +37,10 @@ namespace SBiPayrollWeb.Business
             List<NHIFRate> result = default(List<NHIFRate>);
 
             // Data access component declarations.
-            NHIFRateDAC nHIFRateDAC = new NHIFRateDAC();
+            NHIFRateDAC_sqlite nHIFRateDAC_sqlite = new NHIFRateDAC_sqlite();
 
-            // Step 1 - Calling Select on NHIFRateDAC.
-            result = nHIFRateDAC.Select();
+            // Step 1 - Calling Select on NHIFRateDAC_sqlite.
+            result = nHIFRateDAC_sqlite.Select();
             return result;
 
         }
@@ -50,10 +50,10 @@ namespace SBiPayrollWeb.Business
             List<spAllowedReportsRolesMenus> result = default(List<spAllowedReportsRolesMenus>);
 
             // Data access component declarations.
-            spAllowedReportsRolesMenusDAC spAllowedReportsRolesMenusDAC = new spAllowedReportsRolesMenusDAC();
+            spAllowedReportsRolesMenusDAC_sqlite spAllowedReportsRolesMenusDAC_sqlite = new spAllowedReportsRolesMenusDAC_sqlite();
 
-            // Step 1 - Calling Select on spAllowedReportsRolesMenusDAC.
-            result = spAllowedReportsRolesMenusDAC.Select();
+            // Step 1 - Calling Select on spAllowedReportsRolesMenusDAC_sqlite.
+            result = spAllowedReportsRolesMenusDAC_sqlite.Select();
             return result;
 
         }
@@ -63,10 +63,10 @@ namespace SBiPayrollWeb.Business
             List<TaxTracking> result = default(List<TaxTracking>);
 
             // Data access component declarations.
-            TaxTrackingDAC TaxTrackingDAC = new TaxTrackingDAC();
+            TaxTrackingDAC_sqlite TaxTrackingDAC_sqlite = new TaxTrackingDAC_sqlite();
 
-            // Step 1 - Calling Select on TaxTrackingDAC.
-            result = TaxTrackingDAC.Select();
+            // Step 1 - Calling Select on TaxTrackingDAC_sqlite.
+            result = TaxTrackingDAC_sqlite.Select();
             return result;
 
         }
@@ -76,9 +76,9 @@ namespace SBiPayrollWeb.Business
             List<Employee> result = default(List<Employee>);
 
             // Data access component declarations.
-            EmployeeDAC _EmployeeDAC = new EmployeeDAC();
+            EmployeeDAC_sqlite _EmployeeDAC_sqlite = new EmployeeDAC_sqlite();
 
-            result = _EmployeeDAC.Select();
+            result = _EmployeeDAC_sqlite.Select();
             return result;
 
         }
@@ -87,14 +87,14 @@ namespace SBiPayrollWeb.Business
             Employee result = default(Employee);
 
             // Data access component declarations.
-            EmployeeDAC _EmployeeDAC = new EmployeeDAC();
+            EmployeeDAC_sqlite _EmployeeDAC_sqlite = new EmployeeDAC_sqlite();
 
-            result = _EmployeeDAC.SelectByEmail(email);
+            result = _EmployeeDAC_sqlite.SelectByEmail(email);
             return result;
         }
         public Employee CreateEmployee(Employee model)
         {
-            EmployeeDAC _EmployeeDAC = new EmployeeDAC();
+            EmployeeDAC_sqlite _EmployeeDAC_sqlite = new EmployeeDAC_sqlite();
 
             Employee _Employee = new Employee();
             _Employee.Email = model.Email;
@@ -133,7 +133,7 @@ namespace SBiPayrollWeb.Business
             _Employee.IsActive = model.IsActive;
             _Employee.IsDeleted = model.IsDeleted;
 
-            Employee EmployeeReturned = _EmployeeDAC.Create(_Employee);
+            Employee EmployeeReturned = _EmployeeDAC_sqlite.Create(_Employee);
 
             AddDefaultEmpTransactions(EmployeeReturned.Id, EmployeeReturned.EmpNo, EmployeeReturned.BasicPay, EmployeeReturned.CreatedBy);
 
@@ -141,33 +141,33 @@ namespace SBiPayrollWeb.Business
         }
         public void DeleteEmployeeById(int Id)
         {
-            EmployeeDAC _EmployeeDAC = new EmployeeDAC();
-            _EmployeeDAC.DeleteById(Id);
+            EmployeeDAC_sqlite _EmployeeDAC_sqlite = new EmployeeDAC_sqlite();
+            _EmployeeDAC_sqlite.DeleteById(Id);
         }
         public Employee GetEmployeebyId(int Id)
         {
             Employee result = default(Employee);
 
             // Data access component declarations.
-            EmployeeDAC _EmployeeDAC = new EmployeeDAC();
+            EmployeeDAC_sqlite _EmployeeDAC_sqlite = new EmployeeDAC_sqlite();
 
-            result = _EmployeeDAC.SelectById(Id);
+            result = _EmployeeDAC_sqlite.SelectById(Id);
             return result;
 
         }
         public void UpdateEmployee(Employee _Employee)
         {
             // Data access component declarations.
-            EmployeeDAC _EmployeeDAC = new EmployeeDAC();
+            EmployeeDAC_sqlite _EmployeeDAC_sqlite = new EmployeeDAC_sqlite();
 
-            _EmployeeDAC.UpdateById(_Employee);
+            _EmployeeDAC_sqlite.UpdateById(_Employee);
         }
         public void UploadEmployeePhoto(Employee _Employee)
         {
             // Data access component declarations.
-            EmployeeDAC _EmployeeDAC = new EmployeeDAC();
+            EmployeeDAC_sqlite _EmployeeDAC_sqlite = new EmployeeDAC_sqlite();
 
-            _EmployeeDAC.UploadEmployeePhoto(_Employee);
+            _EmployeeDAC_sqlite.UploadEmployeePhoto(_Employee);
         }
         #endregion "Employees"
         #region "Employers"
@@ -176,15 +176,15 @@ namespace SBiPayrollWeb.Business
             List<Employer> result = default(List<Employer>);
 
             // Data access component declarations.
-            EmployerDAC _EmployerDAC = new EmployerDAC();
+            EmployerDAC_sqlite _EmployerDAC_sqlite = new EmployerDAC_sqlite();
 
-            result = _EmployerDAC.Select();
+            result = _EmployerDAC_sqlite.Select();
             return result;
 
         }
         public Employer CreateEmployer(Employer model)
         {
-            EmployerDAC _EmployerDAC = new EmployerDAC();
+            EmployerDAC_sqlite _EmployerDAC_sqlite = new EmployerDAC_sqlite();
 
             Employer _Employer = new Employer();
             _Employer.Name = model.Name;
@@ -205,23 +205,23 @@ namespace SBiPayrollWeb.Business
             _Employer.IsDeleted = model.IsDeleted;
             _Employer.IsDefault = model.IsDefault;
 
-            Employer EmployerReturned = _EmployerDAC.Create(_Employer);
+            Employer EmployerReturned = _EmployerDAC_sqlite.Create(_Employer);
 
             return EmployerReturned;
         }
         public void DeleteEmployerById(int Id)
         {
-            EmployerDAC _EmployerDAC = new EmployerDAC();
-            _EmployerDAC.DeleteById(Id);
+            EmployerDAC_sqlite _EmployerDAC_sqlite = new EmployerDAC_sqlite();
+            _EmployerDAC_sqlite.DeleteById(Id);
         }
         public Employer GetEmployerbyId(int Id)
         {
             Employer result = default(Employer);
 
             // Data access component declarations.
-            EmployerDAC _EmployerDAC = new EmployerDAC();
+            EmployerDAC_sqlite _EmployerDAC_sqlite = new EmployerDAC_sqlite();
 
-            result = _EmployerDAC.SelectById(Id);
+            result = _EmployerDAC_sqlite.SelectById(Id);
             return result;
 
         }
@@ -230,32 +230,32 @@ namespace SBiPayrollWeb.Business
             Employer result = default(Employer);
 
             // Data access component declarations.
-            EmployerDAC _EmployerDAC = new EmployerDAC();
+            EmployerDAC_sqlite _EmployerDAC_sqlite = new EmployerDAC_sqlite();
 
-            result = _EmployerDAC.SelectDefaultEmployer();
+            result = _EmployerDAC_sqlite.SelectDefaultEmployer();
             return result;
 
         }
         public void UpdateEmployer(Employer _Employer)
         {
             // Data access component declarations.
-            EmployerDAC _EmployerDAC = new EmployerDAC();
+            EmployerDAC_sqlite _EmployerDAC_sqlite = new EmployerDAC_sqlite();
 
-            _EmployerDAC.UpdateById(_Employer);
+            _EmployerDAC_sqlite.UpdateById(_Employer);
         }
         public void UploadEmployerLogo(Employer _Employer)
         {
             // Data access component declarations.
-            EmployerDAC _EmployerDAC = new EmployerDAC();
+            EmployerDAC_sqlite _EmployerDAC_sqlite = new EmployerDAC_sqlite();
 
-            _EmployerDAC.UploadEmployerLogo(_Employer);
+            _EmployerDAC_sqlite.UploadEmployerLogo(_Employer);
         }
         #endregion "Employers"
 
         #region "EmployeeTransactions"
         public string SettingLookup(string Key)
         {
-            SettingDAC setDac = new SettingDAC();
+            SettingDAC_sqlite setDac = new SettingDAC_sqlite();
             var setting = setDac.SelectById(Key);
             if (setting != null)
                 return setting.SSValue;
@@ -342,7 +342,7 @@ namespace SBiPayrollWeb.Business
             bool processed, bool track, string user, string modifiedby, DateTime modifieddate,
             string auth, DateTime authDate, bool show, decimal ytdAmt, string loantype)
         {
-            EmployeeTransactionDAC edac = new EmployeeTransactionDAC();
+            EmployeeTransactionDAC_sqlite edac = new EmployeeTransactionDAC_sqlite();
             EmployeeTransaction et = new EmployeeTransaction();
             et.EmployeeId = employeeid;
             et.Amount = amt;

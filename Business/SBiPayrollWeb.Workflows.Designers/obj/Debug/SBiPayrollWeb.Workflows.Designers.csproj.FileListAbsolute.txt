@@ -7,3 +7,8 @@ C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.Activities.Visual
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.Activities.VisualStudio.Design.pdb
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Designers\obj\Debug\SBiPayrollWeb.Workflows.Activities.VisualStudio.Design.dll
 C:\Dev\SBiPayrollWeb\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Designers\obj\Debug\SBiPayrollWeb.Workflows.Activities.VisualStudio.Design.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.Activities.VisualStudio.Design.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\bin\SBiPayrollWeb.Workflows.Activities.VisualStudio.Design.pdb
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Designers\obj\Debug\SBiPayrollWeb.Workflows.Designers.csprojResolveAssemblyReference.cache
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Designers\obj\Debug\SBiPayrollWeb.Workflows.Activities.VisualStudio.Design.dll
+D:\wakxpx\csharp\visualstudio\2013\SBiPayrollWeb\Business\SBiPayrollWeb.Workflows.Designers\obj\Debug\SBiPayrollWeb.Workflows.Activities.VisualStudio.Design.pdb
